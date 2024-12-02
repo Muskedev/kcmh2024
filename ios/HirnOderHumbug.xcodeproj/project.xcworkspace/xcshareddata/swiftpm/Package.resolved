@@ -1,0 +1,15 @@
+{
+  "originHash" : "a563e97f61a37a149c7e191139cc263ac2646fff7801cab0248702973164e28f",
+  "pins" : [
+    {
+      "identity" : "mammut",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simon-zwicker/Mammut",
+      "state" : {
+        "branch" : "main",
+        "revision" : "493dfad156c26d4ca8da98917110a918efdb0bc7"
+      }
+    }
+  ],
+  "version" : 3
+}
