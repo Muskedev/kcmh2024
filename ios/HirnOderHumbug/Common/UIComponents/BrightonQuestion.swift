@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BrightonQuestion: View {
     
-    @Binding var clicked: Bool
+    var clicked: Bool = false
     let question: String
     
     var body: some View {
@@ -41,6 +41,6 @@ struct BrightonQuestion: View {
         Button("Test") {
             clicked.toggle()
         }
-        BrightonQuestion(clicked: $clicked, question: "Hallo Welt?")
+        BrightonQuestion(clicked: clicked, question: "Hallo Welt?")
     }
 }

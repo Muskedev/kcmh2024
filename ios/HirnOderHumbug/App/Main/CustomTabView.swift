@@ -16,9 +16,9 @@ enum CustomTabItem: Int, CaseIterable {
     var caption: String {
         switch self {
         case .tabOne:
-            "TabEins"
+            "True or False"
         case .tabTwo:
-            "TabZwei"
+            "Genial Daneben"
         }
     }
     
@@ -37,7 +37,7 @@ enum CustomTabItem: Int, CaseIterable {
         case .tabOne:
             XFQuestionView()
         case .tabTwo:
-            Text("Hello World2")
+            GenialDanebenView()
         }
     }
 }
