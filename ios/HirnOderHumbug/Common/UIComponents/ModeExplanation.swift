@@ -6,24 +6,26 @@
 //
 
 import SwiftUI
+import Routing
 
 struct ModeExplanation: View {
     
     // MARK: - Properties
     let mode: GameMode
-    @State var path: NavigationPath =  .init()
+    @StateObject private var router: Router<GameRoute> = .init()
     
     // MARK: - Body
     var body: some View {
-        NavigationStack(path: $path) {
+        RoutingView(stack: $router.stack) {
             VStack {
                 BrightonHeader(head: mode.name, subhead: mode.explanation)
+                
                 Spacer()
                 
                 Text("Start Game")
                     .modifier(TTButtonStyle(color: Color.backgroundOne))
                     .button {
-                        path.append(1)
+                        router.navigate(to: .start(mode))
                     }
                 
                 Spacer()
