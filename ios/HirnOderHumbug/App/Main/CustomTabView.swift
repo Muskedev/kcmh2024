@@ -25,9 +25,9 @@ enum CustomTabItem: Int, CaseIterable {
     var icon: String {
         switch self {
         case .tabOne:
-            "person"
+            "checkmark.circle.badge.xmark"
         case .tabTwo:
-            "paperplane"
+            "questionmark.bubble"
         }
     }
     
@@ -74,6 +74,7 @@ private struct CTabItem: View {
         VStack {
             Image(systemName: tabItem.icon)
                 .padding(.bottom, 5)
+                .imageScale(.large)
             Text(tabItem.caption.translate)
                 .frame(maxWidth: .infinity)
         }
