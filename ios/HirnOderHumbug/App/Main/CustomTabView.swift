@@ -16,9 +16,9 @@ enum CustomTabItem: Int, CaseIterable {
     var caption: String {
         switch self {
         case .tabOne:
-            "True or False"
+            GameMode.really.name
         case .tabTwo:
-            "Genial Daneben"
+            GameMode.thinkSolve.name
         }
     }
     
@@ -35,9 +35,9 @@ enum CustomTabItem: Int, CaseIterable {
     var view: some View {
         switch self {
         case .tabOne:
-            XFQuestionView()
+            ModeExplanation(mode: .really)
         case .tabTwo:
-            GenialDanebenView()
+            ModeExplanation(mode: .thinkSolve)
         }
     }
 }

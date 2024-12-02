@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GenialDanebenView: View {
+struct ThinkAndSolveGame: View {
     
     @State private var answer: String = ""
     
@@ -25,5 +25,5 @@ struct GenialDanebenView: View {
 }
 
 #Preview {
-    GenialDanebenView()
+    ThinkAndSolveGame()
 }
