@@ -16,7 +16,7 @@ struct MainView: View {
         NavigationStack {
             ZStack {
                 BHMesh()
-                XFQuestionView()
+                CustomTabView()
             }
         }
     }
