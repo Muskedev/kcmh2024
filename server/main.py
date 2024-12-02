@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.hello_world.route import HelloWorldRoute
+from api.hello_world import HelloWorldRoute
 
 
 app = FastAPI()
