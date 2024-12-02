@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftChameleon
 
 struct TrueFalseButtons: View {
     
@@ -13,14 +14,14 @@ struct TrueFalseButtons: View {
     
     var body: some View {
         HStack(spacing: 20.0) {
-            Button {
-                clicked = true
-            } label: {
-                Image(systemName: "checkmark")
-                    .font(.buttonBool)
-                    .foregroundStyle(.mint)
-                    .frame(maxWidth: .infinity, maxHeight: 60.0)
-            }
+            Image(systemName: "checkmark")
+                .font(.buttonBool)
+                .foregroundStyle(.mint)
+                .frame(maxWidth: .infinity, maxHeight: 60.0)
+                .button {
+                    clicked = true
+                }
+
             .background(.white)
             .clipShape(.rect(cornerRadius: 20))
             
