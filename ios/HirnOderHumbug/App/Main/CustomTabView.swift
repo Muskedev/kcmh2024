@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftChameleon
 
-enum CustomTabItem: Int, CaseIterable {
+private enum CustomTabItem: Int, CaseIterable {
     
     case tabOne
     case tabTwo
@@ -49,18 +49,22 @@ struct CustomTabView: View {
     var body: some View {
         ZStack {
             selectedTab.view
+            
             VStack {
                 Spacer()
                 HStack {
                     ForEach(CustomTabItem.allCases, id: \.self) { tabItem in
-                        CTabItem(tabItem: tabItem)
+                        CTabItem(tabItem: tabItem, isActive: selectedTab == tabItem)
                             .button {
                                 selectedTab = tabItem
                             }
-                            .buttonStyle(.plain)
-                            .bold(selectedTab == tabItem)
                     }
                 }
+                .padding(6)
+                .frame(height: 70)
+                .background(.white)
+                .cornerRadius(35)
+                .padding(.horizontal, 26)
             }
         }
     }
@@ -69,15 +73,29 @@ struct CustomTabView: View {
 private struct CTabItem: View {
 
     let tabItem: CustomTabItem
+    let isActive: Bool
     
     var body: some View {
-        VStack {
+        HStack(spacing: 10) {
+            Spacer()
             Image(systemName: tabItem.icon)
-                .padding(.bottom, 5)
-                .imageScale(.large)
-            Text(tabItem.caption.translate)
-                .frame(maxWidth: .infinity)
+                .resizable()
+                .renderingMode(.template)
+                .frame(width: 20, height: 20)
+            if isActive{
+                Text(tabItem.caption.translate)
+                    .font(.system(size: 14))
+            }
+            Spacer()
         }
+        .foregroundStyle(isActive ? .white : .gray)
+        .frame(maxWidth: isActive ? .infinity : 60)
+        .frame(height: 60)
+        .if(isActive, { content in
+            content
+                .background(.backgroundThree.opacity(0.7).gradient)
+        })
+        .cornerRadius(30)
     }
 }
 
