@@ -16,9 +16,9 @@ enum CustomTabItem: Int, CaseIterable {
     var caption: String {
         switch self {
         case .tabOne:
-            "True or False"
+            "tab_trueorfalse"
         case .tabTwo:
-            "Genial Daneben"
+            "tab_trickyquestion"
         }
     }
     
@@ -74,7 +74,7 @@ private struct CTabItem: View {
         VStack {
             Image(systemName: tabItem.icon)
                 .padding(.bottom, 5)
-            Text(tabItem.caption)
+            Text(tabItem.caption.translate)
                 .frame(maxWidth: .infinity)
         }
     }
