@@ -34,3 +34,13 @@ struct BrightonQuestion: View {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var clicked = false
+    VStack {
+        Button("Test") {
+            clicked.toggle()
+        }
+        BrightonQuestion(clicked: $clicked, question: "Hallo Welt?")
+    }
+}

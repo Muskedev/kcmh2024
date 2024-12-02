@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SpeechBubble: Shape {
+    
     private let radius: CGFloat
 
     init(radius: CGFloat = 10) {
