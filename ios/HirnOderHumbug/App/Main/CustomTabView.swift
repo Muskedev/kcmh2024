@@ -37,7 +37,7 @@ enum CustomTabItem: Int, CaseIterable {
         case .tabOne:
             XFQuestionView()
         case .tabTwo:
-            Text("Hello World2")
+            GenialDanebenView()
         }
     }
 }
