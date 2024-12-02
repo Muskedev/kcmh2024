@@ -1,27 +1,25 @@
-//  GenialDanebenView.swift
+//
+//  XFQuestionView.swift
 //  HirnOderHumbug
 //
-//  Created by Nico on 02.12.24.
-//  
+//  Created by Simon Zwicker on 02.12.24.
 //
 
 import SwiftUI
 
-struct ThinkAndSolveGame: View {
+struct ReallyGame: View {
     
     @Environment(\.dismiss) var dismiss
-    @State private var answer: String = ""
+    @State private var clicked: Bool = false
     
     var body: some View {
         VStack(spacing: 30) {
             
-            BrightonQuestion(clicked: false, question: "Was hat ein Otter immer dabei?")
-            
-            TextAnswer(text: $answer)
+            BrightonQuestion(clicked: clicked, question: "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken.")
+            TrueFalseButtons(clicked: $clicked)
             
             Spacer()
         }
-        .padding()
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -33,9 +31,10 @@ struct ThinkAndSolveGame: View {
                     }
             }
         }
+        .padding()
     }
 }
 
 #Preview {
-    ThinkAndSolveGame()
+    ReallyGame()
 }

@@ -18,7 +18,7 @@ struct BrightonHeader: View {
                 Text(head)
                     .font(.brightonHead)
                 
-                Text(subhead)
+                Text(subhead.translate)
                     .font(.brightonSubhead)
             }
             .padding(.top, 35)

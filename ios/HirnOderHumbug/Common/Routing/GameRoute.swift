@@ -16,9 +16,15 @@ enum GameRoute: Routable {
         switch self {
         case .start(let mode):
             if mode == .really {
-                XFQuestionView()
+                ZStack {
+                    BHMesh()
+                    ReallyGame()
+                }
             } else {
-                ThinkAndSolveGame()
+                ZStack {
+                    BHMesh()
+                    ThinkAndSolveGame()
+                }
             }
         default:
             EmptyView()

@@ -22,16 +22,18 @@ extension GameMode {
     
     var explanation: String {
         switch self {
-        case .really: "Standest du auch schonmal vor der Wahl ob etwas richtig oder falsch ist?\n\nZum Beispiel die Aussage \"Goldfische haben ein Gedächtnis, das nur drei Sekunden lang hält.\"\n\n\nHier bekommst du Aussagen, die du als Richtig oder Falsch einstufen kannst. Für jede korrekte Antwort gibt es Punkte."
-        case .thinkSolve: "Hast du dir auch schonmal eine verrückte Frage gestellt? Hier tue ich es für dich! Deine Aufgabe ist es, die richtige Antwort in das Textfeld einzutippen."
-        }
-    }
-    
-    @ViewBuilder
-    var view: some View {
-        switch self {
-        case .really: XFQuestionView()
-        case .thinkSolve: ThinkAndSolveGame()
+        case .really: 
+            return """
+            Hier kommt deine Chance, der König oder die Königin des unnützen Wissens zu werden! Du bekommst schräge FunFacts serviert, und du musst herausfinden: Sind sie echt oder kompletter Quatsch? Richtig geraten? Punkte für dich! Falsch geraten? Naja, wenigstens hast du was gelernt (vielleicht).
+            
+            Mach dich bereit, dein Gehirn zu kitzeln und deine Freunde mit absurden Fakten zu beeindrucken!
+            """
+        case .thinkSolve:
+            return """
+            Hirnschmalz an und los geht’s! Hier bekommst du knifflige Fragen gestellt, und du musst die richtige Antwort selbst eintippen. Keine Multiple-Choice-Bequemlichkeit – jetzt wird’s ernst! Aber keine Sorge, schlaue Köpfe wie du rocken das sicher.
+            
+            Kämpfe um Punkte, lerne was Neues und bring dein Wissen auf den nächsten Level. Let’s get quizzical!
+            """
         }
     }
 }
