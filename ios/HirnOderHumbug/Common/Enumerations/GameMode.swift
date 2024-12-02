@@ -23,7 +23,7 @@ extension GameMode {
     var explanation: String {
         switch self {
         case .really: "Standest du auch schonmal vor der Wahl ob etwas richtig oder falsch ist?\n\nZum Beispiel die Aussage \"Goldfische haben ein Gedächtnis, das nur drei Sekunden lang hält.\"\n\n\nHier bekommst du Aussagen, die du als Richtig oder Falsch einstufen kannst. Für jede korrekte Antwort gibt es Punkte."
-        case .thinkSolve: "Andere erklärung"
+        case .thinkSolve: "Hast du dir auch schonmal eine verrückte Frage gestellt? Hier tue ich es für dich! Deine Aufgabe ist es, die richtige Antwort in das Textfeld einzutippen."
         }
     }
     
