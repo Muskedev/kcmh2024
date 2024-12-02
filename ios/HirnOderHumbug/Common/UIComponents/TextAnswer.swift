@@ -20,3 +20,8 @@ struct TextAnswer: View {
             .foregroundStyle(.black)
     }
 }
+
+#Preview {
+    @Previewable @State var text = "Hallo Welt"
+    TextAnswer(text: $text)
+}
