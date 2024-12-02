@@ -10,12 +10,14 @@ import SwiftUI
 struct BrightonQuestion: View {
     
     @Binding var clicked: Bool
+    let question: String
     
     var body: some View {
         VStack {
-            Text("Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken.")
+            Text(question)
                 .font(.question)
-                .padding(.vertical, 40)
+                .padding(.top, 35)
+                .padding(.bottom, 45)
                 .padding(.horizontal, 30)
                 .background(
                     SpeechBubble()

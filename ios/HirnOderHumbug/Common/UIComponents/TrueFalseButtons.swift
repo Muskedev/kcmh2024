@@ -19,8 +19,8 @@ struct TrueFalseButtons: View {
                 Image(systemName: "checkmark")
                     .font(.buttonBool)
                     .foregroundStyle(.mint)
+                    .frame(maxWidth: .infinity, maxHeight: 60.0)
             }
-            .frame(maxWidth: .infinity, maxHeight: 60.0)
             .background(.white)
             .clipShape(.rect(cornerRadius: 20))
             
@@ -30,8 +30,8 @@ struct TrueFalseButtons: View {
                 Image(systemName: "xmark")
                     .font(.buttonBool)
                     .foregroundStyle(.pink)
+                    .frame(maxWidth: .infinity, maxHeight: 60.0)
             }
-            .frame(maxWidth: .infinity, maxHeight: 60.0)
             .background(.white)
             .clipShape(.rect(cornerRadius: 20))
         }
