@@ -1,19 +1,31 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Action" : {
+
+    },
     "Arggh, da hab ich dich wohl täuschen können." : {
 
     },
     "Drück mich, ich bin der Startknopf!" : {
 
     },
+    "Hello World" : {
+
+    },
     "Nächste Frage" : {
+
+    },
+    "No" : {
 
     },
     "Richtig! Die Aussage stimmt" : {
 
     },
     "Runde beenden" : {
+
+    },
+    "Yes" : {
 
     }
   },
