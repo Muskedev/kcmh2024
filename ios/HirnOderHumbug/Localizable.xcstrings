@@ -13,10 +13,13 @@
     "Hello World" : {
 
     },
+    "Ja" : {
+
+    },
     "Nächste Frage" : {
 
     },
-    "No" : {
+    "Nein" : {
 
     },
     "Richtig! Die Aussage stimmt" : {
@@ -25,10 +28,10 @@
     "Runde beenden" : {
 
     },
-    "Wollen Sie das Spiel wirklich beenden?" : {
+    "TestButton" : {
 
     },
-    "Yes" : {
+    "Wollen Sie das Spiel wirklich beenden?" : {
 
     }
   },
