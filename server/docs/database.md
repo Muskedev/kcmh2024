@@ -1,14 +1,22 @@
 # Database
 
-## Spielmodus X-Factor
+## User
+{
+    "id": string
+    "name": string
+}
+
+## Spielmodus FunFacts
 {
     "id": string,
+    "userId: string,
+    "score": int,
     "questions": [
         {
             "question": string
             "userAnswer": bool?
             "isCorrect": bool?
-            "explanation": string?
+            "explanation": string
         }
     ]
 }
