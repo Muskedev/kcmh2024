@@ -32,7 +32,7 @@ struct BrightonHeader: View {
             Image(.brightonTransparent)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 150)
+                .frame(width: 100)
         }
     }
 }

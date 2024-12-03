@@ -21,12 +21,12 @@ struct FloatingTab: View {
             ForEach(CustomTabItem.allCases, id: \.rawValue) { tab in
                 HStack(spacing: 5) {
                     Image(systemName: tab.icon)
-                        .font(.title3)
-                        .frame(width: 30, height: 45)
+                        .font(.headline)
+                        .frame(width: 30, height: 50)
                     
                     if activeTab == tab {
                         Text(tab.caption)
-                            .font(.caption)
+                            .font(.subheadline)
                             .fontWeight(.semibold)
                             .lineLimit(1)
                     }
@@ -61,7 +61,7 @@ struct FloatingTab: View {
         })
         .coordinateSpace(.named("TABBAR_VIEW"))
         .padding(.horizontal, 5)
-        .frame(height: 60)
+        .frame(height: 65)
         .background(
             .background
                 .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))

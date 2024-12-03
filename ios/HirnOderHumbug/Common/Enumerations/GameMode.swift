@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-enum GameMode {
-    case really
+enum GameMode: Int {
+    case really = 0
     case thinkSolve
 }
 
