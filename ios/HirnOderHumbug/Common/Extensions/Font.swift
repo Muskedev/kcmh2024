@@ -16,4 +16,6 @@ extension SwiftUI.Font {
     static let buttonNormal: Font = .system(size: 16, weight: .semibold)
     static let brightonHead: Font = .system(size: 18.0, weight: .bold)
     static let brightonSubhead: Font = .system(size: 14.0)
+    static let alertText: Font = .system(size: 20.0, weight: .semibold)
+    static let alertButton: Font = .system(size: 22, weight: .bold)
 }

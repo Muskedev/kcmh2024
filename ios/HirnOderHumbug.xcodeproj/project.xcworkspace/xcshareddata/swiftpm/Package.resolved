@@ -1,6 +1,15 @@
 {
-  "originHash" : "3c71549819e7802eef2e1dd4d477f797c6d6cfbd325b66de7e85c354b25affed",
+  "originHash" : "e38e8504d87430386ce4dd707031d17488cfbb897d4566d2bc8432d02e0c3c6d",
   "pins" : [
+    {
+      "identity" : "octopus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simon-zwicker/Octopus.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "01c1c7ec202e5fd82c18ead35505906a7886a9de"
+      }
+    },
     {
       "identity" : "routing",
       "kind" : "remoteSourceControl",

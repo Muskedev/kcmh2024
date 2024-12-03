@@ -50,3 +50,8 @@ struct AnimatedText: View {
     }
     
 }
+
+#Preview {
+    @Previewable @State var text = "Hello World"
+    AnimatedText($text)
+}

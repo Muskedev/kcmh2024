@@ -7,13 +7,25 @@
     "Drück mich, ich bin der Startknopf!" : {
 
     },
+    "Ja" : {
+
+    },
     "Nächste Frage" : {
+
+    },
+    "Nein" : {
 
     },
     "Richtig! Die Aussage stimmt" : {
 
     },
     "Runde beenden" : {
+
+    },
+    "TestButton" : {
+
+    },
+    "Wollen Sie das Spiel wirklich beenden?" : {
 
     }
   },
