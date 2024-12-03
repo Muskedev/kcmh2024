@@ -11,6 +11,7 @@ struct GameDismissButton: View {
     
     @State private var showAlertBox: Bool = false
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.showAlert) private var showAlert
     
     var body: some View {
         Image(systemName: "xmark")
@@ -25,9 +26,10 @@ struct GameDismissButton: View {
             )
             .button {
                 showAlertBox = true
+                showAlert.wrappedValue = true
             }
             .popView(isPresented: $showAlertBox, onDismiss: {
-                
+                showAlert.wrappedValue = false
             }) {
                 CustomAlertBoxYesNo("Wollen Sie das Spiel wirklich beenden?") { value in
                     showAlertBox = false

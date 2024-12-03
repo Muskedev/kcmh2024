@@ -15,6 +15,7 @@ enum GameRoute: Routable {
     var body: some View {
         ZStack {
             BHMesh()
+            
             switch self {
             case .start(let mode):
                 if mode == .really {
@@ -25,7 +26,7 @@ enum GameRoute: Routable {
             default:
                 EmptyView()
             }
-            BlurBackgroundView()
+            
         }
     }
 }

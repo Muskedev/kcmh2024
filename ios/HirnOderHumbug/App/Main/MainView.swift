@@ -24,6 +24,9 @@ struct MainView: View {
             
             FloatingTab(activeTab: $activeTab)
         }
+        .overlay(alignment: .top) {
+            BlurBackgroundView()
+        }
     }
 }
 

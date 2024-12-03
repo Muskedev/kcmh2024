@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct HirnOderHumbugApp: App {
+    
+    @State private var showAlert: Bool = false
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environment(\.showAlert, $showAlert)
         }
     }
 }
