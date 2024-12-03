@@ -15,9 +15,22 @@
 		FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HirnOderHumbug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FC54DAE82CFDDF0B00024A46 /* HirnOderHumbug */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */,
+			);
 			path = HirnOderHumbug;
 			sourceTree = "<group>";
 		};
@@ -268,7 +281,7 @@
 				DEVELOPMENT_TEAM = PSU9VZHG7L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
+				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,7 +312,7 @@
 				DEVELOPMENT_TEAM = PSU9VZHG7L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
+				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
