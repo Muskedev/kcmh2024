@@ -1,7 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Start Game" : {
+    "Arggh, da hab ich dich wohl täuschen können." : {
+
+    },
+    "Drück mich, ich bin der Startknopf!" : {
+
+    },
+    "Nächste Frage" : {
+
+    },
+    "Richtig! Die Aussage stimmt" : {
+
+    },
+    "Runde beenden" : {
 
     }
   },

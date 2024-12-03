@@ -17,20 +17,23 @@ struct ModeExplanation: View {
     // MARK: - Body
     var body: some View {
         RoutingView(stack: $router.stack) {
-            VStack {
-                BrightonHeader(head: mode.name, subhead: mode.explanation)
+            ZStack {
+                BHMesh()
                 
-                Spacer()
-                
-                Text("Start Game")
-                    .modifier(TTButtonStyle(color: Color.backgroundOne))
-                    .button {
-                        router.navigate(to: .start(mode))
-                    }
-                
-                Spacer()
+                VStack {
+                    BrightonHeader(head: mode.name, subhead: mode.explanation)
+                    
+                    Spacer()
+                    
+                    Text("Drück mich, ich bin der Startknopf!")
+                        .modifier(TTButtonStyle(color: Color.backgroundTwo, font: .buttonNormal))
+                        .button {
+                            router.navigate(to: .start(mode))
+                        }
+                        .padding(.bottom, 70)
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }

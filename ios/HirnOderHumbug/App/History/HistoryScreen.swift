@@ -9,11 +9,15 @@ import SwiftUI
 
 struct HistoryScreen: View {
     var body: some View {
-        VStack {
-            BrightonHeader(head: "Question History", subhead: "Die Gedanken von gestern, die Lacher von heute – deine persönliche Reise durch die kuriosesten Fragen aller Zeiten!")
+        ZStack {
+            BHMesh()
             
-            Spacer()
+            VStack {
+                BrightonHeader(head: "Question History", subhead: "Die Gedanken von gestern, die Lacher von heute – deine persönliche Reise durch die kuriosesten Fragen aller Zeiten!")
+                
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
     }
 }

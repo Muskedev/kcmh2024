@@ -10,13 +10,18 @@ import SwiftUI
 struct TTButtonStyle: ViewModifier {
     
     let color: Color
+    let font: Font
     
     func body(content: Content) -> some View {
         content
-            .font(.buttonBool)
+            .font(font)
             .foregroundStyle(color)
-            .frame(maxWidth: .infinity, maxHeight: 60.0)
-            .background(.white)
-            .clipShape(.rect(cornerRadius: 20))
+            .frame(maxWidth: .infinity, minHeight: 60.0, maxHeight: 60.0)
+            .background(
+                .background
+                    .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))
+                    .shadow(.drop(color: .black.opacity(0.12), radius: 5, x: -5, y: -5)),
+                in: .rect(cornerRadius: 15)
+            )
     }
 }

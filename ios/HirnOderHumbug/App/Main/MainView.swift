@@ -9,15 +9,20 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var clickedTrue: Bool = true
-    let opacity: CGFloat = 0.7
+    @State private var activeTab: CustomTabItem = .really
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                BHMesh()
-                CustomTabView()
+        ZStack(alignment: .bottom) {
+            TabView(selection: $activeTab) {
+                ForEach(CustomTabItem.allCases, id: \.self) { tab in
+                    Tab.init(value: tab) {
+                        tab.view
+                            .toolbarVisibility(.hidden, for: .tabBar)
+                    }
+                }
             }
+            
+            FloatingTab(activeTab: $activeTab)
         }
     }
 }

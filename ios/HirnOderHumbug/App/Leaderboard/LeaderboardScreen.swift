@@ -10,11 +10,15 @@ import SwiftUI
 struct LeaderboardScreen: View {
     
     var body: some View {
-        VStack {
-            BrightonHeader(head: "Leaderboard", subhead: "Hier regiert die Crème de la Cringe – oder die Champions, je nach Perspektive.")
-            
-            Spacer()
+        ZStack {
+            BHMesh()
+         
+            VStack {
+                BrightonHeader(head: "Leaderboard", subhead: "Hier regiert die Crème de la Cringe – oder die Champions, je nach Perspektive.")
+                
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
     }
 }
