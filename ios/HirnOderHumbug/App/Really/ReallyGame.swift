@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ReallyGame: View {
     
-    @Environment(\.dismiss) var dismiss
     @State private var clicked: Bool = false
-    @State var question: String = "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken."
+    @State private var question: String = "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken."
     var answer: String = """
     Seeotter haben tatsächlich einen „Lieblingsstein“, den sie in einer Hautfalte unter ihrem Arm aufbewahren. Sie nutzen diesen Stein, um Muscheln oder andere harte Schalen aufzubrechen, um an das leckere Innere zu gelangen. Manche Otter behalten denselben Stein über Jahre hinweg – wie ein kleines Werkzeug in der Tasche! 😊
     """
@@ -68,19 +67,7 @@ struct ReallyGame: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Image(systemName: "xmark")
-                    .font(.buttonClose)
-                    .foregroundStyle(.pink)
-                    .padding(8)
-                    .background(
-                        .background
-                            .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))
-                            .shadow(.drop(color: .black.opacity(0.12), radius: 5, x: -5, y: -5)),
-                        in: .capsule
-                    )
-                    .button {
-                        dismiss()
-                    }
+                GameDismissButton()
             }
         }
         .padding()

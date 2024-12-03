@@ -9,38 +9,49 @@ import SwiftUI
 
 struct CustomAlertBoxYesNo: View {
     
+    @Environment(\.dismiss) private var dismiss
     let message: LocalizedStringKey
+    let action: (Bool) -> ()
+    
+    init(_ message: LocalizedStringKey, action: @escaping (Bool) -> Void) {
+        self.message = message
+        self.action = action
+    }
     
     var body: some View {
         VStack {
             Text(message)
                 .font(.alertText)
+                .padding(.bottom, 40)
             HStack {
                 Text("Yes")
                     .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundTwo))
                     .button {
-                        
+                        dismiss()
+                        action(true)
                     }
                 
                 Text("No")
                     .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundThree))
                     .button {
-                        
+                        dismiss()
+                        action(false)
                     }
             }
         }
         .frame(width: 250)
-        .padding([.horizontal, .bottom], 25)
+        .padding(25)
         .background {
             RoundedRectangle(cornerRadius: 25)
                 .fill(.background)
-                .padding(.top, 25)
         }
     }
 }
 
 #Preview("Only View") {
-    CustomAlertBoxYesNo(message: "Hello World")
+    CustomAlertBoxYesNo("Hello World", action: { value in
+        print(value)
+    })
 }
 
 #Preview("Real") {
@@ -49,8 +60,10 @@ struct CustomAlertBoxYesNo: View {
         isPresented = true
     }
     .popView(isPresented: $isPresented, onDismiss: {
-        print("Hello World")
+        
     }) {
-        CustomAlertBoxYesNo(message: "Hello World")
+        CustomAlertBoxYesNo("Hello World", action: { value in
+            print(value)
+        })
     }
 }
