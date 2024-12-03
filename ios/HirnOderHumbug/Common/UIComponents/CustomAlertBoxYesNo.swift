@@ -24,14 +24,14 @@ struct CustomAlertBoxYesNo: View {
                 .font(.alertText)
                 .padding(.bottom, 40)
             HStack {
-                Text("Yes")
+                Text("Ja")
                     .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundTwo))
                     .button {
                         dismiss()
                         action(true)
                     }
                 
-                Text("No")
+                Text("Nein")
                     .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundThree))
                     .button {
                         dismiss()
