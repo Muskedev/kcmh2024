@@ -10,19 +10,29 @@ import SwiftUI
 struct BrightonQuestion: View {
     
     var clicked: Bool = false
-    let question: String
+    @Binding var question: String
+    @State var isLoading: Bool = true
     
     var body: some View {
         VStack {
-            Text(question)
-                .font(.question)
-                .padding(.top, 35)
-                .padding(.bottom, 45)
-                .padding(.horizontal, 30)
-                .background(
-                    SpeechBubble()
-                        .fill(.white)
-                )
+            ZStack {
+                if isLoading {
+                    Image(systemName: "ellipsis")
+                        .font(.largeTitle)
+                        .foregroundStyle(.gray)
+                        .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
+                } else {
+                    AnimatedText($question)
+                        .font(.question)
+                }
+            }
+            .padding(.top, 35)
+            .padding(.bottom, 45)
+            .padding(.horizontal, 30)
+            .background(
+                SpeechBubble()
+                    .fill(.white)
+            )
             
             Image(.brightonTransparent)
                 .resizable()
@@ -32,15 +42,24 @@ struct BrightonQuestion: View {
                     view.rotation3DEffect(.init(degrees: clicked ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                withAnimation {
+                    self.isLoading.toggle()
+                    self.question = self.question
+                }
+            }
+        }
     }
 }
 
 #Preview {
     @Previewable @State var clicked = false
+    @Previewable @State var question: String = "Hallo Welt?"
     VStack {
         Button("Test") {
             clicked.toggle()
         }
-        BrightonQuestion(clicked: clicked, question: "Hallo Welt?")
+        BrightonQuestion(clicked: clicked, question: $question)
     }
 }

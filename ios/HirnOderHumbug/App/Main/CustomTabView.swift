@@ -10,41 +10,47 @@ import SwiftChameleon
 
 private enum CustomTabItem: Int, CaseIterable {
     
-    case tabOne
-    case tabTwo
+    case really
+    case thinkSolve
+    case leaderboard
+    case history
+    case about
     
     var caption: String {
         switch self {
-        case .tabOne:
-            GameMode.really.name
-        case .tabTwo:
-            GameMode.thinkSolve.name
+        case .really: GameMode.really.name
+        case .thinkSolve: GameMode.thinkSolve.name
+        case .leaderboard: "Leaderboard"
+        case .history: "Question History"
+        case .about: "About"
         }
     }
     
     var icon: String {
         switch self {
-        case .tabOne:
-            "checkmark.circle.badge.xmark"
-        case .tabTwo:
-            "questionmark.bubble"
+        case .really: "checkmark.circle.badge.xmark"
+        case .thinkSolve: "questionmark.bubble"
+        case .leaderboard: "trophy"
+        case .history: "questionmark.text.page.fill"
+        case .about: "info.bubble"
         }
     }
     
     @ViewBuilder
     var view: some View {
         switch self {
-        case .tabOne:
-            ModeExplanation(mode: .really)
-        case .tabTwo:
-            ModeExplanation(mode: .thinkSolve)
+        case .really: ModeExplanation(mode: .really)
+        case .thinkSolve: ModeExplanation(mode: .thinkSolve)
+        case .leaderboard: LeaderboardScreen()
+        case .history: HistoryScreen()
+        case .about: AboutScreen()
         }
     }
 }
 
 struct CustomTabView: View {
     
-    @State private var selectedTab: CustomTabItem = CustomTabItem.tabOne
+    @State private var selectedTab: CustomTabItem = CustomTabItem.really
     
     var body: some View {
         ZStack {
@@ -76,17 +82,11 @@ private struct CTabItem: View {
     let isActive: Bool
     
     var body: some View {
-        HStack(spacing: 10) {
-            Spacer()
+        VStack(spacing: 5) {
             Image(systemName: tabItem.icon)
                 .resizable()
                 .renderingMode(.template)
                 .frame(width: 20, height: 20)
-            if isActive{
-                Text(tabItem.caption.translate)
-                    .font(.system(size: 14))
-            }
-            Spacer()
         }
         .foregroundStyle(isActive ? .white : .gray)
         .frame(maxWidth: isActive ? .infinity : 60)

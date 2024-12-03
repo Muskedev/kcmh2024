@@ -15,7 +15,7 @@ struct ReallyGame: View {
     var body: some View {
         VStack(spacing: 30) {
             
-            BrightonQuestion(clicked: clicked, question: "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken.")
+            BrightonQuestion(clicked: clicked, question: .constant("Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken."))
             TrueFalseButtons(clicked: $clicked)
             
             Spacer()
