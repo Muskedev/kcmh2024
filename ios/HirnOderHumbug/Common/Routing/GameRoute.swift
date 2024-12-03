@@ -13,21 +13,19 @@ enum GameRoute: Routable {
     case end
     
     var body: some View {
-        switch self {
-        case .start(let mode):
-            if mode == .really {
-                ZStack {
-                    BHMesh()
+        ZStack {
+            BHMesh()
+            switch self {
+            case .start(let mode):
+                if mode == .really {
                     ReallyGame()
-                }
-            } else {
-                ZStack {
-                    BHMesh()
+                } else {
                     ThinkAndSolveGame()
                 }
+            default:
+                EmptyView()
             }
-        default:
-            EmptyView()
+            BlurBackgroundView()
         }
     }
 }

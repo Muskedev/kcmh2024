@@ -59,6 +59,7 @@ struct ReallyGame: View {
         .scrollIndicators(.hidden)
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
+        
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(GameMode.really.name)

@@ -24,44 +24,35 @@ extension View {
 
 fileprivate struct PopViewHelper<ViewContent: View>: ViewModifier {
     
+    @Environment(\.showAlert) private var showAlert
     @Binding var isPresented: Bool
     var onDismiss: () -> ()
     @ViewBuilder var viewContent: ViewContent
     
     @State private var presentFullScreenCover: Bool = false
     @State private var animateView: Bool = false
-    @State private var animateBackground: Bool = false
     
     func body(content: Content) -> some View {
         let screenHeigt = screenSize.height
         let animateView = animateView
-        let animateBackground = animateBackground
         
         content
             .fullScreenCover(isPresented: $presentFullScreenCover, onDismiss: onDismiss) {
-                ZStack {
-                    Color.clear.background(Color.black.opacity(animateBackground ? 0.4 : 0)).ignoresSafeArea()
-                    viewContent
-                        .visualEffect({ content, proxy in
-                            content
-                                .offset(y: offset(proxy, screenHeight: screenHeigt, animateView: animateView))
-                        })
-                        .presentationBackground(.clear)
-                        .task {
-                            guard !animateView else { return }
-                            withAnimation(.bouncy(duration: 0.4, extraBounce: 0.05)) {
-                                self.animateView = true
-                            }
+                viewContent
+                    .visualEffect({ content, proxy in
+                        content
+                            .offset(y: offset(proxy, screenHeight: screenHeigt, animateView: animateView))
+                    })
+                    .presentationBackground(.clear)
+                    .task {
+                        guard !animateView else { return }
+                        withAnimation(.bouncy(duration: 0.4, extraBounce: 0.05)) {
+                            self.animateView = true
                         }
-                        .task {
-                            guard !animateBackground else { return }
-                            withAnimation(.easeIn) {
-                                self.animateBackground = true
-                            }
-                        }
-                }
+                    }
             }
             .onChange(of: isPresented) { oldValue, newValue in
+                showAlert.wrappedValue = newValue
                 if newValue {
                     toggleView(true)
                 } else {
