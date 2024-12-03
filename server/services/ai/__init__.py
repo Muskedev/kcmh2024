@@ -1,0 +1,1 @@
+from .informaniak_ai_service import InformaniakAiService, Prompt, Message
