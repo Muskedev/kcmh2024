@@ -1,2 +1,2 @@
-from game_modes.fun_facts.fun_facts_mongo_service import FunFactsMongoService
-from game_modes.fun_facts.fun_facts_service import FunFactsGameModeService
+from .fun_facts_mongo_service import FunFactsMongoService, DocumentNotFound
+from .fun_facts_service import FunFactsGameModeService, RoundCanNotBeFound, QuestionCanNotBeUpdated, FinishRoundDto, QuestionAnswerDto
