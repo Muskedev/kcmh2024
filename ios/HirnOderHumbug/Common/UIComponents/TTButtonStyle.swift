@@ -19,7 +19,7 @@ struct TTButtonStyle: ViewModifier {
             .frame(maxWidth: .infinity, minHeight: 60.0, maxHeight: 60.0)
             .background(
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(.white)
+                    .fill(Color.actionButton)
             )
     }
 }

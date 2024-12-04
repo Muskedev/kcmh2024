@@ -32,7 +32,7 @@ struct ReallyGame: View {
                 .padding(15)
                 .background(
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(.white)
+                        .fill(.backgroundTwo.opacity(0.5))
                 )
                 
                 HStack {

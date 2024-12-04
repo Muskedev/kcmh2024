@@ -15,9 +15,9 @@ struct TextAnswer: View {
         TextView(text: $text)
             .padding()
             .frame(maxWidth: .infinity, maxHeight: 200)
-            .background(.white)
+            .background(.secondary)
             .clipShape(.rect(cornerRadius: 20))
-            .foregroundStyle(.black)
+            .foregroundStyle(.textField)
     }
 }
 
