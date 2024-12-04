@@ -22,3 +22,7 @@ struct LeaderboardScreen: View {
         }
     }
 }
+
+#Preview {
+    LeaderboardScreen()
+}

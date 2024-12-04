@@ -17,8 +17,8 @@ struct AboutScreen: View {
                 
                 ScrollView {
                     LazyVStack {
-                        ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
+                        ProfilRow(image: "imagesimon", name: "Simon", role: "War halt auch dabei!")
+                        ProfilRow(image: "imagenico", name: "Nico", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
@@ -67,7 +67,7 @@ private struct ProfilRow: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 20.0)
-                    .fill(.white)
+                    .fill(.aboutUsBackground)
             )
         }
         .padding(.bottom, 10)
