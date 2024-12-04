@@ -18,7 +18,7 @@ struct AboutScreen: View {
                 ScrollView {
                     LazyVStack {
                         ProfilRow(image: "imagesimon", name: "Simon", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagenico", name: "Nico", role: "War halt auch dabei!")
+                        ProfilRow(image: "imagemia", name: "Mia", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
                         ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
