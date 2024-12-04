@@ -1,0 +1,2 @@
+from .mongodb_settings import MongoDBSettings
+from .informaniak_ai_settings import InformaniakAISettings

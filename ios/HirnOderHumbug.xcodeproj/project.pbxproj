@@ -7,16 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A62645662CFDE06A002AF535 /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A62645652CFDE06A002AF535 /* Mammut */; };
+		3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 3DD8DEA32CFE242B00F2234C /* SwiftChameleon */; };
+		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HirnOderHumbug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FC54DAE82CFDDF0B00024A46 /* HirnOderHumbug */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */,
+			);
 			path = HirnOderHumbug;
 			sourceTree = "<group>";
 		};
@@ -27,7 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A62645662CFDE06A002AF535 /* Mammut in Frameworks */,
+				3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */,
+				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +85,8 @@
 			);
 			name = HirnOderHumbug;
 			packageProductDependencies = (
-				A62645652CFDE06A002AF535 /* Mammut */,
+				3DD8DEA32CFE242B00F2234C /* SwiftChameleon */,
+				FC9AA2AF2CFE5E5A007D770B /* Routing */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -101,7 +117,8 @@
 			mainGroup = FC54DADD2CFDDF0B00024A46;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A62645642CFDE06A002AF535 /* XCRemoteSwiftPackageReference "Mammut" */,
+				3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
+				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -264,11 +281,13 @@
 				DEVELOPMENT_TEAM = PSU9VZHG7L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,11 +312,13 @@
 				DEVELOPMENT_TEAM = PSU9VZHG7L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +356,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A62645642CFDE06A002AF535 /* XCRemoteSwiftPackageReference "Mammut" */ = {
+		3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/simon-zwicker/Mammut";
+			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JamesSedlacek/Routing";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -346,10 +375,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A62645652CFDE06A002AF535 /* Mammut */ = {
+		3DD8DEA32CFE242B00F2234C /* SwiftChameleon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A62645642CFDE06A002AF535 /* XCRemoteSwiftPackageReference "Mammut" */;
-			productName = Mammut;
+			package = 3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
+			productName = SwiftChameleon;
+		};
+		FC9AA2AF2CFE5E5A007D770B /* Routing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */;
+			productName = Routing;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
