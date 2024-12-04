@@ -28,7 +28,7 @@ class FunFactsRoutes:
         async def get_finished_rounds(userId: str):
             return await self.fun_fact_service.get_rounds(userId)
         
-        @self.app.post("/gamemode/funFacts/finishRound")
+        @self.app.put("/gamemode/funFacts/finishRound")
         async def finish_fun_facts_round(userId: str, roundId: str, finishRoundDto: FinishRoundDto):
             try:
                 return await self.fun_fact_service.finish_round(services.game_modes.fun_facts.FinishRoundDto(
