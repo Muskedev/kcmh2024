@@ -38,8 +38,8 @@ struct HistoryScreen: View {
                     LazyVStack {
                         HistoryTSRow()
                         HistoryTSRow()
-                        HistoryTSRow()
-                        HistoryTSRow(wasCorrect: false)
+                        HistoryRRow()
+                        HistoryRRow(wasCorrect: false)
                         HistoryTSRow(wasCorrect: false)
                         HistoryTSRow()
                         HistoryTSRow(wasCorrect: false)

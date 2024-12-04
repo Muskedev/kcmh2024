@@ -16,7 +16,7 @@ struct HistoryTSRow: View {
         @Bindable var valueStore = valueStore
         
         ZStack {
-            VStack(alignment: .leading, spacing: 10.0) {
+            VStack(alignment: .leading, spacing: 15.0) {
                 
                 Text(Date.now, format: .dateTime)
                     .font(.historyDate)
@@ -35,6 +35,70 @@ struct HistoryTSRow: View {
                 .font(.historyAnswer)
                 .foregroundStyle(.black)
                 
+                Text(
+                    """
+                    **Erklärung:**
+                    Die kleinen Knöpfe sind keine zufälligen Unebenheiten, sondern sogenannte Taktilmarkierungen. Sie helfen sehbehinderten Menschen, den Zebrastreifen zu erkennen. Durch ihren Stock oder mit den Füßen können sie die Erhebung spüren und wissen, wo der Übergang beginnt oder endet.
+                    """
+                )
+                .font(.historyAnswer)
+                .foregroundStyle(.black)
+                
+                Text("Du hast \(wasCorrect ? "korrekt": "leider falsch") geantwortet")
+                    .font(.historyAnswerTrueFalse)
+                    .foregroundStyle(wasCorrect ? .positive: .negative)    
+            }
+            .multilineTextAlignment(.leading)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 20.0)
+                    .fill(.white)
+            )
+        }
+        .padding(.bottom, 10)
+    }
+}
+
+struct HistoryRRow: View {
+    
+    var wasCorrect: Bool = true
+    
+    var body: some View {
+        
+        ZStack {
+            VStack(alignment: .leading, spacing: 15.0) {
+                
+                HStack {
+                    Text(Date.now, format: .dateTime)
+                        .font(.historyDate)
+                        .foregroundStyle(.gray)
+                    
+                    Spacer()
+                    
+                    Text(wasCorrect ? "wahr": "unwahr")
+                        .font(.histryTrueFalse)
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(wasCorrect ? .positive: .negative)
+                        )
+                }
+                
+                Text("Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken.")
+                    .font(.historyTitle)
+                    .foregroundStyle(.black)
+                
+                Text(
+                    """
+                    **Erklärung:**
+                    Seeotter haben tatsächlich einen „Lieblingsstein“, den sie in einer Hautfalte unter ihrem Arm aufbewahren. Sie nutzen diesen Stein, um Muscheln oder andere harte Schalen aufzubrechen, um an das leckere Innere zu gelangen. Manche Otter behalten denselben Stein über Jahre hinweg – wie ein kleines Werkzeug in der Tasche!
+                    """
+                )
+                .font(.historyAnswer)
+                .foregroundStyle(.black)
+                
                 Text("Du hast \(wasCorrect ? "korrekt": "leider falsch") geantwortet")
                     .font(.historyAnswerTrueFalse)
                     .foregroundStyle(wasCorrect ? .positive: .negative)
@@ -46,27 +110,7 @@ struct HistoryTSRow: View {
                 RoundedRectangle(cornerRadius: 20.0)
                     .fill(.white)
             )
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    Image(systemName: "info.bubble.fill")
-                        .font(.historyInfo)
-                        .foregroundStyle(.backgroundThree.opacity(0.7))
-                        .padding(10.0)
-                        .button {
-                            
-                        }
-                }
-                Spacer()
-            }
         }
         .padding(.bottom, 10)
-    }
-}
-
-struct HistoryRRow: View {
-    var body: some View {
-        Text("HistoryTSRow")
     }
 }
