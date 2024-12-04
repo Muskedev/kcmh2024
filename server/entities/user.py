@@ -1,10 +1,9 @@
-from pydantic import BaseModel, UUID4
 import uuid
 
-class User(BaseModel):
-    id: UUID4
+class User:
+    id: str
     name: str
 
-    def __init__(self, name: str, id=uuid.uuid4()):
+    def __init__(self, name: str, id=str(uuid.uuid4())):
         self.id = id
         self.name = name

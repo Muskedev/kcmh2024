@@ -1,6 +1,6 @@
 from entities.game_modes import FunFactsRound, Question
 from services.ai import InformaniakAiService, Prompt, Message
-from .fun_facts_mongo_service import FunFactsMongoService
+from .fun_facts_mongo_service import FunFactsMongoService, DocumentNotFound
 
 import json
 
@@ -14,9 +14,36 @@ prompt = Prompt([
                 "explanation": "Erklärung warum etwas wahr oder falsch ist"
             }
         ]
-    }"""),
+    }""", "system"),
     Message("10", "user") #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
 ])
+
+class QuestionAnswerDto:
+    question_id: str
+    user_answer: bool
+
+    def __init__(self, question_id: str, user_answer: bool):
+        self.question_id = question_id
+        self.user_answer = user_answer 
+
+
+class FinishRoundDto:
+    round_id: str
+    user_id: str
+    score: int
+    questions: list[QuestionAnswerDto]
+
+    def __init__(self, round_id: str, user_id: str, score: str, questions: list[QuestionAnswerDto]):
+        self.round_id = round_id
+        self.user_id = user_id
+        self.score = score
+        self.questions = questions
+
+class QuestionCanNotBeUpdated(Exception):
+    pass
+
+class RoundCanNotBeFound(Exception):
+    pass
 
 class FunFactsGameModeService:
     def __init__(self, fun_facts_persistence_service: FunFactsMongoService, ai_service: InformaniakAiService):
@@ -38,6 +65,21 @@ class FunFactsGameModeService:
     async def start_round(self, user_id: str):
        json_response = json.loads(await self.ai_service.execute_prompt(prompt))
        fun_fact_round = self._convert_json_response(user_id, json_response)
-       return await self.fun_facts_persistence_service.update_round(fun_fact_round)
-
+       return await self.fun_facts_persistence_service.replace_round(fun_fact_round)
     
+    async def get_rounds(self, user_id: str):
+       return await self.fun_facts_persistence_service.get_finished_rounds(user_id)
+    
+    async def finish_round(self, finished_round_dto: FinishRoundDto):
+        try:
+            game_round = await self.fun_facts_persistence_service.get_round(round_id=finished_round_dto.round_id, user_id=finished_round_dto.user_id)
+            for sent_question in finished_round_dto.questions:
+                question_to_update = next(question for question in game_round.questions if question.id == sent_question.question_id)
+                if question_to_update is None:
+                    raise QuestionCanNotBeUpdated()
+                question_to_update.user_answer = sent_question.user_answer
+            game_round.score = finished_round_dto.score
+            await self.fun_facts_persistence_service.replace_round(round=game_round, upsert=False)
+                
+        except DocumentNotFound as e:
+           raise RoundCanNotBeFound(DocumentNotFound) 
