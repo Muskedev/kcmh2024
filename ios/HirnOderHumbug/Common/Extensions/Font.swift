@@ -28,4 +28,7 @@ extension SwiftUI.Font {
     static let historyAnswerTrueFalse: Font = .system(size: 12.0, weight: .semibold)
     static let historyInfo: Font = .system(size: 22.0)
     static let histryTrueFalse: Font = .system(size: 16.0, weight: .bold)
+    
+    static let aboutUsName: Font = .system(size: 18, weight: .semibold)
+    static let aboutUsRole: Font = .system(size: 14, weight: .light)
 }

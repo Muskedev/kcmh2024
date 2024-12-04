@@ -114,3 +114,7 @@ struct HistoryRRow: View {
         .padding(.bottom, 10)
     }
 }
+
+#Preview {
+    HistoryTSRow()
+}
