@@ -1,30 +1,14 @@
+//
 //  PopViewHelper.swift
 //  HirnOderHumbug
 //
-//  Created by Nico on 03.12.24.
-//  
+//  Created by Simon Zwicker on 04.12.24.
 //
 
 import SwiftUI
 
-extension View {
+struct PopViewHelper<ViewContent: View>: ViewModifier {
     
-    @ViewBuilder
-    func popView<Content: View>(
-            isPresented: Binding<Bool>,
-            onDismiss: @escaping () -> (),
-            @ViewBuilder content: @escaping () -> Content) -> some View {
-        self
-            .modifier(PopViewHelper(
-                        isPresented: isPresented,
-                        onDismiss: onDismiss,
-                        viewContent: content))
-    }
-}
-
-fileprivate struct PopViewHelper<ViewContent: View>: ViewModifier {
-    
-    @Environment(\.showAlert) private var showAlert
     @Binding var isPresented: Bool
     var onDismiss: () -> ()
     @ViewBuilder var viewContent: ViewContent
@@ -46,22 +30,23 @@ fileprivate struct PopViewHelper<ViewContent: View>: ViewModifier {
                     .presentationBackground(.clear)
                     .task {
                         guard !animateView else { return }
-                        withAnimation(.bouncy(duration: 0.4, extraBounce: 0.05)) {
+                        withAnimation(.bouncy(duration: 0.45, extraBounce: 0.05)) {
                             self.animateView = true
                         }
                     }
             }
             .onChange(of: isPresented) { oldValue, newValue in
-                showAlert.wrappedValue = newValue
-                if newValue {
+                guard newValue == false else {
                     toggleView(true)
-                } else {
-                    Task {
-                        withAnimation(.snappy(duration: 0.45, extraBounce: 0)) {
-                            self.animateView = false
-                        }
-                        try? await Task.sleep(for: .seconds(0.45))
+                    return
+                }
+                
+                Task {
+                    withAnimation(.snappy(duration: 0.45, extraBounce: 0)) {
+                        self.animateView = false
                     }
+                    try? await Task.sleep(for: .seconds(0.45))
+                    
                     toggleView(false)
                 }
             }
@@ -83,23 +68,6 @@ fileprivate struct PopViewHelper<ViewContent: View>: ViewModifier {
         
         withTransaction(transaction) {
             presentFullScreenCover = status
-        }
-    }
-}
-
-#Preview {
-    @Previewable @State var isPresented = false
-    Button("Test") {
-        isPresented = true
-    }
-    .popView(isPresented: $isPresented, onDismiss: {
-        print("")
-    }) {
-        VStack {
-            Text("Hello World")
-            Button("Close") {
-                isPresented = false
-            }
         }
     }
 }

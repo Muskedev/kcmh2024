@@ -9,14 +9,15 @@ import SwiftUI
 
 struct GameDismissButton: View {
     
-    @State private var showAlertBox: Bool = false
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.showAlert) private var showAlert
+    @Environment(\.valueStore) private var valueStore
     
     var body: some View {
+        @Bindable var valueStore = valueStore
+        
         Image(systemName: "xmark")
             .font(.buttonClose)
-            .foregroundStyle(.pink)
+            .foregroundStyle(.negative)
             .padding(8)
             .background(
                 .background
@@ -25,14 +26,10 @@ struct GameDismissButton: View {
                 in: .capsule
             )
             .button {
-                showAlertBox = true
-                showAlert.wrappedValue = true
+                valueStore.showAlert = true
             }
-            .popView(isPresented: $showAlertBox, onDismiss: {
-                showAlert.wrappedValue = false
-            }) {
-                CustomAlertBoxYesNo("Wollen Sie das Spiel wirklich beenden?") { value in
-                    showAlertBox = false
+            .alertView(isPresented: $valueStore.showAlert) {
+                CustomAlertBoxYesNo("Punktestand im Stich lassen?", message: "Willst du wirklich aufgeben? Dein Punktestand wird nie erfahren, wie großartig es hätte sein können!") { value in
                     if value {
                         dismiss()
                     }

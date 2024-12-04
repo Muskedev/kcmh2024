@@ -26,8 +26,8 @@ struct BrightonQuestion: View {
                         .font(.question)
                 }
             }
-            .padding(.top, 35)
-            .padding(.bottom, 45)
+            .padding(.top, 15)
+            .padding(.bottom, 25)
             .padding(.horizontal, 30)
             .background(
                 SpeechBubble()
@@ -37,7 +37,7 @@ struct BrightonQuestion: View {
             Image(.brightonTransparent)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 150)
+                .frame(width: 130)
                 .animation(.spring) { view in
                     view.rotation3DEffect(.init(degrees: clicked ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }

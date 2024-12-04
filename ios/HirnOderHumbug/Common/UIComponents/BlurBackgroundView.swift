@@ -9,18 +9,16 @@ import SwiftUI
 
 struct BlurBackgroundView: View {
     
-    @Environment(\.showAlert) var showAlert
+    @Environment(\.valueStore) private var valueStore
     
     var body: some View {
         Color.clear
             .background(.ultraThinMaterial)
             .ignoresSafeArea()
-            .opacity(showAlert.wrappedValue ? 1: 0.0)
+            .opacity(valueStore.showAlert ? 1: 0.0)
             .animation(
-                .easeInOut(
-                    duration: 0.6
-                ),
-                value: showAlert.wrappedValue
+                .easeInOut(duration: 0.3),
+                value: valueStore.showAlert
             )
     }
 }

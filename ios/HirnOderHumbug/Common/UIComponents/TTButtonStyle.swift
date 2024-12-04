@@ -18,10 +18,8 @@ struct TTButtonStyle: ViewModifier {
             .foregroundStyle(color)
             .frame(maxWidth: .infinity, minHeight: 60.0, maxHeight: 60.0)
             .background(
-                .background
-                    .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))
-                    .shadow(.drop(color: .black.opacity(0.12), radius: 5, x: -5, y: -5)),
-                in: .rect(cornerRadius: 15)
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(.white)
             )
     }
 }

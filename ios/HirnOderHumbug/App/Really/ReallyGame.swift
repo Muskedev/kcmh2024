@@ -25,16 +25,14 @@ struct ReallyGame: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(clicked ? "Richtig! Die Aussage stimmt": "Arggh, da hab ich dich wohl täuschen können.")
                         .font(.answerTrueFalse)
-                        .foregroundStyle(clicked ? .mint: .pink)
+                        .foregroundStyle(clicked ? .positive: .negative)
                     Text(answer)
                         .font(.answer)
                 }
                 .padding(15)
                 .background(
-                    .background
-                        .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))
-                        .shadow(.drop(color: .black.opacity(0.12), radius: 5, x: -5, y: -5)),
-                    in: .rect(cornerRadius: 15.0)
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(.white)
                 )
                 
                 HStack {

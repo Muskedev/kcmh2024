@@ -15,13 +15,13 @@ struct TrueFalseButtons: View {
     var body: some View {
         HStack(spacing: 20.0) {
             Image(systemName: "checkmark")
-                .modifier(TTButtonStyle(color: .mint, font: .buttonBool))
+                .modifier(TTButtonStyle(color: .positive, font: .buttonBool))
                 .button {
                     clicked = true
                 }
             
             Image(systemName: "xmark")
-                .modifier(TTButtonStyle(color: .pink, font: .buttonBool))
+                .modifier(TTButtonStyle(color: .negative, font: .buttonBool))
                 .button {
                     clicked = false
                 }

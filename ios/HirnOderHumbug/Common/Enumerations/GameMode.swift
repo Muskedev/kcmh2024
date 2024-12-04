@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum GameMode: Int {
+enum GameMode: Int, CaseIterable {
     case really = 0
     case thinkSolve
 }
@@ -34,6 +34,13 @@ extension GameMode {
             
             Kämpfe um Punkte, lerne was Neues und bring dein Wissen auf den nächsten Level. Let’s get quizzical!
             """
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .really: "checkmark.circle.badge.xmark"
+        case .thinkSolve: "questionmark.bubble"
         }
     }
 }

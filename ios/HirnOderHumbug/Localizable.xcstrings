@@ -1,19 +1,31 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "**Deine Antwort:**\nDie sind für Menschen die eine eingeschränkte fähigkeit des Sehens haben und mit dem Stock dort entlangfahren." : {
+
+    },
     "Arggh, da hab ich dich wohl täuschen können." : {
 
     },
     "Drück mich, ich bin der Startknopf!" : {
 
     },
-    "Ja" : {
+    "Du hast %@ geantwortet" : {
+
+    },
+    "HistoryTSRow" : {
 
     },
     "Nächste Frage" : {
 
     },
-    "Nein" : {
+    "Nein, mein Punktestand braucht mich!" : {
+
+    },
+    "Punktestand im Stich lassen?" : {
 
     },
     "Richtig! Die Aussage stimmt" : {
@@ -22,7 +34,13 @@
     "Runde beenden" : {
 
     },
-    "Wollen Sie das Spiel wirklich beenden?" : {
+    "Tschüss, Punktestand!" : {
+
+    },
+    "Warum haben manche Zebrastreifen auf der Straße kleine Knöpfe an ihren Streifen?" : {
+
+    },
+    "Willst du wirklich aufgeben? Dein Punktestand wird nie erfahren, wie großartig es hätte sein können!" : {
 
     }
   },

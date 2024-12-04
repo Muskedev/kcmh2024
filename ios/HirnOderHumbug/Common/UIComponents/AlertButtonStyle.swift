@@ -15,11 +15,12 @@ struct AlertButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.alertButton)
+            .padding(.vertical, 15.0)
             .foregroundStyle(color)
-            .frame(maxWidth: .infinity, minHeight: 60.0, maxHeight: 60.0)
+            .frame(maxWidth: .infinity, maxHeight: 60)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(backgroundColor.gradient)
+                    .fill(backgroundColor)
             }
     }
 }

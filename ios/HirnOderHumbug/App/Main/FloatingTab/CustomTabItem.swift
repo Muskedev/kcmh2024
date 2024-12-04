@@ -20,7 +20,7 @@ enum CustomTabItem: Int, CaseIterable {
         case .really: GameMode.really.name
         case .thinkSolve: GameMode.thinkSolve.name
         case .leaderboard: "Leaderboard "
-        case .history: "Question History"
+        case .history: "History"
         case .about: "About"
         }
     }

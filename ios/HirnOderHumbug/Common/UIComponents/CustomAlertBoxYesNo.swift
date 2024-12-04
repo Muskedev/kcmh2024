@@ -10,41 +10,54 @@ import SwiftUI
 struct CustomAlertBoxYesNo: View {
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.valueStore) private var valueStore
+    let title: LocalizedStringKey
     let message: LocalizedStringKey
     let action: (Bool) -> ()
     
-    init(_ message: LocalizedStringKey, action: @escaping (Bool) -> Void) {
+    init(_ title: LocalizedStringKey = "", message: LocalizedStringKey = "", action: @escaping (Bool) -> Void) {
+        self.title = title
         self.message = message
         self.action = action
     }
     
     var body: some View {
-        VStack {
-            Text(message)
-                .font(.alertText)
-                .padding(.bottom, 40)
+        VStack(spacing: 40.0) {
+            VStack(alignment: .leading, spacing: 10.0) {
+                Text(title)
+                    .font(.alertTitle)
+                
+                Text(message)
+                    .font(.alertMessage)
+            }
+            
             HStack {
-                Text("Ja")
-                    .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundTwo))
+                Text("Tschüss, Punktestand!")
+                    .modifier(AlertButtonStyle(color: .white, backgroundColor: .negative))
                     .button {
-                        dismiss()
-                        action(true)
+                        dismissView(action: true)
                     }
                 
-                Text("Nein")
-                    .modifier(AlertButtonStyle(color: .white, backgroundColor: .backgroundThree))
+                Text("Nein, mein Punktestand braucht mich!")
+                    .modifier(AlertButtonStyle(color: .white, backgroundColor: .positive))
                     .button {
-                        dismiss()
-                        action(false)
+                        dismissView(action: false)
                     }
             }
         }
-        .frame(width: 250)
-        .padding(25)
+        .frame(maxWidth: .infinity)
+        .padding(35)
         .background {
             RoundedRectangle(cornerRadius: 25)
                 .fill(.background)
+                .padding(.horizontal)
         }
+    }
+    
+    private func dismissView(action: Bool) {
+        valueStore.showAlert = false
+        dismiss()
+        self.action(action)
     }
 }
 
@@ -59,7 +72,7 @@ struct CustomAlertBoxYesNo: View {
     Button("Action") {
         isPresented = true
     }
-    .popView(isPresented: $isPresented, onDismiss: {
+    .alertView(isPresented: $isPresented, onDismiss: {
         
     }) {
         CustomAlertBoxYesNo("Hello World", action: { value in

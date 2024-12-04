@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 3DD8DEA32CFE242B00F2234C /* SwiftChameleon */; };
-		3DEE4BF72CFFADAD0014868A /* Octopus in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEE4BF62CFFADAD0014868A /* Octopus */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DEE4BF72CFFADAD0014868A /* Octopus in Frameworks */,
 				3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
 			);
@@ -89,7 +87,6 @@
 			packageProductDependencies = (
 				3DD8DEA32CFE242B00F2234C /* SwiftChameleon */,
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
-				3DEE4BF62CFFADAD0014868A /* Octopus */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -122,7 +119,6 @@
 			packageReferences = (
 				3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
-				3DEE4BF52CFFADAD0014868A /* XCRemoteSwiftPackageReference "Octopus" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -368,14 +364,6 @@
 				minimumVersion = 0.1.0;
 			};
 		};
-		3DEE4BF52CFFADAD0014868A /* XCRemoteSwiftPackageReference "Octopus" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/simon-zwicker/Octopus.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JamesSedlacek/Routing";
@@ -391,11 +379,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
 			productName = SwiftChameleon;
-		};
-		3DEE4BF62CFFADAD0014868A /* Octopus */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3DEE4BF52CFFADAD0014868A /* XCRemoteSwiftPackageReference "Octopus" */;
-			productName = Octopus;
 		};
 		FC9AA2AF2CFE5E5A007D770B /* Routing */ = {
 			isa = XCSwiftPackageProductDependency;

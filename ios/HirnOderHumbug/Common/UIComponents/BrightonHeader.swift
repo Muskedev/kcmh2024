@@ -13,19 +13,19 @@ struct BrightonHeader: View {
     let subhead: String
 
     var body: some View {
-        VStack {
-            VStack(alignment: .leading, spacing: 15) {
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
                 Text(head)
                     .font(.brightonHead)
                 
                 Text(subhead.translate)
                     .font(.brightonSubhead)
             }
-            .padding(.top, 35)
-            .padding(.bottom, 45)
-            .padding(.horizontal, 30)
+            .padding(.top, 10)
+            .padding(.bottom, 15)
+            .padding(.horizontal, 20)
             .background(
-                SpeechBubble()
+                SpeechBubble(direction: .trailing)
                     .fill(.white)
             )
             

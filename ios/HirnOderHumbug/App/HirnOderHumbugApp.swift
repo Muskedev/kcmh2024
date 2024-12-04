@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct HirnOderHumbugApp: App {
     
-    @State private var showAlert: Bool = false
+    @State private var valueStore: EnvironmentValuesStore = .init()
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.showAlert, $showAlert)
+                .environment(\.valueStore, valueStore)
         }
     }
 }
