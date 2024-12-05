@@ -9,7 +9,7 @@ import KeychainSwift
 
 struct KeychainHelper {
     
-    static let shared = KeychainHelper()
+    static var shared = KeychainHelper()
     
     private enum Identifier: String {
         case userId = "tt_userid"

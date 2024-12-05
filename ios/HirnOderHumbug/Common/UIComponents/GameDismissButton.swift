@@ -17,7 +17,7 @@ struct GameDismissButton: View {
         
         Image(systemName: "xmark")
             .font(.buttonClose)
-            .foregroundStyle(.negative)
+            .foregroundStyle(.backgroundTwo.opacity(0.7))
             .padding(8)
             .background(
                 .background

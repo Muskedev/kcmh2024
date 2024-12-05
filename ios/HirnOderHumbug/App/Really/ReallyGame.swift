@@ -104,7 +104,7 @@ struct ReallyGame: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text(GameMode.really.name)
-                    .font(.buttonBool)
+                    .font(.custom("Mabook", size: 32))
                     .foregroundColor(.white) // Change the title color to blue
             }
             

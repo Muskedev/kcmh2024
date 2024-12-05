@@ -7,30 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6C49A0D2D01E49A00C2C5DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6C49A0C2D01E49A00C2C5DB /* Mammut */; };
+		A6C49A0F2D01E4A100C2C5DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6C49A0E2D01E4A100C2C5DB /* Mammut */; };
 		FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B67772D01A6A900914B5A /* SwiftChameleon */; };
 		FC73EB492D01E0EF00A5D982 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC73EB482D01E0EF00A5D982 /* KeychainSwift */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A6C499EA2D01E39000C2C5DB /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HirnOderHumbug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A6C49AEB2D023E4800C2C5DB /* Exceptions for "HirnOderHumbug" folder in "Test" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Shared/Network/BHAPI.swift,
+				Shared/Network/BHAPIError.swift,
+				Shared/Network/BHController.swift,
+				Shared/Network/ErrorResponse.swift,
+				Shared/Network/NetworkEnv.swift,
+				Shared/Network/NetworkError.swift,
+				Shared/Network/Responses/AnsweredQuestion.swift,
+				Shared/Network/Responses/FinishedFunfactRounds.swift,
+				Shared/Network/Responses/FunfactsQuestion.swift,
+				Shared/Network/Responses/FunfactsRound.swift,
+				Shared/Network/Responses/Scoreboard.swift,
+				Shared/Network/Responses/ScoreboardUser.swift,
+				Shared/Network/Responses/UserCreation.swift,
+				Shared/Network/URLReqEndpoint.swift,
+			);
+			target = A6C499E92D01E39000C2C5DB /* Test */;
+		};
 		FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Shared/Network/BHAPI.swift,
+				Shared/Network/BHAPIError.swift,
+				Shared/Network/BHController.swift,
+				Shared/Network/ErrorResponse.swift,
+				Shared/Network/NetworkEnv.swift,
+				Shared/Network/NetworkError.swift,
+				Shared/Network/Responses/AnsweredQuestion.swift,
+				Shared/Network/Responses/FinishedFunfactRounds.swift,
+				Shared/Network/Responses/FunfactsQuestion.swift,
+				Shared/Network/Responses/FunfactsRound.swift,
+				Shared/Network/Responses/Scoreboard.swift,
+				Shared/Network/Responses/ScoreboardUser.swift,
+				Shared/Network/Responses/UserCreation.swift,
+				Shared/Network/URLReqEndpoint.swift,
 			);
 			target = FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A6C499EB2D01E39000C2C5DB /* Test */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Test;
+			sourceTree = "<group>";
+		};
 		FC54DAE82CFDDF0B00024A46 /* HirnOderHumbug */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */,
+				A6C49AEB2D023E4800C2C5DB /* Exceptions for "HirnOderHumbug" folder in "Test" target */,
 			);
 			path = HirnOderHumbug;
 			sourceTree = "<group>";
@@ -38,6 +81,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A6C499E72D01E39000C2C5DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6C49A0F2D01E4A100C2C5DB /* Mammut in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC54DAE32CFDDF0B00024A46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,6 +96,7 @@
 				FC73EB492D01E0EF00A5D982 /* KeychainSwift in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
 				FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */,
+				A6C49A0D2D01E49A00C2C5DB /* Mammut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				FC54DAE82CFDDF0B00024A46 /* HirnOderHumbug */,
+				A6C499EB2D01E39000C2C5DB /* Test */,
 				FC54DAE72CFDDF0B00024A46 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */,
+				A6C499EA2D01E39000C2C5DB /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +124,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A6C499E92D01E39000C2C5DB /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6C499EE2D01E39000C2C5DB /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				A6C499E62D01E39000C2C5DB /* Sources */,
+				A6C499E72D01E39000C2C5DB /* Frameworks */,
+				A6C499E82D01E39000C2C5DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A6C499EB2D01E39000C2C5DB /* Test */,
+			);
+			name = Test;
+			packageProductDependencies = (
+				A6C49A0E2D01E4A100C2C5DB /* Mammut */,
+			);
+			productName = Test;
+			productReference = A6C499EA2D01E39000C2C5DB /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC54DAF42CFDDF0C00024A46 /* Build configuration list for PBXNativeTarget "HirnOderHumbug" */;
@@ -89,6 +166,7 @@
 			packageProductDependencies = (
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
 				FC0B67772D01A6A900914B5A /* SwiftChameleon */,
+				A6C49A0C2D01E49A00C2C5DB /* Mammut */,
 				FC73EB482D01E0EF00A5D982 /* KeychainSwift */,
 			);
 			productName = HirnOderHumbug;
@@ -105,6 +183,9 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					A6C499E92D01E39000C2C5DB = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					FC54DAE52CFDDF0B00024A46 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -122,6 +203,7 @@
 			packageReferences = (
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
 				FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
+				A6C49A0B2D01E49A00C2C5DB /* XCRemoteSwiftPackageReference "Mammut" */,
 				FC73EB472D01E0EF00A5D982 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -130,11 +212,19 @@
 			projectRoot = "";
 			targets = (
 				FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */,
+				A6C499E92D01E39000C2C5DB /* Test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A6C499E82D01E39000C2C5DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC54DAE42CFDDF0B00024A46 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -145,6 +235,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A6C499E62D01E39000C2C5DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC54DAE22CFDDF0B00024A46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +252,40 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A6C499EF2D01E39000C2C5DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68YWPYV749;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.zwicker.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A6C499F02D01E39000C2C5DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68YWPYV749;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.zwicker.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		FC54DAF22CFDDF0C00024A46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -282,11 +413,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HirnOderHumbug/Preview Content\"";
-				DEVELOPMENT_TEAM = PSU9VZHG7L;
+				DEVELOPMENT_TEAM = 68YWPYV749;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
+				INFOPLIST_KEY_CFBundleDisplayName = BriansBrainLab;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -314,11 +445,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HirnOderHumbug/Preview Content\"";
-				DEVELOPMENT_TEAM = PSU9VZHG7L;
+				DEVELOPMENT_TEAM = 68YWPYV749;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
+				INFOPLIST_KEY_CFBundleDisplayName = BriansBrainLab;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -341,6 +472,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A6C499EE2D01E39000C2C5DB /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6C499EF2D01E39000C2C5DB /* Debug */,
+				A6C499F02D01E39000C2C5DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FC54DAE12CFDDF0B00024A46 /* Build configuration list for PBXProject "HirnOderHumbug" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -362,6 +502,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A6C49A0B2D01E49A00C2C5DB /* XCRemoteSwiftPackageReference "Mammut" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simon-zwicker/Mammut";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon";
@@ -389,6 +537,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A6C49A0C2D01E49A00C2C5DB /* Mammut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6C49A0B2D01E49A00C2C5DB /* XCRemoteSwiftPackageReference "Mammut" */;
+			productName = Mammut;
+		};
+		A6C49A0E2D01E4A100C2C5DB /* Mammut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6C49A0B2D01E49A00C2C5DB /* XCRemoteSwiftPackageReference "Mammut" */;
+			productName = Mammut;
+		};
 		FC0B67772D01A6A900914B5A /* SwiftChameleon */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
