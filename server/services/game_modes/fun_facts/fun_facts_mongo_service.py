@@ -1,7 +1,6 @@
 from pymongo import AsyncMongoClient
-from entities.game_modes import FunFactsRound, Question
+from entities.game_modes import FunFactsRound, Question, LeaderboardEntry
 
-import json
 
 class DocumentNotFound(Exception):
     pass
@@ -49,3 +48,47 @@ class FunFactsMongoService:
             result.append(self._bson_to_entity(game_round))
         
         return result
+    
+    async def generate_leaderboard(self):
+        pipeline = [
+            {
+                "$lookup": {
+                    "from": "users",
+                    "localField": "userId",
+                    "foreignField": "id",
+                    "as": "userInfo"
+                }
+            },
+            {
+                "$unwind": "$userInfo"
+            },
+            {
+                "$group": {
+                    "_id": "$userInfo.name",
+                    "totalScore": {"$sum": "$score"}
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "name": "$_id",
+                    "score": "$totalScore"
+                }
+            },
+            {
+                "$sort": {"score": -1}
+            }
+        ]
+        
+        leaderboard_cursor = await self.collection.aggregate(pipeline=pipeline)
+        leaderboard: list[LeaderboardEntry] = []
+        rank = 1
+        async for leaderboard_entry in leaderboard_cursor:
+            leaderboard.append(LeaderboardEntry(
+                name=leaderboard_entry['name'],
+                score=leaderboard_entry['score'],
+                rank=rank
+            ))
+            rank += 1
+        
+        return leaderboard
