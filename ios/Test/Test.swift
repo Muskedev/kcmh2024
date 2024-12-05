@@ -66,5 +66,15 @@ final class Test: XCTestCase {
             print(failure)
         }
     }
+    
+    func testGetScoreboard() async throws {
+        let res = await BHController.request(.getLeaderboard, expected: Scoreboard.self)
+        switch res {
+        case .success(let success):
+            print(success.entries)
+        case .failure(let failure):
+            print(failure)
+        }
+    }
 
 }
