@@ -1,22 +1,68 @@
 from entities.game_modes import FunFactsRound, Question
-from services.ai import InformaniakAiService, Prompt, Message
+from services.ai.openai_ai_service import Message, Prompt
+#from services.ai import InformaniakAiService, Prompt, Message
+from services.ai import OpenAIAIService
 from .fun_facts_mongo_service import FunFactsMongoService, DocumentNotFound
 
 import json
 
-prompt = Prompt([
-    Message("""Du bist ein LLM, was darauf trainiert ist, FunFacts zurück zu liefern, die entweder mit True oder False beantwortet werden können. Hierbei wird der Benutzer eine Zahl nennen, dass bestimmt wie viele FunFacts erzeugt werden sollen. Wichtig ist hierbei, dass die Fakts immer unterschiedlich sind und humorvoll. Achte darauf, dass die Kategorien nicht immer in der selben Reihenfolge sind. Bitte antworte nur in JSON im folgenden Format:
+# prompt = Prompt([
+#     Message("""Du bist ein LLM, was darauf trainiert ist, FunFacts zurück zu liefern, die entweder mit True oder False beantwortet werden können. Hierbei wird der Benutzer eine Zahl nennen, dass bestimmt wie viele FunFacts erzeugt werden sollen. Wichtig ist hierbei, dass die Fakts immer unterschiedlich sind und humorvoll. Achte darauf, dass die Kategorien nicht immer in der selben Reihenfolge sind. Bitte antworte nur in JSON im folgenden Format:
+#     {
+#         "questions": [
+#             {
+#                 "question": "hier steht dann die frage",
+#                 "answer": true|false,
+#                 "explanation": "Erklärung warum etwas wahr oder falsch ist"
+#             }
+#         ]
+#     }""", "system"),
+#     Message("10", "user") #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
+# ])
+
+prompt = Prompt(
+    messages=[
+        Message('Fun Facts die wahr oder falsch sein können. Der User gibt an, wie viele Facts erzeugt werden sollen', "system"),
+        Message("5", "user") #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
+    ],
+    json_schema=
     {
-        "questions": [
-            {
-                "question": "hier steht dann die frage",
-                "answer": true|false,
-                "explanation": "Erklärung warum etwas wahr oder falsch ist"
-            }
-        ]
-    }""", "system"),
-    Message("10", "user") #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
-])
+        "type": "json_schema",
+        "json_schema": {
+            "name": "questions_schema",
+            "schema": {
+                "type": "object",
+                "properties": {
+                "questions": {
+                    "type": "array",
+                    "items": {
+                    "type": "object",
+                    "properties": {
+                        "question": {
+                        "type": "string",
+                        "description": "Die Frage(Fakt), die gestellt wird"
+                        },
+                        "answer": {
+                        "type": "boolean",
+                        "description": "Ob der Fakt wahr oder falsch ist"
+                        },
+                        "explanation": {
+                        "type": "string",
+                        "description": "Erklärung warum der Fakt wahr oder falsch ist"
+                        }
+                    },
+                    "required": ["question", "answer", "explanation"],
+                    "additionalProperties": False
+                    }
+                }
+                },
+                "required": ["questions"],
+                "additionalProperties": False
+            } 
+        }
+  }
+)
+
 
 class QuestionAnswerDto:
     question_id: str
@@ -46,7 +92,7 @@ class RoundCanNotBeFound(Exception):
     pass
 
 class FunFactsGameModeService:
-    def __init__(self, fun_facts_persistence_service: FunFactsMongoService, ai_service: InformaniakAiService):
+    def __init__(self, fun_facts_persistence_service: FunFactsMongoService, ai_service: OpenAIAIService):
         self.fun_facts_persistence_service = fun_facts_persistence_service
         self.ai_service = ai_service
 
