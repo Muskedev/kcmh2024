@@ -37,3 +37,7 @@ struct ModeExplanation: View {
         }
     }
 }
+
+#Preview {
+    ModeExplanation(mode: .really)
+}

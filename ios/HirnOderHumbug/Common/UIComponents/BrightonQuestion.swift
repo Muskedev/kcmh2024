@@ -31,7 +31,7 @@ struct BrightonQuestion: View {
             .padding(.horizontal, 30)
             .background(
                 SpeechBubble()
-                    .fill(.white)
+                    .fill(.speechBubble)
             )
             
             Image(.brightonTransparent)

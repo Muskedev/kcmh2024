@@ -26,7 +26,7 @@ struct BrightonHeader: View {
             .padding(.horizontal, 20)
             .background(
                 SpeechBubble(direction: .trailing)
-                    .fill(.white)
+                    .fill(.speechBubble)
             )
             
             Image(.brightonTransparent)
