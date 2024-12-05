@@ -2,3 +2,7 @@ ios/.DS_Store
 *.xcuserstate
 ios/HirnOderHumbug.xcodeproj/project.xcworkspace/xcuserdata/swiftcrafter.xcuserdatad/UserInterfaceState.xcuserstate
 ios/HirnOderHumbug.xcodeproj/project.xcworkspace/xcuserdata/miakoring.xcuserdatad/UserInterfaceState.xcuserstate
+server/api/game_modes/.DS_Store
+server/api/.DS_Store
+server/.DS_Store
+.DS_Store

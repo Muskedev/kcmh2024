@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 3DD8DEA32CFE242B00F2234C /* SwiftChameleon */; };
+		A6DCCD352D01050D00FDE2DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6DCCD342D01050D00FDE2DB /* Mammut */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			files = (
 				3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
+				A6DCCD352D01050D00FDE2DB /* Mammut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				3DD8DEA32CFE242B00F2234C /* SwiftChameleon */,
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
+				A6DCCD342D01050D00FDE2DB /* Mammut */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -119,6 +122,7 @@
 			packageReferences = (
 				3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
+				A6DCCD332D01050D00FDE2DB /* XCRemoteSwiftPackageReference "Mammut" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -278,7 +282,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HirnOderHumbug/Preview Content\"";
-				DEVELOPMENT_TEAM = PSU9VZHG7L;
+				DEVELOPMENT_TEAM = 68YWPYV749;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
@@ -309,7 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HirnOderHumbug/Preview Content\"";
-				DEVELOPMENT_TEAM = PSU9VZHG7L;
+				DEVELOPMENT_TEAM = 68YWPYV749;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
@@ -364,6 +368,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		A6DCCD332D01050D00FDE2DB /* XCRemoteSwiftPackageReference "Mammut" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simon-zwicker/Mammut";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JamesSedlacek/Routing";
@@ -379,6 +391,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
 			productName = SwiftChameleon;
+		};
+		A6DCCD342D01050D00FDE2DB /* Mammut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6DCCD332D01050D00FDE2DB /* XCRemoteSwiftPackageReference "Mammut" */;
+			productName = Mammut;
 		};
 		FC9AA2AF2CFE5E5A007D770B /* Routing */ = {
 			isa = XCSwiftPackageProductDependency;

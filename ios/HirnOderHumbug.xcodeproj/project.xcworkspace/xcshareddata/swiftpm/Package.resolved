@@ -1,5 +1,5 @@
 {
-  "originHash" : "a563e97f61a37a149c7e191139cc263ac2646fff7801cab0248702973164e28f",
+  "originHash" : "080dbb8c3e07f5d90b6861022331f3d90dcbca3fc15084791dcedafb27190fc2",
   "pins" : [
     {
       "identity" : "mammut",
@@ -8,6 +8,24 @@
       "state" : {
         "branch" : "main",
         "revision" : "493dfad156c26d4ca8da98917110a918efdb0bc7"
+      }
+    },
+    {
+      "identity" : "routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JamesSedlacek/Routing",
+      "state" : {
+        "branch" : "main",
+        "revision" : "84e3729c7771ba631cd4966cab3fd88054fc5f53"
+      }
+    },
+    {
+      "identity" : "swiftchameleon",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simon-zwicker/SwiftChameleon.git",
+      "state" : {
+        "revision" : "0a19945398890fe44ce78e4aca3ab0a714756aa9",
+        "version" : "0.1.0"
       }
     }
   ],
