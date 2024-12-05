@@ -32,6 +32,9 @@ struct CreateUserAlert: View {
                     RoundedRectangle(cornerRadius: 15.0)
                         .fill(.white)
                 )
+                .button {
+                    createUser()
+                }
             
         }
         .padding()
@@ -39,5 +42,21 @@ struct CreateUserAlert: View {
             BHMesh()
                 .clipShape(.rect(cornerRadius: 15.0))
         )
+    }
+    
+    func createUser() {
+        guard !username.isEmpty else { return }
+        Task {
+            let request = await BHController.request(.createUser(username), expected: UserCreationResponse.self)
+            switch request {
+            case .success(let user):
+                KeychainHelper.shared.userId = user.id
+                KeychainHelper.shared.userName = user.name
+                
+                print(user)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
