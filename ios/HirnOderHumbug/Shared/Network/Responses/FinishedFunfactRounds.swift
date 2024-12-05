@@ -6,5 +6,5 @@
 //
 
 struct FinishedFunfactRounds: Codable {
-    let finishedRounds: [FinishedFunfactRounds]
+    let finishedRounds: [FunfactsRound]
 }

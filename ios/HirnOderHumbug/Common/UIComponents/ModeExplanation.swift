@@ -13,8 +13,7 @@ struct ModeExplanation: View {
     // MARK: - Properties
     let mode: GameMode
     @StateObject private var router: Router<GameRoute> = .init()
-    @State private var progress1: Double = 0.0
-    @State private var progress2: Double = 0.0
+    @State private var progress: Bool = false
     
     // MARK: - Body
     var body: some View {
@@ -31,7 +30,6 @@ struct ModeExplanation: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 150)
-                    
                                        
                     VStack(alignment: .leading, spacing: 10) {
                         Text(mode.name)
@@ -57,9 +55,24 @@ struct ModeExplanation: View {
                                 Capsule()
                                     .fill(.white)
                                 
-                                ProgressView(progress: progress1)
-                                ProgressView(progress: progress2)
-                                    .rotationEffect(.degrees(180.0))
+                                Capsule()
+                                  .glow(
+                                    fill: .angularGradient(
+                                        stops: [
+                                          .init(color: .backgroundOne, location: 0.0),
+                                          .init(color: .backgroundTwo, location: 0.2),
+                                          .init(color: .positive, location: 0.4),
+                                          .init(color: .backgroundOne, location: 0.5),
+                                          .init(color: .backgroundTwo, location: 0.7),
+                                          .init(color: .positive, location: 0.9),
+                                          .init(color: .backgroundOne, location: 1.0),
+                                        ],
+                                        center: .center,
+                                        startAngle: Angle(radians: .zero),
+                                        endAngle: Angle(radians: .pi * 2)
+                                      ),
+                                    lineWidth: 10.0
+                                  )
 
                             }
                         )
@@ -69,72 +82,9 @@ struct ModeExplanation: View {
                         .padding(.bottom, 80)
                 }
                 .padding()
-                .onAppear() {
-                    withAnimation(
-                        .linear(duration: 2.0)
-                        .repeatForever(autoreverses: false)
-                    ) {
-                        progress1 = 1.0
-                    }
-                    
-                    withAnimation(
-                        .linear(duration: 2.0)
-                        .repeatForever(autoreverses: false)
-                        .delay(1.0)
-                    ) {
-                        progress2 = 1.0
-                    }
-                }
             }
         }
     }
-}
-
-struct ProgressView: View, Animatable {
-  var progress: Double
-    private let delay = 0.5
-
-  var animatableData: Double {
-    get { progress }
-    set { progress = newValue }
-  }
-
-  var body: some View {
-    Capsule()
-          .trim(
-            from: {
-              if progress > delay {
-                progress - delay
-              } else {
-                .zero
-              }
-            }(),
-            to: {
-                if progress > 0.5 {
-                    0.5
-              } else {
-                progress
-              }
-            }()
-          )
-      .glow(
-        fill: .angularGradient(
-            stops: [
-              .init(color: .backgroundOne, location: 0.0),
-              .init(color: .backgroundTwo, location: 0.2),
-              .init(color: .positive, location: 0.4),
-              .init(color: .backgroundOne, location: 0.5),
-              .init(color: .backgroundTwo, location: 0.7),
-              .init(color: .positive, location: 0.9),
-              .init(color: .backgroundOne, location: 1.0),
-            ],
-            center: .center,
-            startAngle: Angle(radians: .zero),
-            endAngle: Angle(radians: .pi * 2)
-          ),
-        lineWidth: 8.0
-      )
-  }
 }
 
 struct LabelView: View {

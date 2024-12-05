@@ -44,20 +44,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				Shared/Network/BHAPI.swift,
-				Shared/Network/BHAPIError.swift,
-				Shared/Network/BHController.swift,
-				Shared/Network/ErrorResponse.swift,
-				Shared/Network/NetworkEnv.swift,
-				Shared/Network/NetworkError.swift,
-				Shared/Network/Responses/AnsweredQuestion.swift,
-				Shared/Network/Responses/FinishedFunfactRounds.swift,
-				Shared/Network/Responses/FunfactsQuestion.swift,
-				Shared/Network/Responses/FunfactsRound.swift,
-				Shared/Network/Responses/Scoreboard.swift,
-				Shared/Network/Responses/ScoreboardUser.swift,
-				Shared/Network/Responses/UserCreation.swift,
-				Shared/Network/URLReqEndpoint.swift,
 			);
 			target = FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */;
 		};
@@ -257,6 +243,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 68YWPYV749;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
@@ -274,6 +261,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 68YWPYV749;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
@@ -417,7 +405,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BriansBrainLab;
+				INFOPLIST_KEY_CFBundleDisplayName = "Brians BrainLab";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,7 +437,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BriansBrainLab;
+				INFOPLIST_KEY_CFBundleDisplayName = "Brians BrainLab";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CreateUserAlert: View {
     
+    @Environment(\.valueStore) private var valueStore
     @State private var username: String = ""
     
     var body: some View {
         VStack(spacing: 15) {
-            BrightonHeader(head: "Willkommen bei TrickyTruth!", subhead: "Mit wem hab ich es eigentlich hier zu tun?")
+            BrightonHeader(head: "Willkommen bei Brians BrainLab!", subhead: "Mit wem hab ich es eigentlich hier zu tun?")
             
             TextField("Name eingeben", text: $username)
                 .padding(.horizontal, 30.0)
@@ -53,7 +54,8 @@ struct CreateUserAlert: View {
                 KeychainHelper.shared.userId = user.id
                 KeychainHelper.shared.userName = user.name
                 
-                print(user)
+                self.valueStore.showAlert = false
+                self.valueStore.noUser = false
             case .failure(let error):
                 print(error)
             }

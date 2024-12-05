@@ -11,35 +11,33 @@ import SwiftChameleon
 @Observable
 class ReallyViewModel {
     
-    private struct ReallyAnswer {
-        let question: ReallyFallback
-        let answerCorrect: Bool
+    var round: FunfactsRound?
+    var currentQuestion: FunfactsQuestion?
+    
+    var questionHighlights: [FunfactsQuestion] {
+        round?.questions ?? []
     }
     
-    private var fallback: [ReallyFallback]
-    private var done: [ReallyAnswer] = []
+    var maxRounds: Int {
+        (round?.questions.count ?? 0) - 1
+    }
+    
     private var currentRound: Int = 0
-    let maxRounds: Int = 5
-    private(set) var currentQuestion: ReallyFallback?
     private(set) var answer: Bool = false
-    private(set) var currentAnswer: Bool?
     private(set) var score: Int = 0
     private let basepoints: Int = 10
     private var pointMulti = 1
     
     var answerCorrect: Bool {
-        currentQuestion?.answer == currentAnswer
+        currentQuestion?.correctAnswer == currentQuestion?.userAnswer
     }
+    
     var isLastRound: Bool {
         currentRound == maxRounds
     }
 
     func questionHightlight(_ index: Int) -> Bool? {
-        return done.indices.contains(index) ? done[index].answerCorrect : nil
-    }
-    
-    init() {
-        self.fallback = ReallyViewModel.getFallbackData()
+        return nil
     }
     
     func nextRound() {
@@ -48,27 +46,21 @@ class ReallyViewModel {
         pointMulti = 1
         currentQuestion = nil
         answer = false
-        currentAnswer = nil
-        done = []
-        nextQuestion()
+        getQuestions()
     }
     
     func nextQuestion() {
-        guard currentRound < maxRounds else { return }
-        currentQuestion = nil
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.chooseQuestion()
-            self.currentRound += 1
-            self.answer = false
-            self.currentAnswer = nil
-        }
+        guard let currentQuestion, var round else { return }
+        round.questions[self.currentRound] = currentQuestion
+        self.round = round
+        self.currentRound += 1
+        self.currentQuestion = round.questions[self.currentRound]
+        self.answer = false
     }
     
     func answer(_ answer: Bool) {
-        guard let currentQuestion else { return }
         self.answer = answer
-        self.currentAnswer = answer
-        done.append(.init(question: currentQuestion, answerCorrect: answerCorrect))
+        self.currentQuestion?.userAnswer = answer
         
         if answerCorrect {
             score += basepoints * pointMulti
@@ -76,40 +68,49 @@ class ReallyViewModel {
         } else {
             pointMulti = 1
         }
+        
+        if isLastRound {
+            guard let currentQuestion, var round, let userId = KeychainHelper.shared.userId else { return }
+            round.questions[self.currentRound] = currentQuestion
+            self.round = round
+        }
     }
     
-    func chooseQuestion() {
-        let available = fallback.filter({ question in
-            return !done.contains(where: { $0.question == question })
-        })
-        self.currentQuestion = available.randomElement()
+    func getQuestions() {
+        guard let userId = KeychainHelper.shared.userId else { return }
+        Task {
+            let result = await BHController.request(.createFunfactsRound(userId), expected: FunfactsRound.self)
+            switch result {
+            case .success(let round):
+                self.round = round
+                self.currentQuestion = round.questions[self.currentRound]
+            case .failure(let error):
+                print("Error get funfacts \(error)")
+            }
+        }
     }
     
-    static func getFallbackData() -> [ReallyFallback] {
+    func endRound(more: Bool = false) {
+        guard let round, let userId = KeychainHelper.shared.userId else { return }
+        var answeredQuestions: [AnsweredQuestion] = []
         
-        var fallbackData: [ReallyFallback] = []
-        
-        if let data = JSONHandler.load("really") {
-            do {
-                let decoded = try data.decoded(Questions<ReallyFallback>.self)
-                fallbackData = decoded.questions
-            } catch {
-                print("Error on loading JSON Fallback: \(error)")
+        for question in round.questions {
+            if let answer = question.userAnswer {
+                answeredQuestions.append(.init(id: question.id, userAnswer: answer))
             }
         }
         
-        return fallbackData
+        Task {
+            let result = await BHController.request(.finishFunfactsRound(userId, round.id, score, answeredQuestions), expected: FunfactsRound.self)
+            
+            switch result {
+            case .success(let round):
+                print(round)
+                self.nextRound()
+            case .failure(let error):
+                print("Error on set score \(error)")
+            }
+        }
     }
-}
-
-struct Questions<T: Codable>: Codable {
-    let questions: [T]
-}
-
-struct ReallyFallback: Codable, Hashable {
-    let id: Int
-    let question: String
-    let answer: Bool
-    let explanation: String
 }
 

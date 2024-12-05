@@ -18,10 +18,10 @@ struct ReallyGame: View {
             VStack(spacing: 30) {
                 
                 HStack {
-                    ForEach(0..<viewModel.maxRounds, id: \.self) { index in
-                        if let highlight = viewModel.questionHightlight(index) {
+                    ForEach(viewModel.questionHighlights, id: \.id) { question in
+                        if let userAnswer = question.userAnswer {
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(highlight ? .positive: .negative.opacity(0.5))
+                                .fill(question.correctAnswer == userAnswer ? .positive: .negative.opacity(0.5))
                                 .frame(maxWidth: .infinity, maxHeight: 5)
                         } else {
                             RoundedRectangle(cornerRadius: 3)
@@ -30,12 +30,13 @@ struct ReallyGame: View {
                         }
                     }
                 }
+                
                 BrightonQuestion()
                 TrueFalseButtons()
                 
-                if viewModel.currentAnswer.isNotNil, let question = viewModel.currentQuestion {
+                if viewModel.currentQuestion?.userAnswer != nil, let question = viewModel.currentQuestion {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(viewModel.answerCorrect ? "Richtig! Die Aussage stimmt \(question.answer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
+                        Text(viewModel.answerCorrect ? "Richtig! Die Aussage stimmt \(question.correctAnswer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
                             .font(.answerTrueFalse)
                             .foregroundStyle(viewModel.answerCorrect ? .positive: .negative)
                         AnimatedText(question.explanation)
@@ -76,7 +77,7 @@ struct ReallyGame: View {
                                 .font(.buttonNormal)
                                 .foregroundStyle(.white)
                                 .button {
-                                    viewModel.nextRound()
+                                    viewModel.endRound(more: true)
                                 }
                             
                             Text("Beenden")
@@ -84,6 +85,7 @@ struct ReallyGame: View {
                                 .font(.buttonNormal)
                                 .foregroundStyle(.white)
                                 .button {
+                                    viewModel.endRound()
                                     dismiss()
                                 }
                         }
@@ -114,8 +116,4 @@ struct ReallyGame: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    ReallyGame()
 }

@@ -54,7 +54,7 @@ struct BrainOrHumbugController {
             }() else {
                 throw NetworkError.jsonEncoding
             }
-            print(String(data: (try? JSONSerialization.data(withJSONObject: endpoint.parameters)) ?? Data(), encoding: .utf8) ?? reqFailed)
+            print(String(data: (try? JSONSerialization.data(withJSONObject: endpoint.parameters)) ?? Data(), encoding: .utf8) ?? "reqFailed")
             if !endpoint.parameters.isEmpty {
                 req.httpBody = body
             }

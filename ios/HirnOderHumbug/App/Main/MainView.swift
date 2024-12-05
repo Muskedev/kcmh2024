@@ -33,8 +33,6 @@ struct MainView: View {
             FloatingTab(activeTab: $activeTab)
         }
         .onAppear {
-            print(KeychainHelper.shared.userId)
-            print(KeychainHelper.shared.userName)
             valueStore.noUser = KeychainHelper.shared.userId.isNil
             valueStore.showAlert = KeychainHelper.shared.userId.isNil
         }
