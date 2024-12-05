@@ -10,6 +10,7 @@
 		A6C49A0D2D01E49A00C2C5DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6C49A0C2D01E49A00C2C5DB /* Mammut */; };
 		A6C49A0F2D01E4A100C2C5DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6C49A0E2D01E4A100C2C5DB /* Mammut */; };
 		FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B67772D01A6A900914B5A /* SwiftChameleon */; };
+		FC73EB492D01E0EF00A5D982 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC73EB482D01E0EF00A5D982 /* KeychainSwift */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC73EB492D01E0EF00A5D982 /* KeychainSwift in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
 				FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */,
 				A6C49A0D2D01E49A00C2C5DB /* Mammut in Frameworks */,
@@ -130,6 +132,7 @@
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
 				FC0B67772D01A6A900914B5A /* SwiftChameleon */,
 				A6C49A0C2D01E49A00C2C5DB /* Mammut */,
+				FC73EB482D01E0EF00A5D982 /* KeychainSwift */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -166,6 +169,7 @@
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
 				FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 				A6C49A0B2D01E49A00C2C5DB /* XCRemoteSwiftPackageReference "Mammut" */,
+				FC73EB472D01E0EF00A5D982 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -479,6 +483,14 @@
 				kind = branch;
 			};
 		};
+		FC73EB472D01E0EF00A5D982 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JamesSedlacek/Routing";
@@ -504,6 +516,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
 			productName = SwiftChameleon;
+		};
+		FC73EB482D01E0EF00A5D982 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC73EB472D01E0EF00A5D982 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		FC9AA2AF2CFE5E5A007D770B /* Routing */ = {
 			isa = XCSwiftPackageProductDependency;

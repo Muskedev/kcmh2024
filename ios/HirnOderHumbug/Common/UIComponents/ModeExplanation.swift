@@ -20,24 +20,31 @@ struct ModeExplanation: View {
             ZStack {
                 BHMesh()
                 
-                VStack {
+                VStack(spacing: 30.0) {
                     BrightonHeader(head: mode.name, subhead: mode.explanation)
                     
-                    Spacer()
                     
-                    Text("Drück mich, ich bin der Startknopf!")
-                        .modifier(TTButtonStyle(color: Color.backgroundTwo, font: .buttonNormal))
-                        .button {
-                            router.navigate(to: .start(mode))
-                        }
-                        .padding(.bottom, 70)
+                    VStack {
+                        Text("Labor betreten - Schutzbrille optional")
+                            .font(.tabIcon)
+                            .foregroundStyle(.white)
+                        
+                        Image(.startbutton)
+                            .resizable()
+                            .scaledToFit()
+                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 5, y: 5)
+                            .shadow(color: Color.white.opacity(0.5), radius: 10, x: -5, y: -5)
+                            .frame(maxWidth: .infinity)
+                            .button {
+                                router.navigate(to: .start(mode))
+                            }
+                    }
+                    .padding(40.0)
+                    
+                    Spacer()
                 }
                 .padding()
             }
         }
     }
-}
-
-#Preview {
-    ModeExplanation(mode: .really)
 }

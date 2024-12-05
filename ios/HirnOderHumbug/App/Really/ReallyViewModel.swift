@@ -26,6 +26,7 @@ class ReallyViewModel {
     private(set) var score: Int = 0
     private let basepoints: Int = 10
     private var pointMulti = 1
+    
     var answerCorrect: Bool {
         currentQuestion?.answer == currentAnswer
     }
@@ -48,6 +49,7 @@ class ReallyViewModel {
         currentQuestion = nil
         answer = false
         currentAnswer = nil
+        done = []
         nextQuestion()
     }
     

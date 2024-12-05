@@ -12,4 +12,5 @@ class EnvironmentValuesStore {
     var showAlert: Bool = false
     var showHistoryDetail: Bool = false
     var historyData: String = ""
+    var noUser: Bool = false
 }
