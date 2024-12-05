@@ -1,4 +1,5 @@
 from entities.game_modes import FunFactsRound, Question
+from entities.game_modes import Leaderboard, GameModeEnum
 from services.ai.openai_ai_service import Message, Prompt
 #from services.ai import InformaniakAiService, Prompt, Message
 from services.ai import OpenAIAIService
@@ -130,3 +131,6 @@ class FunFactsGameModeService:
                 
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound)
+    
+    async def get_leaderboard(self):
+        return Leaderboard(entries=await self.fun_facts_persistence_service.generate_leaderboard(), game_mode=GameModeEnum.FUNFACTS)

@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from entities.game_modes.fun_facts import FunFactsRound
+from entities.game_modes import GameModeEnum
 from pydantic import BaseModel, Field
 from services.game_modes.fun_facts import FunFactsGameModeService, QuestionCanNotBeUpdated, QuestionAnswerDto, RoundCanNotBeFound
 import services.game_modes.fun_facts
@@ -9,25 +10,20 @@ class AnsweredQuestionDto(BaseModel):
     id: str
     userAnswer: bool
 
-
 class StartRoundQuestionDto(BaseModel):
     id: str
     question: str
     explanation: str
     correctAnswer: bool
 
-
 class StartRoundDto(BaseModel):
     id: str
     userId: str
     questions: list[StartRoundQuestionDto]
 
-
-
 class FinishRoundDto(BaseModel):
     score: int = Field(gt=-1)
     questions: list[AnsweredQuestionDto]
-
 
 class FinishedQuestionDto(BaseModel):
     id: str
@@ -41,7 +37,15 @@ class FinishedRoundDto(BaseModel):
     userId: str
     score: int
     questions: list[FinishedQuestionDto]
+    
+class LeaderBoardEntryDto(BaseModel):
+    name: str
+    score: int
+    rank: int
 
+class LeaderBoardDto(BaseModel):
+    entries: list[LeaderBoardEntryDto]
+    gameMode: GameModeEnum
 
 class FinishedRoundsDto(BaseModel):
     finishedRounds: list[FinishedRoundDto]
@@ -101,4 +105,16 @@ class FunFactsRoutes:
             except QuestionCanNotBeUpdated:
                 raise HTTPException(status_code=404, detail="It seems that you are trying to update questions which are not existing in the given round")
             except RoundCanNotBeFound:
-                raise HTTPException(status_code=404, detail="The given round doesnt exist for the user") 
+                raise HTTPException(status_code=404, detail="The given round doesnt exist for the user")
+        
+        @self.app.get("/gamemode/funFacts/getLeaderboard")
+        async def get_leaderboard() -> LeaderBoardDto:
+            leaderboard = await self.fun_fact_service.get_leaderboard()
+            return LeaderBoardDto(gameMode=leaderboard.game_mode, entries=[
+                LeaderBoardEntryDto(
+                    name=entry.name,
+                    score=entry.score,
+                    rank=entry.rank    
+                ) for entry in leaderboard.entries
+            ])
+            
