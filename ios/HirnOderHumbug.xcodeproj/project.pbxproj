@@ -20,10 +20,44 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A6C49AEB2D023E4800C2C5DB /* Exceptions for "HirnOderHumbug" folder in "Test" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Shared/Network/BHAPI.swift,
+				Shared/Network/BHAPIError.swift,
+				Shared/Network/BHController.swift,
+				Shared/Network/ErrorResponse.swift,
+				Shared/Network/NetworkEnv.swift,
+				Shared/Network/NetworkError.swift,
+				Shared/Network/Responses/AnsweredQuestion.swift,
+				Shared/Network/Responses/FinishedFunfactRounds.swift,
+				Shared/Network/Responses/FunfactsQuestion.swift,
+				Shared/Network/Responses/FunfactsRound.swift,
+				Shared/Network/Responses/Scoreboard.swift,
+				Shared/Network/Responses/ScoreboardUser.swift,
+				Shared/Network/Responses/UserCreation.swift,
+				Shared/Network/URLReqEndpoint.swift,
+			);
+			target = A6C499E92D01E39000C2C5DB /* Test */;
+		};
 		FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Shared/Network/BHAPI.swift,
+				Shared/Network/BHAPIError.swift,
+				Shared/Network/BHController.swift,
+				Shared/Network/ErrorResponse.swift,
+				Shared/Network/NetworkEnv.swift,
+				Shared/Network/NetworkError.swift,
+				Shared/Network/Responses/AnsweredQuestion.swift,
+				Shared/Network/Responses/FinishedFunfactRounds.swift,
+				Shared/Network/Responses/FunfactsQuestion.swift,
+				Shared/Network/Responses/FunfactsRound.swift,
+				Shared/Network/Responses/Scoreboard.swift,
+				Shared/Network/Responses/ScoreboardUser.swift,
+				Shared/Network/Responses/UserCreation.swift,
+				Shared/Network/URLReqEndpoint.swift,
 			);
 			target = FC54DAE52CFDDF0B00024A46 /* HirnOderHumbug */;
 		};
@@ -39,6 +73,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				FCA3D5382CFF54B500AD52ED /* Exceptions for "HirnOderHumbug" folder in "HirnOderHumbug" target */,
+				A6C49AEB2D023E4800C2C5DB /* Exceptions for "HirnOderHumbug" folder in "Test" target */,
 			);
 			path = HirnOderHumbug;
 			sourceTree = "<group>";

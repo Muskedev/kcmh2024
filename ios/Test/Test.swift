@@ -55,5 +55,26 @@ final class Test: XCTestCase {
             print(failure)
         }
     }
+    
+    func testgetFinishedRounds() async throws {
+        let res = await BHController.request(.getFinishedRounds(userId), expected: FinishedFunfactRounds.self)
+        switch res {
+        case .success(let success):
+            print(String(data: (try? JSONEncoder().encode(success)) ?? Data(), encoding: .utf8) ?? "Failed")
+        case .failure(let failure):
+            print("test")
+            print(failure)
+        }
+    }
+    
+    func testGetScoreboard() async throws {
+        let res = await BHController.request(.getLeaderboard, expected: Scoreboard.self)
+        switch res {
+        case .success(let success):
+            print(success.entries)
+        case .failure(let failure):
+            print(failure)
+        }
+    }
 
 }

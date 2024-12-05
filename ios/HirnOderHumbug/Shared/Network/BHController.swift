@@ -54,8 +54,10 @@ struct BrainOrHumbugController {
             }() else {
                 throw NetworkError.jsonEncoding
             }
-            print(String(data: (try? JSONSerialization.data(withJSONObject: endpoint.parameters)) ?? Data(), encoding: .utf8) ?? "reqFailed")
-            req.httpBody = body
+            print(String(data: (try? JSONSerialization.data(withJSONObject: endpoint.parameters)) ?? Data(), encoding: .utf8) ?? reqFailed)
+            if !endpoint.parameters.isEmpty {
+                req.httpBody = body
+            }
         }
         
         return try await URLSession.shared.data(for: req)

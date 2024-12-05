@@ -16,6 +16,7 @@ enum BHAPI {
     case getFinishedRounds(String)
     ///userId, roundId, score, answered questions
     case finishFunfactsRound(String, String, Int, [AnsweredQuestion])
+    case getLeaderboard
 }
 extension BHAPI: URLReqEndpoint {
     var path: String {
@@ -28,16 +29,16 @@ extension BHAPI: URLReqEndpoint {
             "/gamemode/funFacts/getFinishedRounds?userId=\(string)"
         case .finishFunfactsRound(let userId, let roundId, _, _):
             "/gamemode/funFacts/finishRound?userId=\(userId)&roundId=\(roundId)"
+        case .getLeaderboard:
+            "/gamemode/funFacts/getLeaderboard"
         }
     }
 
     var method: MammutMethod {
         switch self {
-        case .createFunfactsRound:
+        case .createFunfactsRound, .createUser:
             .post
-        case .createUser:
-            .post
-        case .getFinishedRounds:
+        case .getFinishedRounds, .getLeaderboard:
             .get
         case .finishFunfactsRound:
             .put
