@@ -1,0 +1,485 @@
+
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": "In der Schweiz ist es illegal, nur ein Meerschweinchen zu halten.",
+            "answer": true,
+            "explanation": "Meerschweinchen sind soziale Tiere und dürfen nicht alleine gehalten werden."
+        },
+        {
+            "id": 2,
+            "question": "Es gibt ein Gesetz in Frankreich, das Schweinen verbietet, Napoleon genannt zu werden.",
+            "answer": true,
+            "explanation": "Dieses Gesetz existiert tatsächlich, um Respekt gegenüber Napoleon zu bewahren."
+        },
+        {
+            "id": 3,
+            "question": "Bananen wachsen auf Bäumen.",
+            "answer": false,
+            "explanation": "Bananen wachsen auf großen Kräutern, nicht auf Bäumen."
+        },
+        {
+            "id": 4,
+            "question": "Der Herzschlag eines Kolibris kann bis zu 1.200 Mal pro Minute schlagen.",
+            "answer": true,
+            "explanation": "Kolibris haben einen extrem schnellen Herzschlag, um ihren Energiebedarf zu decken."
+        },
+        {
+            "id": 5,
+            "question": "Kamele speichern Wasser in ihren Höckern.",
+            "answer": false,
+            "explanation": "Die Höcker speichern Fett, nicht Wasser."
+        },
+        {
+            "id": 6,
+            "question": "Einige Schnecken können bis zu drei Jahre schlafen.",
+            "answer": true,
+            "explanation": "Schnecken können in Trockenperioden in eine Art Winterschlaf fallen."
+        },
+        {
+            "id": 7,
+            "question": "Delfine geben sich gegenseitig Namen.",
+            "answer": true,
+            "explanation": "Delfine nutzen individuelle Pfeiftöne, um sich zu identifizieren."
+        },
+        {
+            "id": 8,
+            "question": "Eine Ananas wächst schneller, wenn man Musik spielt.",
+            "answer": false,
+            "explanation": "Es gibt keinen wissenschaftlichen Beweis, dass Musik das Wachstum von Ananas beeinflusst."
+        },
+        {
+            "id": 9,
+            "question": "Das Auge eines Straußes ist größer als sein Gehirn.",
+            "answer": true,
+            "explanation": "Die Augen eines Straußes sind tatsächlich größer als sein Gehirn."
+        },
+        {
+            "id": 10,
+            "question": "Kängurus können nicht rückwärts springen.",
+            "answer": true,
+            "explanation": "Kängurus können aufgrund ihres Schwanzes nicht rückwärts springen."
+        },
+        {
+            "id": 11,
+            "question": "Menschen und Bäume haben etwa 25% ihrer Gene gemeinsam.",
+            "answer": true,
+            "explanation": "Menschen teilen viele grundlegende Gene mit Pflanzen, darunter Bäume."
+        },
+        {
+            "id": 12,
+            "question": "Eine Gruppe Flamingos wird als ‚Flamme‘ bezeichnet.",
+            "answer": false,
+            "explanation": "Eine Gruppe Flamingos wird als ‚Schwarm‘ bezeichnet."
+        },
+        {
+            "id": 13,
+            "question": "Es gibt eine Ameisenart, die explodieren kann, um ihre Feinde zu verteidigen.",
+            "answer": true,
+            "explanation": "Die ‚explodierende Ameise‘ setzt eine klebrige Substanz frei, um Feinde abzuwehren."
+        },
+        {
+            "id": 14,
+            "question": "Die längste Pizza der Welt war über 2 Kilometer lang.",
+            "answer": true,
+            "explanation": "Die längste Pizza der Welt wurde 2017 in Kalifornien gebacken und war 2,13 km lang."
+        },
+        {
+            "id": 15,
+            "question": "Haie haben keine Knochen.",
+            "answer": true,
+            "explanation": "Das Skelett von Haien besteht aus Knorpel, nicht aus Knochen."
+        },
+        {
+            "id": 16,
+            "question": "Bienen sterben immer, wenn sie stechen.",
+            "answer": false,
+            "explanation": "Nur Honigbienen sterben nach dem Stechen, andere Bienenarten überleben."
+        },
+        {
+            "id": 17,
+            "question": "Es gibt mehr Plastikenten auf der Welt als echte Enten.",
+            "answer": false,
+            "explanation": "Es gibt keine offiziellen Daten, die dies belegen."
+        },
+        {
+            "id": 18,
+            "question": "Oktopusse haben drei Herzen.",
+            "answer": true,
+            "explanation": "Zwei Herzen pumpen Blut zu den Kiemen, das dritte zum Rest des Körpers."
+        },
+        {
+            "id": 19,
+            "question": "In Italien ist es verboten, in der Öffentlichkeit zu tanzen.",
+            "answer": false,
+            "explanation": "Es gibt keine solche Regel, außer in speziellen Fällen oder Orten."
+        },
+        {
+            "id": 20,
+            "question": "Die Zunge eines Blauwals wiegt mehr als ein Auto.",
+            "answer": true,
+            "explanation": "Die Zunge eines Blauwals kann bis zu 3.600 kg wiegen."
+        },
+        {
+            "id": 21,
+            "question": "Ein Elefant kann nicht springen.",
+            "answer": true,
+            "explanation": "Aufgrund ihrer Körperstruktur können Elefanten nicht springen."
+        },
+        {
+            "id": 22,
+            "question": "Die Zunge eines Giraffen kann bis zu 50 cm lang sein.",
+            "answer": true,
+            "explanation": "Giraffenzungen sind lang genug, um Blätter aus Dornenbäumen zu greifen."
+        },
+        {
+            "id": 23,
+            "question": "Menschen können mit offenen Augen niesen.",
+            "answer": false,
+            "explanation": "Es ist nahezu unmöglich, beim Niesen die Augen offen zu halten."
+        },
+        {
+            "id": 24,
+            "question": "Die Eiffelturmhöhe ändert sich je nach Wetter.",
+            "answer": true,
+            "explanation": "Metall dehnt sich bei Hitze aus, wodurch der Turm bis zu 15 cm höher wird."
+        },
+        {
+            "id": 25,
+            "question": "Tintenfische haben rechteckige Pupillen.",
+            "answer": true,
+            "explanation": "Die rechteckigen Pupillen helfen ihnen, Kontraste unter Wasser besser zu erkennen."
+        },
+        {
+            "id": 26,
+            "question": "Der Mond riecht nach verbranntem Schießpulver.",
+            "answer": true,
+            "explanation": "Astronauten berichteten, dass Mondstaub einen solchen Geruch hat."
+        },
+        {
+            "id": 27,
+            "question": "Einige Schildkröten können durch ihren Hintern atmen.",
+            "answer": true,
+            "explanation": "Dies wird als ‚Kloakenatmung‘ bezeichnet und hilft ihnen, unter Wasser Sauerstoff aufzunehmen."
+        },
+        {
+            "id": 28,
+            "question": "Kaffee wurde ursprünglich als Nahrung verwendet.",
+            "answer": true,
+            "explanation": "In Afrika wurden Kaffeebohnen mit Fett vermischt und als Energieriegel gegessen."
+        },
+        {
+            "id": 29,
+            "question": "Ein Flamingo wird rosa durch das Essen von Karotten.",
+            "answer": false,
+            "explanation": "Flamingos werden durch das Essen von Krebstieren und Algen rosa, nicht durch Karotten."
+        },
+        {
+            "id": 30,
+            "question": "Es gibt mehr Fake-Facebook-Profile als echte.",
+            "answer": true,
+            "explanation": "Facebook hat Millionen gefälschter Konten entdeckt."
+        },
+        {
+            "id": 31,
+            "question": "Ein Tag auf dem Jupiter dauert nur 10 Stunden.",
+            "answer": true,
+            "explanation": "Der Jupiter rotiert extrem schnell, was zu einem kurzen Tag führt."
+        },
+        {
+            "id": 32,
+            "question": "Spinnen können ohne Nahrung bis zu zwei Jahre überleben.",
+            "answer": true,
+            "explanation": "Einige Spinnenarten können sehr lange ohne Nahrung auskommen."
+        },
+        {
+            "id": 33,
+            "question": "Die größten Frösche der Welt sind so groß wie Hunde.",
+            "answer": false,
+            "explanation": "Die größten Frösche, Goliathfrösche, sind groß, aber nicht so groß wie Hunde."
+        },
+        {
+            "id": 34,
+            "question": "Es gibt mehr Hühner als Menschen auf der Erde.",
+            "answer": true,
+            "explanation": "Die weltweite Hühnerpopulation übersteigt die der Menschen."
+        },
+        {
+            "id": 35,
+            "question": "Die meisten Menschen haben weniger als fünf Träume pro Nacht.",
+            "answer": false,
+            "explanation": "Menschen können bis zu sieben Träume pro Nacht haben, erinnern sich aber oft nicht an alle."
+        },
+        {
+            "id": 36,
+            "question": "Manche Frösche können durch ihre Haut trinken.",
+            "answer": true,
+            "explanation": "Frösche nehmen Wasser über ihre Haut auf, anstatt es zu trinken."
+        },
+        {
+            "id": 37,
+            "question": "Ein Oktopus kann sein Herz stoppen, wenn er bedroht wird.",
+            "answer": true,
+            "explanation": "Oktopusse können den Blutfluss in bestimmten Situationen kontrollieren."
+        },
+        {
+            "id": 38,
+            "question": "Es ist unmöglich, im Schlaf zu lachen.",
+            "answer": false,
+            "explanation": "Menschen können durchaus lachen, während sie träumen."
+        },
+        {
+            "id": 39,
+            "question": "Haie schlafen niemals.",
+            "answer": false,
+            "explanation": "Haie schlafen, aber auf eine andere Weise als Säugetiere, indem sie eine Hirnhälfte aktiv halten."
+        },
+        {
+            "id": 40,
+            "question": "Die meisten Kühe haben beste Freunde.",
+            "answer": true,
+            "explanation": "Studien zeigen, dass Kühe starke Bindungen zu bestimmten anderen Kühen entwickeln."
+        },
+        {
+            "id": 41,
+            "question": "Eisbären haben schwarze Haut unter ihrem weißen Fell.",
+            "answer": true,
+            "explanation": "Die schwarze Haut hilft Eisbären, Wärme besser zu speichern."
+        },
+        {
+            "id": 42,
+            "question": "Der Ozean ist blauer, weil Fische blau reflektieren.",
+            "answer": false,
+            "explanation": "Das Wasser erscheint blau, weil es das blaue Licht aus dem Sonnenlicht reflektiert."
+        },
+        {
+            "id": 43,
+            "question": "Giraffen haben keine Stimmbänder.",
+            "answer": false,
+            "explanation": "Giraffen haben Stimmbänder, nutzen sie aber selten."
+        },
+        {
+            "id": 44,
+            "question": "Ein Mensch isst in seinem Leben durchschnittlich 8 Spinnen im Schlaf.",
+            "answer": false,
+            "explanation": "Das ist ein Mythos, der keine wissenschaftliche Grundlage hat."
+        },
+        {
+            "id": 45,
+            "question": "Ein Faultier braucht einen ganzen Tag, um eine Distanz von 100 Metern zurückzulegen.",
+            "answer": true,
+            "explanation": "Faultiere bewegen sich extrem langsam und sparen Energie."
+        },
+        {
+            "id": 46,
+            "question": "Hunde schwitzen durch ihre Pfoten.",
+            "answer": true,
+            "explanation": "Hunde schwitzen nur durch ihre Pfoten, regulieren Wärme aber hauptsächlich durch Hecheln."
+        },
+        {
+            "id": 47,
+            "question": "Eine Gruppe Eulen wird ‚Parlament‘ genannt.",
+            "answer": true,
+            "explanation": "In der englischen Sprache wird eine Gruppe Eulen als ‚Parliament‘ bezeichnet."
+        },
+        {
+            "id": 48,
+            "question": "Der menschliche Körper hat mehr Bakterien als Zellen.",
+            "answer": true,
+            "explanation": "Die Anzahl der Bakterien in und auf unserem Körper übersteigt die Anzahl der Zellen."
+        },
+        {
+            "id": 49,
+            "question": "Die Erde ist der einzige Planet im Sonnensystem ohne Ringe.",
+            "answer": true,
+            "explanation": "Alle anderen Gasplaneten im Sonnensystem haben Ringsysteme."
+        },
+        {
+            "id": 50,
+            "question": "Ein Chamäleon ändert seine Farbe, um sich zu tarnen.",
+            "answer": false,
+            "explanation": "Chamäleons ändern ihre Farbe vor allem, um Emotionen und Temperaturen zu regulieren."
+        },
+        {
+            "id": 51,
+            "question": "Bienen können Menschen erkennen.",
+            "answer": true,
+            "explanation": "Bienen können Gesichter anhand von Mustern erkennen."
+        },
+        {
+            "id": 52,
+            "question": "Oktopusse können Werkzeuge benutzen.",
+            "answer": true,
+            "explanation": "Oktopusse sind dafür bekannt, Kokosnussschalen als Verstecke zu nutzen."
+        },
+        {
+            "id": 53,
+            "question": "Das Schnurren einer Katze hat heilende Eigenschaften.",
+            "answer": true,
+            "explanation": "Katzenschnurren kann beruhigend wirken und hilft, Stress zu reduzieren."
+        },
+        {
+            "id": 54,
+            "question": "Ein Schmetterling schmeckt mit seinen Füßen.",
+            "answer": true,
+            "explanation": "Schmetterlinge haben Geschmackssensoren an ihren Füßen."
+        },
+        {
+            "id": 55,
+            "question": "Pinguine leben nur in der Arktis.",
+            "answer": false,
+            "explanation": "Pinguine leben in der Antarktis, nicht in der Arktis."
+        },
+        {
+            "id": 56,
+            "question": "Elefanten können Geräusche machen, die für Menschen nicht hörbar sind.",
+            "answer": true,
+            "explanation": "Elefanten kommunizieren oft mit Infraschall, der unterhalb der menschlichen Hörschwelle liegt."
+        },
+        {
+            "id": 57,
+            "question": "Die Sahara-Wüste hat schon Schnee erlebt.",
+            "answer": true,
+            "explanation": "Es hat in der Sahara mehrfach geschneit, obwohl dies selten vorkommt."
+        },
+        {
+            "id": 58,
+            "question": "Eine einzelne Wolke kann mehr als eine Million Kilogramm wiegen.",
+            "answer": true,
+            "explanation": "Wolken bestehen aus Millionen winziger Wassertropfen und können sehr schwer sein."
+        },
+        {
+            "id": 59,
+            "question": "Es gibt keine Säugetiere, die fliegen können.",
+            "answer": false,
+            "explanation": "Fledermäuse sind fliegende Säugetiere."
+        },
+        {
+            "id": 60,
+            "question": "Eine Avocado ist eine Beere.",
+            "answer": true,
+            "explanation": "Botanisch gesehen zählt die Avocado zu den Beeren."
+        },
+        {
+            "id": 61,
+            "question": "Das Herz einer Garnele sitzt in ihrem Kopf.",
+            "answer": true,
+            "explanation": "Bei Garnelen befindet sich das Herz tatsächlich im Kopfbereich."
+        },
+        {
+            "id": 62,
+            "question": "Ein Koala schläft bis zu 22 Stunden am Tag.",
+            "answer": true,
+            "explanation": "Koalas schlafen lange, um Energie zu sparen, da ihr Futter wenig Nährstoffe enthält."
+        },
+        {
+            "id": 63,
+            "question": "Der Mond hat keinen Einfluss auf die Gezeiten der Erde.",
+            "answer": false,
+            "explanation": "Der Mond verursacht durch seine Gravitation die Gezeiten auf der Erde."
+        },
+        {
+            "id": 64,
+            "question": "Eine Kuh kann Treppen hoch-, aber nicht heruntergehen.",
+            "answer": true,
+            "explanation": "Die Anatomie ihrer Beine macht das Heruntergehen sehr schwierig."
+        },
+        {
+            "id": 65,
+            "question": "Papageien können bis zu 100 Wörter lernen.",
+            "answer": true,
+            "explanation": "Einige Papageienarten sind extrem sprachbegabt und können viele Wörter nachahmen."
+        },
+        {
+            "id": 66,
+            "question": "Menschen haben im Laufe ihres Lebens mehr Rippen als bei der Geburt.",
+            "answer": false,
+            "explanation": "Die Anzahl der Rippen bleibt konstant, 12 Paare bei Erwachsenen und Babys."
+        },
+        {
+            "id": 67,
+            "question": "Eine Schneeflocke hat immer sechs Seiten.",
+            "answer": true,
+            "explanation": "Schneeflocken bestehen aus Wassermolekülen, die eine hexagonale Struktur bilden."
+        },
+        {
+            "id": 68,
+            "question": "Ein Hummer kann seine Farbe ändern, um sich zu tarnen.",
+            "answer": false,
+            "explanation": "Hummer können ihre Farbe nicht ändern, aber sie können verschiedene Farben haben."
+        },
+        {
+            "id": 69,
+            "question": "Es ist unmöglich, beim Lachen die Augen offen zu halten.",
+            "answer": false,
+            "explanation": "Man kann durchaus mit offenen Augen lachen, auch wenn es selten vorkommt."
+        },
+        {
+            "id": 70,
+            "question": "Eine Eule kann ihre Augen bewegen.",
+            "answer": false,
+            "explanation": "Eulen können ihre Augen nicht bewegen, sie drehen stattdessen ihren Kopf."
+        },
+        {
+            "id": 71,
+            "question": "Schlangen können ihre Beute hören.",
+            "answer": false,
+            "explanation": "Schlangen sind taub, sie nehmen Vibrationen im Boden wahr."
+        },
+        {
+            "id": 72,
+            "question": "Ein Schwein kann schwitzen, wenn es heiß ist.",
+            "answer": false,
+            "explanation": "Schweine können nicht schwitzen, sie kühlen sich durch Schlamm ab."
+        },
+        {
+            "id": 73,
+            "question": "Das Gewicht aller Ameisen auf der Erde entspricht dem Gewicht aller Menschen.",
+            "answer": true,
+            "explanation": "Schätzungen zufolge wiegen Ameisen weltweit etwa so viel wie die Menschheit."
+        },
+        {
+            "id": 74,
+            "question": "Der Honig von Bienen wird niemals schlecht.",
+            "answer": true,
+            "explanation": "Honig ist aufgrund seiner Zusammensetzung praktisch unbegrenzt haltbar."
+        },
+        {
+            "id": 75,
+            "question": "Eine Qualle besteht zu 95% aus Wasser.",
+            "answer": true,
+            "explanation": "Quallen bestehen hauptsächlich aus Wasser und etwas Protein."
+        },
+        {
+            "id": 76,
+            "question": "Flamingos stehen auf einem Bein, um Energie zu sparen.",
+            "answer": true,
+            "explanation": "Das Stehen auf einem Bein reduziert den Energieaufwand und hält sie warm."
+        },
+        {
+            "id": 77,
+            "question": "Alle Pinguine leben in der Antarktis.",
+            "answer": false,
+            "explanation": "Nicht alle Pinguine leben in der Antarktis, einige leben in wärmeren Regionen."
+        },
+        {
+            "id": 78,
+            "question": "Hunde können Farben genauso gut sehen wie Menschen.",
+            "answer": false,
+            "explanation": "Hunde sehen Farben, aber nicht so vielfältig wie Menschen, sie sind rot-grün-blind."
+        },
+        {
+            "id": 79,
+            "question": "Der Mount Everest wächst jedes Jahr ein kleines Stück.",
+            "answer": true,
+            "explanation": "Durch tektonische Aktivität wächst der Mount Everest jedes Jahr um einige Millimeter."
+        },
+        {
+            "id": 80,
+            "question": "Die Zunge eines Kamels ist blau.",
+            "answer": false,
+            "explanation": "Die Zunge eines Kamels ist nicht blau, sie hat eine rosa oder braune Farbe."
+        }
+    ]
+}

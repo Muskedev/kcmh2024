@@ -1,0 +1,21 @@
+{
+"version": "0.2.0",
+"configurations": [
+        {
+            "name": "FastAPI CLI Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "fastapi",
+            "args": [
+                "dev",
+                "main.py"  // Der Pfad zu deiner FastAPI-App
+            ],
+            "env": {
+                "PYTHONUNBUFFERED": "1"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
+  
