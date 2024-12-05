@@ -9,42 +9,85 @@ import SwiftUI
 
 struct ReallyGame: View {
     
-    @State private var clicked: Bool = false
-    @State private var question: String = "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken."
-    var answer: String = """
-    Seeotter haben tatsächlich einen „Lieblingsstein“, den sie in einer Hautfalte unter ihrem Arm aufbewahren. Sie nutzen diesen Stein, um Muscheln oder andere harte Schalen aufzubrechen, um an das leckere Innere zu gelangen. Manche Otter behalten denselben Stein über Jahre hinweg – wie ein kleines Werkzeug in der Tasche! 😊
-    """
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.reallyViewModel) private var viewModel
+    @State private var showScore: Bool = false
     
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
                 
-                BrightonQuestion(clicked: clicked, question: $question)
-                TrueFalseButtons(clicked: $clicked)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(clicked ? "Richtig! Die Aussage stimmt": "Arggh, da hab ich dich wohl täuschen können.")
-                        .font(.answerTrueFalse)
-                        .foregroundStyle(clicked ? .positive: .negative)
-                    Text(answer)
-                        .font(.answer)
-                }
-                .padding(15)
-                .background(
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(.backgroundTwo.opacity(0.5))
-                )
-                
                 HStack {
-                    Text(clicked ? "Nächste Frage": "Runde beenden")
-                    if clicked {
-                        Image(systemName: "chevron.right")
+                    ForEach(0..<viewModel.maxRounds, id: \.self) { index in
+                        if let highlight = viewModel.questionHightlight(index) {
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(highlight ? .positive: .negative.opacity(0.5))
+                                .frame(maxWidth: .infinity, maxHeight: 5)
+                        } else {
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(.white.opacity(0.5))
+                                .frame(maxWidth: .infinity, maxHeight: 5)
+                        }
                     }
                 }
-                .font(.buttonNormal)
-                .foregroundStyle(.white)
-                .button {
-                    // next
+                BrightonQuestion()
+                TrueFalseButtons()
+                
+                if viewModel.currentAnswer.isNotNil, let question = viewModel.currentQuestion {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(viewModel.answerCorrect ? "Richtig! Die Aussage stimmt \(question.answer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
+                            .font(.answerTrueFalse)
+                            .foregroundStyle(viewModel.answerCorrect ? .positive: .negative)
+                        AnimatedText(question.explanation)
+                            .font(.answer)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(15)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.answerBackground)
+                    )
+                    
+                    if !viewModel.isLastRound {
+                        HStack {
+                            Text("Nächste Frage")
+                            Image(systemName: "chevron.right")
+                        }
+                        .font(.buttonNormal)
+                        .foregroundStyle(.white)
+                        .button {
+                            viewModel.nextQuestion()
+                        }
+                    }
+                    
+                    if viewModel.isLastRound {
+                        
+                        VStack {
+                            Text("Dein Punktestand")
+                                .font(.question)
+                            Text(viewModel.score.description)
+                                .font(.buttonBool)
+                        }
+                        .foregroundStyle(.white)
+                        
+                        HStack {
+                            Text("Neue Runde")
+                                .frame(maxWidth: .infinity)
+                                .font(.buttonNormal)
+                                .foregroundStyle(.white)
+                                .button {
+                                    viewModel.nextRound()
+                                }
+                            
+                            Text("Beenden")
+                                .frame(maxWidth: .infinity)
+                                .font(.buttonNormal)
+                                .foregroundStyle(.white)
+                                .button {
+                                    dismiss()
+                                }
+                        }
+                    }
                 }
                 
                 Spacer()

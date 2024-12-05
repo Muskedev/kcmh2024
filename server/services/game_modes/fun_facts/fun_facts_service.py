@@ -80,6 +80,7 @@ class FunFactsGameModeService:
                 question_to_update.user_answer = sent_question.user_answer
             game_round.score = finished_round_dto.score
             await self.fun_facts_persistence_service.replace_round(round=game_round, upsert=False)
+            return game_round
                 
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound) 

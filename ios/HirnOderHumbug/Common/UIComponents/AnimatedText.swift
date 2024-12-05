@@ -11,16 +11,16 @@ struct AnimatedText: View {
     
     // MARK: - Inits
     
-    init(_ text: Binding<String>) {
-        self._text = text
-        var attributedText = AttributedString(text.wrappedValue)
+    init(_ text: String) {
+        self._text = Binding(get: { text }, set: {_ in })
+        var attributedText = AttributedString(text)
         attributedText.foregroundColor = .clear
         self._attributedText = State(initialValue: attributedText)
     }
     
     // MARK: - Properties (Private)
     
-    @Binding private var text: String
+    @Binding private var text: String?
     @State private var attributedText: AttributedString
     
     // MARK: - Properties (View)
@@ -34,8 +34,9 @@ struct AnimatedText: View {
     // MARK: - Methods (Private)
     
     private func animateText(at position: Int = 0) {
+        guard let text else { return }
         if position <= text.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
                 let stringStart = String(text.prefix(position))
                 let stringEnd = String(text.suffix(text.count - position))
                 let attributedTextStart = AttributedString(stringStart)
@@ -49,9 +50,4 @@ struct AnimatedText: View {
         }
     }
     
-}
-
-#Preview {
-    @Previewable @State var text = "Hello World"
-    AnimatedText($text)
 }

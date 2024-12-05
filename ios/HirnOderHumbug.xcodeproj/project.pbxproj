@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 3DD8DEA32CFE242B00F2234C /* SwiftChameleon */; };
-		A6DCCD352D01050D00FDE2DB /* Mammut in Frameworks */ = {isa = PBXBuildFile; productRef = A6DCCD342D01050D00FDE2DB /* Mammut */; };
+		FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B67772D01A6A900914B5A /* SwiftChameleon */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
@@ -42,9 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
-				A6DCCD352D01050D00FDE2DB /* Mammut in Frameworks */,
+				FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,9 +85,8 @@
 			);
 			name = HirnOderHumbug;
 			packageProductDependencies = (
-				3DD8DEA32CFE242B00F2234C /* SwiftChameleon */,
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
-				A6DCCD342D01050D00FDE2DB /* Mammut */,
+				FC0B67772D01A6A900914B5A /* SwiftChameleon */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -120,9 +117,8 @@
 			mainGroup = FC54DADD2CFDDF0B00024A46;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
-				A6DCCD332D01050D00FDE2DB /* XCRemoteSwiftPackageReference "Mammut" */,
+				FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -286,6 +282,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -317,6 +314,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HirnOderHumbug/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TrickyTruth;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -360,12 +358,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
+		FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon.git";
+			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		A6DCCD332D01050D00FDE2DB /* XCRemoteSwiftPackageReference "Mammut" */ = {
@@ -387,9 +385,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3DD8DEA32CFE242B00F2234C /* SwiftChameleon */ = {
+		FC0B67772D01A6A900914B5A /* SwiftChameleon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
+			package = FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
 			productName = SwiftChameleon;
 		};
 		A6DCCD342D01050D00FDE2DB /* Mammut */ = {

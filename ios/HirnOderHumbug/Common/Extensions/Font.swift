@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension SwiftUI.Font {
-    static let tabIcon: Font = .system(size: 24.0, weight: .semibold)
+    static let tabIcon: Font = .system(size: 18.0, weight: .semibold)
     static let question: Font = .system(size: 16.0, weight: .semibold)
     static let answerTrueFalse: Font = .system(size: 14.0, weight: .black)
     static let answer: Font = .system(size: 12.0, weight: .regular)

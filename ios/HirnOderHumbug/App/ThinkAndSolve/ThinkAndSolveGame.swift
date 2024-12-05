@@ -15,7 +15,7 @@ struct ThinkAndSolveGame: View {
     var body: some View {
         VStack(spacing: 30) {
             
-            BrightonQuestion(clicked: false, question: .constant("Was hat ein Otter immer dabei?"))
+            BrightonQuestion()
             
             TextAnswer(text: $answer)
             
