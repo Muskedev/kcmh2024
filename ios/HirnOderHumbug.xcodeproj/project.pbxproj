@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = 3DD8DEA32CFE242B00F2234C /* SwiftChameleon */; };
+		FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */ = {isa = PBXBuildFile; productRef = FC0B67772D01A6A900914B5A /* SwiftChameleon */; };
 		FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = FC9AA2AF2CFE5E5A007D770B /* Routing */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DD8DEA42CFE242B00F2234C /* SwiftChameleon in Frameworks */,
 				FC9AA2B02CFE5E5A007D770B /* Routing in Frameworks */,
+				FC0B67782D01A6A900914B5A /* SwiftChameleon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +85,8 @@
 			);
 			name = HirnOderHumbug;
 			packageProductDependencies = (
-				3DD8DEA32CFE242B00F2234C /* SwiftChameleon */,
 				FC9AA2AF2CFE5E5A007D770B /* Routing */,
+				FC0B67772D01A6A900914B5A /* SwiftChameleon */,
 			);
 			productName = HirnOderHumbug;
 			productReference = FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */;
@@ -117,8 +117,8 @@
 			mainGroup = FC54DADD2CFDDF0B00024A46;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 				FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */,
+				FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC54DAE72CFDDF0B00024A46 /* Products */;
@@ -358,12 +358,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
+		FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon.git";
+			repositoryURL = "https://github.com/simon-zwicker/SwiftChameleon";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		FC9AA2AE2CFE5E5A007D770B /* XCRemoteSwiftPackageReference "Routing" */ = {
@@ -377,9 +377,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3DD8DEA32CFE242B00F2234C /* SwiftChameleon */ = {
+		FC0B67772D01A6A900914B5A /* SwiftChameleon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3DD8DEA22CFE242B00F2234C /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
+			package = FC0B67762D01A6A900914B5A /* XCRemoteSwiftPackageReference "SwiftChameleon" */;
 			productName = SwiftChameleon;
 		};
 		FC9AA2AF2CFE5E5A007D770B /* Routing */ = {

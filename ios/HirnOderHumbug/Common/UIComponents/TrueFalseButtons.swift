@@ -10,26 +10,25 @@ import SwiftChameleon
 
 struct TrueFalseButtons: View {
     
-    @Binding var clicked: Bool
+    @Environment(\.reallyViewModel) private var viewModel
     
     var body: some View {
         HStack(spacing: 20.0) {
             Image(systemName: "checkmark")
                 .modifier(TTButtonStyle(color: .positive, font: .buttonBool))
                 .button {
-                    clicked = true
+                    withAnimation(.smooth(duration: 1)) {
+                        viewModel.answer(true)
+                    }
                 }
             
             Image(systemName: "xmark")
                 .modifier(TTButtonStyle(color: .negative, font: .buttonBool))
                 .button {
-                    clicked = false
+                    withAnimation(.smooth(duration: 1)) {
+                        viewModel.answer(false)
+                    }
                 }
         }
     }
-}
-
-#Preview {
-    @Previewable @State var clicked = false
-    TrueFalseButtons(clicked: $clicked)
 }

@@ -9,21 +9,26 @@ import SwiftUI
 
 struct BrightonQuestion: View {
     
-    var clicked: Bool = false
-    @Binding var question: String
-    @State var isLoading: Bool = true
+    @Environment(\.reallyViewModel) private var viewModel
     
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         VStack {
             ZStack {
-                if isLoading {
-                    Image(systemName: "ellipsis")
-                        .font(.largeTitle)
-                        .foregroundStyle(.gray)
-                        .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
-                } else {
-                    AnimatedText($question)
+                if let question = viewModel.currentQuestion {
+                    AnimatedText(question.question)
                         .font(.question)
+                } else {
+                    VStack(spacing: 10.0) {
+                        Image(systemName: "ellipsis")
+                            .font(.largeTitle)
+                            .foregroundStyle(.gray)
+                            .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
+                        
+                        Text("Kurzen moment, ich überleg mir was neues...")
+                            .font(.answer)
+                    }
                 }
             }
             .padding(.top, 15)
@@ -39,27 +44,11 @@ struct BrightonQuestion: View {
                 .scaledToFit()
                 .frame(width: 130)
                 .animation(.spring) { view in
-                    view.rotation3DEffect(.init(degrees: clicked ? 0 : 180), axis: (x: 0, y: 1, z: 0))
+                    view.rotation3DEffect(.init(degrees: viewModel.answer ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                withAnimation {
-                    self.isLoading.toggle()
-                    self.question = self.question
-                }
-            }
+            viewModel.nextRound()
         }
-    }
-}
-
-#Preview {
-    @Previewable @State var clicked = false
-    @Previewable @State var question: String = "Hallo Welt?"
-    VStack {
-        Button("Test") {
-            clicked.toggle()
-        }
-        BrightonQuestion(clicked: clicked, question: $question)
     }
 }

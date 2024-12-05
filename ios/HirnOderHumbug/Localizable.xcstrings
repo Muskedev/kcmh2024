@@ -19,6 +19,12 @@
     "Arggh, da hab ich dich wohl täuschen können." : {
 
     },
+    "Beenden" : {
+
+    },
+    "Dein Punktestand" : {
+
+    },
     "Drück mich, ich bin der Startknopf!" : {
 
     },
@@ -28,19 +34,22 @@
     "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken." : {
 
     },
+    "Kurzen moment, ich überleg mir was neues..." : {
+
+    },
     "Nächste Frage" : {
 
     },
     "Nein, mein Punktestand braucht mich!" : {
 
     },
+    "Neue Runde" : {
+
+    },
     "Punktestand im Stich lassen?" : {
 
     },
-    "Richtig! Die Aussage stimmt" : {
-
-    },
-    "Runde beenden" : {
+    "Richtig! Die Aussage stimmt %@" : {
 
     },
     "Tschüss, Punktestand!" : {
