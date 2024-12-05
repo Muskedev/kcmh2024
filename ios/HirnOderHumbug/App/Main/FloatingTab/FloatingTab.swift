@@ -20,15 +20,9 @@ struct FloatingTab: View {
         HStack(spacing: 0) {
             ForEach(CustomTabItem.allCases, id: \.rawValue) { tab in
                 HStack(spacing: 5) {
-                    if tab == .really || tab == .thinkSolve {
-                        Text(tab == .really ? "😳": "🧠")
-                            .font(.tabIcon)
-                            .frame(height: 50)
-                    } else {
-                        Image(systemName: tab.icon)
-                            .font(.tabIcon)
-                            .frame(height: 50)
-                    }
+                    Image(systemName: tab.icon)
+                        .font(.tabIcon)
+                        .frame(height: 50)
                     
                     if activeTab == tab {
                         Text(tab.caption)
