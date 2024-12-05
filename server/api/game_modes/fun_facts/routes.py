@@ -25,7 +25,7 @@ class StartRoundDto(BaseModel):
 
 
 class FinishRoundDto(BaseModel):
-    score: int = Field(gt=0)
+    score: int = Field(gt=-1)
     questions: list[AnsweredQuestionDto]
 
 
