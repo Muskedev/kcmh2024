@@ -14,7 +14,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A6C499E52D01E36E00C2C5DB /* HirnOderHumbug copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HirnOderHumbug copy-Info.plist"; path = "/Users/miakoring/Documents/Fork/kcmh2024/ios/HirnOderHumbug copy-Info.plist"; sourceTree = "<absolute>"; };
 		A6C499EA2D01E39000C2C5DB /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC54DAE62CFDDF0B00024A46 /* HirnOderHumbug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HirnOderHumbug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				FC54DAE82CFDDF0B00024A46 /* HirnOderHumbug */,
-				A6C499E52D01E36E00C2C5DB /* HirnOderHumbug copy-Info.plist */,
 				A6C499EB2D01E39000C2C5DB /* Test */,
 				FC54DAE72CFDDF0B00024A46 /* Products */,
 			);
