@@ -74,7 +74,7 @@ class FunFactsGameModeService:
         try:
             game_round = await self.fun_facts_persistence_service.get_round(round_id=finished_round_dto.round_id, user_id=finished_round_dto.user_id)
             for sent_question in finished_round_dto.questions:
-                question_to_update = next(question for question in game_round.questions if question.id == sent_question.question_id)
+                question_to_update = next((question for question in game_round.questions if question.id == sent_question.question_id), None)
                 if question_to_update is None:
                     raise QuestionCanNotBeUpdated()
                 question_to_update.user_answer = sent_question.user_answer
@@ -83,4 +83,4 @@ class FunFactsGameModeService:
             return game_round
                 
         except DocumentNotFound as e:
-           raise RoundCanNotBeFound(DocumentNotFound) 
+           raise RoundCanNotBeFound(DocumentNotFound)
