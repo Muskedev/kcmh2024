@@ -21,6 +21,7 @@ struct TrueFalseButtons: View {
                         viewModel.answer(true)
                     }
                 }
+                .disabled(viewModel.currentQuestion.isNil)
             
             Image(systemName: "xmark")
                 .modifier(TTButtonStyle(color: .negative, font: .buttonBool))
@@ -29,6 +30,7 @@ struct TrueFalseButtons: View {
                         viewModel.answer(false)
                     }
                 }
+                .disabled(viewModel.currentQuestion.isNil)
         }
     }
 }

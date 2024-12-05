@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct AboutScreen: View {
+    
+    var story: String = """
+    Brian Brain hat einen einzigartigen Sinn für Humor und eine grenzenlose Neugier. Statt sich nur mit den großen Fragen des Lebens zu beschäftigen, verliebte er sich in das "unnütze Wissen" – die kleinen Details, die die Welt seltsam und wunderbar machen.
+
+    Sein Ziel: Er will sein Wissen teilen – aber nicht einfach so! Mit Rätseln und Quizfragen fordert er dich heraus, denn er weiß: Nur wer selbst nachdenkt, behält das Wissen wirklich.
+
+    Brian glaubt, dass jeder Tag besser wird, wenn wir etwas Neues lernen – egal, wie verrückt oder nutzlos es scheint. Ein Funfact kann ein Gespräch starten, ein Lächeln zaubern oder zeigen, wie wundervoll seltsam die Welt ist.
+
+    Deshalb hat Brian mit den MuskeDevs diese Quiz-App erschaffen. Aus seinem digitalen Gehirn-Labor stellt er dir Fragen – nicht, um dich bloßzustellen, sondern um dich auf eine unterhaltsame Reise durch das Universum des unnützen Wissens mitzunehmen. Er liebt es, wenn du lachst, den Kopf schüttelst oder laut „Really?!“ rufst.
+    """
+    
     var body: some View {
         ZStack {
             BHMesh()
@@ -17,12 +28,34 @@ struct AboutScreen: View {
                 
                 ScrollView {
                     LazyVStack {
-                        ProfilRow(image: "imagesimon", name: "Simon", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagemia", name: "Mia", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagesephi", name: "Sephi", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
-                        ProfilRow(image: "imagenico", name: "Simon", role: "War halt auch dabei!")
+                        
+                        HStack(alignment: .top) {
+                            Image(.brighton)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                                .clipShape(.circle)
+                                .clipped()
+
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Brian Brain")
+                                    .font(.aboutUsName)
+                                Text(story)
+                                    .font(.historyDate)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20.0)
+                                .fill(.aboutUsBackground)
+                        )
+                        .padding(.bottom, 5)
+                        
+                        ForEach(AboutMember.allCases.shuffled(), id: \.rawValue) { member in
+                            ProfilRow(image: member.rawValue, name: member.name, role: member.function)
+                        }
                     }
                 }
                 .safeAreaInset(edge: .bottom, content: {
@@ -44,33 +77,29 @@ private struct ProfilRow: View {
     let role: String
     
     var body: some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 50, height: 50)
-                        .clipShape(.circle)
-                        .clipped()
+        HStack {
+            Image(image)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipShape(.circle)
+                .clipped()
 
-                    VStack(alignment: .leading) {
-                        Text(name)
-                            .font(Font.aboutUsName)
-                        Text("War halt auch dabei")
-                            .font(Font.aboutUsRole)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
+            VStack(alignment: .leading, spacing: 8) {
+                Text(name)
+                    .font(.aboutUsName)
+                Text(role)
+                    .font(.aboutUsRole)
             }
-            .multilineTextAlignment(.leading)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 20.0)
-                    .fill(.aboutUsBackground)
-            )
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.bottom, 10)
+        .multilineTextAlignment(.leading)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 20.0)
+                .fill(.aboutUsBackground)
+        )
+        .padding(.bottom, 5)
     }
 }
 

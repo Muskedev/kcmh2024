@@ -10,6 +10,19 @@ import SwiftUI
 struct BrightonQuestion: View {
     
     @Environment(\.reallyViewModel) private var viewModel
+    var loadingStrings: [String] = [
+        "Ich schalte meinen Hirn-Hamster auf Highspeed. 🐹",
+        "Ich werfe mal die Denkmaschine an.",
+        "Ich muss kurz mein Oberstübchen rebooten.",
+        "Ich geh mal in die kreative Höhle.",
+        "Ich lass die Ideen-Glühbirne flackern. 💡",
+        "Ich starte einen Brainstorm im Oberdeck.",
+        "Ich zapfe die Synapsen-Cloud an.",
+        "Ich dreh am mentalen Ideen-Kaleidoskop.",
+        "Ich schicke meinen Denkapparat ins Bootcamp.",
+        "Ich mach mal ein Kopf-Kino mit neuen Szenen. 🎬"
+    ]
+    @State var loadingQuestion: String = ""
     
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -26,7 +39,7 @@ struct BrightonQuestion: View {
                             .foregroundStyle(.gray)
                             .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
                         
-                        Text("Kurzen moment, ich überleg mir was neues...")
+                        Text(loadingQuestion)
                             .font(.answer)
                     }
                 }
@@ -47,7 +60,11 @@ struct BrightonQuestion: View {
                     view.rotation3DEffect(.init(degrees: viewModel.answer ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }
         }
+        .onChange(of: viewModel.currentQuestion) { _,_ in
+            loadingQuestion = loadingStrings.randomElement() ?? ""
+        }
         .onAppear {
+            loadingQuestion = loadingStrings.randomElement() ?? ""
             viewModel.nextRound()
         }
     }

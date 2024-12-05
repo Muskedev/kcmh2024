@@ -11,6 +11,7 @@ struct BrightonHeader: View {
     
     let head: String
     let subhead: String
+    var withImage: Bool = true
 
     var body: some View {
         HStack {
@@ -29,10 +30,12 @@ struct BrightonHeader: View {
                     .fill(.speechBubble)
             )
             
-            Image(.brightonTransparent)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100)
+            if withImage {
+                Image(.brightonTransparent)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+            }
         }
     }
 }
