@@ -50,9 +50,7 @@ class ReallyViewModel {
     }
     
     func nextQuestion() {
-        guard let currentQuestion, var round else { return }
-        round.questions[self.currentRound] = currentQuestion
-        self.round = round
+        guard let round else { return }
         self.currentRound += 1
         self.currentQuestion = round.questions[self.currentRound]
         self.answer = false
@@ -69,11 +67,9 @@ class ReallyViewModel {
             pointMulti = 1
         }
         
-        if isLastRound {
-            guard let currentQuestion, var round, let userId = KeychainHelper.shared.userId else { return }
-            round.questions[self.currentRound] = currentQuestion
-            self.round = round
-        }
+        guard let currentQuestion, var round else { return }
+        round.questions[self.currentRound] = currentQuestion
+        self.round = round
     }
     
     func getQuestions() {

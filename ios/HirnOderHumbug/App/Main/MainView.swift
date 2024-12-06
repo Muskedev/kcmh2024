@@ -33,8 +33,9 @@ struct MainView: View {
             FloatingTab(activeTab: $activeTab)
         }
         .onAppear {
-            valueStore.noUser = KeychainHelper.shared.userId.isNil
-            valueStore.showAlert = KeychainHelper.shared.userId.isNil
+            let id = KeychainHelper.shared.userId ?? ""
+            valueStore.noUser = id.isEmpty
+            valueStore.showAlert = valueStore.noUser
         }
         .overlay(alignment: .top) {
             BlurBackgroundView()

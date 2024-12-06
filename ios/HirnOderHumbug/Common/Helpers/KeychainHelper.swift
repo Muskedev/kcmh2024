@@ -27,4 +27,9 @@ struct KeychainHelper {
         get { keychain.get(Identifier.userName.rawValue) }
         set { keychain.set(newValue ?? "", forKey: Identifier.userName.rawValue) }
     }
+    
+    func reset() {
+        KeychainHelper.shared.userId = nil
+        KeychainHelper.shared.userName = nil
+    }
 }

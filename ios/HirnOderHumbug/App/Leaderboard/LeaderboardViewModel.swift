@@ -20,6 +20,11 @@ class LeaderboardViewModel {
         }
     }
     
+    var userEntry: ScoreboardUser {
+        let name = KeychainHelper.shared.userName ?? ""
+        return entries.first { $0.name == name } ?? .init(name: name, score: 0, rank: entries.count + 1)
+    }
+    
     func fetchLeaderboard() {
         entries = []
         

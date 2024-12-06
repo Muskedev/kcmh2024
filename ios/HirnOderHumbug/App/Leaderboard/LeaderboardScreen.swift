@@ -20,6 +20,15 @@ struct LeaderboardScreen: View {
                     .padding()
                 
                 ScrollView {
+                    VStack(spacing: 10) {
+                        Text("Deine Platzierung")
+                            .font(.leaderboardHead)
+                            .foregroundStyle(.white)
+                        
+                        LeaderboardRow(entry: viewModel.userEntry)
+                    }
+                    .padding()
+                    
                     Text("Top 5")
                         .font(.leaderboardHead)
                         .foregroundStyle(.white)
@@ -32,24 +41,11 @@ struct LeaderboardScreen: View {
                     }
                     
                     Spacer()
-                    
-                    VStack(spacing: 10) {
-                        Text("Deine Platzierung")
-                            .font(.leaderboardHead)
-                            .foregroundStyle(.white)
-                        
-                        if let userEntry = viewModel.entries.first(where: { $0.name == KeychainHelper.shared.userName }) {
-                            LeaderboardRow(entry: userEntry)
-                        }
-                    }
-                    .padding()
                 }
                 .safeAreaInset(edge: .bottom, content: {
                     Color.clear.frame(height: 80)
                 })
                 .scrollIndicators(.hidden)
-                
-                Spacer()
             }
         }
         .onAppear {
@@ -65,25 +61,8 @@ private struct LeaderboardRow: View {
     var body: some View {
         ZStack {
             HStack {
-//                switch entry.rank {
-//                case 1:
-//                    Image(systemName: "trophy")
-//                        .foregroundStyle(.yellow)
-//                        .bold()
-//                case 2:
-//                    Image(systemName: "trophy")
-//                        .foregroundStyle(.gray)
-//                        .bold()
-//                case 3:
-//                    Image(systemName: "trophy")
-//                        .foregroundStyle(.orange)
-//                        .bold()
-//                default:
-//                    EmptyView()
-//                }
-                
                 ZStack {
-                    Image(systemName: entry.rank <= 3 ? "seal.fill": "app.fill")
+                    Image(systemName: entry.rank <= 5 ? "seal.fill": "app.fill")
                         .font(.system(size: 26))
                         .foregroundStyle(badgeColor(entry.rank))
                     
