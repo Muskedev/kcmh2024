@@ -1,0 +1,108 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+header {
+    background-color: #1f1f1f;
+    color: #bb86fc;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1rem;
+    margin: 0.5rem 0 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #232323;
+}
+
+nav a {
+    color: #bb86fc;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    display: block;
+}
+
+nav a:hover {
+    background: #3700b3;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.post {
+    background: #1f1f1f;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-content {
+    padding: 1.5rem;
+}
+
+.post-content h2 {
+    margin: 0 0 1rem;
+    color: #bb86fc;
+}
+
+.post-content p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+}
+
+.post-content a {
+    color: #03dac5;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.post-content a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #1f1f1f;
+    color: #bb86fc;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        padding: 0.5rem 1rem;
+    }
+}
