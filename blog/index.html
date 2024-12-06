@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuskeDev - Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Kevin Chromik Hackathon 2.0</h1>
+        <p>Team, Idee, Ausarbeitung - Muskedevs</p>
+    </header>
+
+    <nav>
+        <a href="#aufgabe">Aufgabe</a>
+        <a href="#team">Team</a>
+        <a href="#umsetzung">Umsetzung</a>
+    </nav>
+
+    <div class="container">
+        <article class="post">
+            <img src="img/kchromik_aufgabe.jpg" alt="Aufgabe - Thema Lernen" id="aufgabe">
+            <div class="post-content">
+                <h2>Die Aufgabenstellung</h2>
+                <p>Am 02.12.2024 um 07:00 Uhr war es so weit. Kevin veröffentlichte die Aufgabe bzw. das Thema.</p>
+                <p id="more-content-1" class="hidden">Die Aufgabe bestand darin, etwas zum Thema "Lernen" zu entwickeln. Bei der Auswahl der Technologie, der Art, wie wir es umsetzen wollen (App, Website, Desktopanwendung etc.) gab es keinerlei Vorgaben. Auf Grund der Erfahrungen, die wir im ersten Hackathon von Kevin sammeln konnten, haben wir uns wieder für eine iOS-App entschieden. Dank einer Kooperation mit Infomaniak konnte Kevin uns dieses Mal sogar einen VPS-Server und diverse Tools bereitstellen.</p>
+                <a onclick="toggleContent('more-content-1')">Weiterlesen &raquo;</a>
+            </div>
+        </article>
+
+        <article class="post">
+            <img src="https://via.placeholder.com/1200x400" alt="Beispielbild" id="team">
+            <div class="post-content">
+                <h2>Das Team: Ein bunter Haufen</h2>
+                <p>Unser Team besteht aus 6 Personen. Von der Studentin über den Handwerker bis zum Senior-Dev ist alles dabei.</p>
+                <p id="more-content-2" class="hidden">Vorab kann ich sagen, dass jeder im Team den gleichen Stellenwert einnimmt. Daher ist die Reihenfolge vollkommen willkürlich.</p>
+                <a onclick="toggleContent('more-content-2')">Weiterlesen &raquo;</a>
+            </div>
+        </article>
+        <article class="post">
+            <img src="https://via.placeholder.com/1200x400" alt="Beispielbild" id="umsetzung">
+            <div class="post-content">
+            <h2>Die Umsetzung</h2>
+            <p>Wie üblich in so einem großen Team gab es erst mal Diskussionen bezüglich der Ideen.</p>
+            <p id="more-content-3" class="hidden">Bis ca. 12 Uhr haben wir Ideen gesammelt und diese anschließend zusammengefasst und per Umfrage entschieden, welche wir nun umsetzen wollen.</p>
+            <a onclick="toggleContent('more-content-3')">Weiterlesen &raquo;</a>
+        </div>
+        </article>
+    </div>
+
+    <footer>
+        &copy; 2024 Muskedevs. Alle Rechte vorbehalten.
+    </footer>
+</body>
+</html>
