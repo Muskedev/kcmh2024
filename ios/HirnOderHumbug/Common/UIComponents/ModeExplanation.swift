@@ -14,6 +14,7 @@ struct ModeExplanation: View {
     let mode: GameMode
     @StateObject private var router: Router<GameRoute> = .init()
     @State private var progress: Bool = false
+    @State var rotation = 0.0
     
     // MARK: - Body
     var body: some View {
@@ -52,27 +53,42 @@ struct ModeExplanation: View {
                         .foregroundStyle(.backgroundTwo)
                         .background(
                             ZStack {
-                                Capsule()
-                                    .fill(.white)
                                 
                                 Capsule()
-                                  .glow(
-                                    fill: .angularGradient(
-                                        stops: [
-                                          .init(color: .backgroundOne, location: 0.0),
-                                          .init(color: .backgroundTwo, location: 0.2),
-                                          .init(color: .positive, location: 0.4),
-                                          .init(color: .backgroundOne, location: 0.5),
-                                          .init(color: .backgroundTwo, location: 0.7),
-                                          .init(color: .positive, location: 0.9),
-                                          .init(color: .backgroundOne, location: 1.0),
-                                        ],
-                                        center: .center,
-                                        startAngle: Angle(radians: .zero),
-                                        endAngle: Angle(radians: .pi * 2)
-                                      ),
-                                    lineWidth: 10.0
-                                  )
+                                    .padding(10)
+                                    .background() {
+                                        ZStack {
+                                            GeometryReader { reader in
+                                                Circle()
+                                                    .fill(AngularGradient(stops: [
+                                                        .init(color: .backgroundOne, location: 0.0),
+                                                        .init(color: .backgroundTwo, location: 0.2),
+                                                        .init(color: .positive, location: 0.4),
+                                                        .init(color: .backgroundOne, location: 0.5),
+                                                        .init(color: .backgroundTwo, location: 0.7),
+                                                        .init(color: .positive, location: 0.9),
+                                                        .init(color: .backgroundOne, location: 1.0),
+                                                    ],
+                                                                          center: .center,
+                                                                          startAngle: Angle(radians: .zero),
+                                                                          endAngle: Angle(radians: .pi * 2)
+                                                    ))
+                                                    .rotationEffect(.degrees(rotation))
+                                                    .onAppear() {
+                                                        withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
+                                                            rotation = 360
+                                                        }
+                                                    }
+                                                    .frame(width: max(reader.size.width, reader.size.height) * 2, height: max(reader.size.width, reader.size.height) * 2)
+                                                    .offset(x: -1 * max(reader.size.width, reader.size.height) / 2, y: -1 * (max(reader.size.width, reader.size.height) / 2))
+                                            }
+                                        }
+                                        .clipShape(Capsule())
+                                        .blur(radius: 3)
+                                    }
+                                Capsule()
+                                    .fill(.white)
+                                    .padding(10)
 
                             }
                         )
@@ -98,4 +114,47 @@ struct LabelView: View {
       .bold()
       .fontWidth(.expanded)
   }
+}
+/*
+#Preview {
+    @Previewable @State var rotation = 0.0
+    Capsule()
+        .fill(.white)
+        .frame(maxWidth: 200, maxHeight: 80)
+        .padding(10)
+        .background() {
+            ZStack {
+                GeometryReader { reader in
+                    Circle()
+                        .fill(AngularGradient(stops: [
+                            .init(color: .backgroundOne, location: 0.0),
+                            .init(color: .backgroundTwo, location: 0.2),
+                            .init(color: .positive, location: 0.4),
+                            .init(color: .backgroundOne, location: 0.5),
+                            .init(color: .backgroundTwo, location: 0.7),
+                            .init(color: .positive, location: 0.9),
+                            .init(color: .backgroundOne, location: 1.0),
+                        ],
+                                              center: .center,
+                                              startAngle: Angle(radians: .zero),
+                                              endAngle: Angle(radians: .pi * 2)
+                        ))
+                        .rotationEffect(.degrees(rotation))
+                        .onAppear() {
+                            withAnimation(.linear(duration: 10).repeatForever(autoreverses: false)) {
+                                rotation = 360
+                            }
+                        }
+                        .frame(width: max(reader.size.width, reader.size.height) * 2, height: max(reader.size.width, reader.size.height) * 2)
+                        .offset(x: -1 * max(reader.size.width, reader.size.height) / 2, y: -1 * (max(reader.size.width, reader.size.height) / 2 + 40))
+                }
+            }
+            .clipShape(Capsule())
+            .blur(radius: 3)
+        }
+}
+*/
+
+#Preview {
+    ModeExplanation(mode: .really)
 }
