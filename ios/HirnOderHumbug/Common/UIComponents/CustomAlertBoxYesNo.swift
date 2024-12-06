@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomAlertBoxYesNo: View {
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.valueStore) private var valueStore
+    @Environment(\.appViewModel) private var appViewModel
     let title: LocalizedStringKey
     let message: LocalizedStringKey
     let action: (Bool) -> ()
@@ -55,28 +55,8 @@ struct CustomAlertBoxYesNo: View {
     }
     
     private func dismissView(action: Bool) {
-        valueStore.showAlert = false
+        appViewModel.showAlert = false
         dismiss()
         self.action(action)
-    }
-}
-
-#Preview("Only View") {
-    CustomAlertBoxYesNo("Hello World", action: { value in
-        print(value)
-    })
-}
-
-#Preview("Real") {
-    @Previewable @State var isPresented: Bool = false
-    Button("Action") {
-        isPresented = true
-    }
-    .alertView(isPresented: $isPresented, onDismiss: {
-        
-    }) {
-        CustomAlertBoxYesNo("Hello World", action: { value in
-            print(value)
-        })
     }
 }

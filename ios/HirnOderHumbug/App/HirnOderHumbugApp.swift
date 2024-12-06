@@ -9,15 +9,13 @@ import SwiftUI
 
 @main
 struct HirnOderHumbugApp: App {
-    
-    @State private var valueStore: EnvironmentValuesStore = .init()
-    @State private var reallyViewModel: ReallyViewModel = .init()
+
+    @State private var appViewModel: AppViewModel = .init()
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.valueStore, valueStore)
-                .environment(\.reallyViewModel, reallyViewModel)
+                .environment(\.appViewModel, appViewModel)
         }
     }
 }

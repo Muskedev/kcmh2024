@@ -9,14 +9,15 @@ import SwiftUI
 
 struct CreateUserAlert: View {
     
-    @Environment(\.valueStore) private var valueStore
-    @State private var username: String = ""
+    @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
+        @Bindable var appViewModel = appViewModel
+        
         VStack(spacing: 15) {
             BrightonHeader(head: "Willkommen bei Brians BrainLab!", subhead: "Mit wem hab ich es eigentlich hier zu tun?")
             
-            TextField("Name eingeben", text: $username)
+            TextField("Name eingeben", text: $appViewModel.userName)
                 .padding(.horizontal, 30.0)
                 .padding(.vertical, 15.0)
                 .background(
@@ -34,7 +35,7 @@ struct CreateUserAlert: View {
                         .fill(.white)
                 )
                 .button {
-                    createUser()
+                    appViewModel.createUser()
                 }
             
         }
@@ -43,22 +44,5 @@ struct CreateUserAlert: View {
             BHMesh()
                 .clipShape(.rect(cornerRadius: 15.0))
         )
-    }
-    
-    func createUser() {
-        guard !username.isEmpty else { return }
-        Task {
-            let request = await BHController.request(.createUser(username), expected: UserCreationResponse.self)
-            switch request {
-            case .success(let user):
-                KeychainHelper.shared.userId = user.id
-                KeychainHelper.shared.userName = user.name
-                
-                self.valueStore.showAlert = false
-                self.valueStore.noUser = false
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }

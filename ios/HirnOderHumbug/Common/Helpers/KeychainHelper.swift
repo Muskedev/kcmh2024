@@ -28,6 +28,11 @@ struct KeychainHelper {
         set { keychain.set(newValue ?? "", forKey: Identifier.userName.rawValue) }
     }
     
+    var userExist: Bool {
+        let id = userId ?? ""
+        return !id.isEmpty
+    }
+    
     func reset() {
         KeychainHelper.shared.userId = nil
         KeychainHelper.shared.userName = nil

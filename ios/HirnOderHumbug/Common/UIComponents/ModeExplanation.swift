@@ -69,9 +69,9 @@ struct ModeExplanation: View {
                                                         .init(color: .positive, location: 0.9),
                                                         .init(color: .backgroundOne, location: 1.0),
                                                     ],
-                                                                          center: .center,
-                                                                          startAngle: Angle(radians: .zero),
-                                                                          endAngle: Angle(radians: .pi * 2)
+                                                  center: .center,
+                                                  startAngle: Angle(radians: .zero),
+                                                  endAngle: Angle(radians: .pi * 2)
                                                     ))
                                                     .rotationEffect(.degrees(rotation))
                                                     .onAppear() {

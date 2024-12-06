@@ -10,7 +10,7 @@ import SwiftChameleon
 
 struct TrueFalseButtons: View {
     
-    @Environment(\.reallyViewModel) private var viewModel
+    @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
         HStack(spacing: 20.0) {
@@ -22,10 +22,10 @@ struct TrueFalseButtons: View {
             .modifier(TTButtonStyle(color: .positive, font: .historyTrueFalse))
             .button {
                 withAnimation(.smooth(duration: 1)) {
-                    viewModel.answer(true)
+                    appViewModel.reallyAnswer(true)
                 }
             }
-            .disabled(viewModel.currentQuestion.isNil)
+            .disabled(appViewModel.reallyQuestion.isNil)
             
             HStack {
                 Image(systemName: "xmark")
@@ -35,10 +35,10 @@ struct TrueFalseButtons: View {
             .modifier(TTButtonStyle(color: .negative, font: .historyTrueFalse))
             .button {
                 withAnimation(.smooth(duration: 1)) {
-                    viewModel.answer(false)
+                    appViewModel.reallyAnswer(false)
                 }
             }
-            .disabled(viewModel.currentQuestion.isNil)
+            .disabled(appViewModel.reallyQuestion.isNil)
         }
     }
 }

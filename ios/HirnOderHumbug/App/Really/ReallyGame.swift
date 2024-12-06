@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ReallyGame: View {
     
+    @Environment(\.appViewModel) private var appViewModel
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.reallyViewModel) private var viewModel
-    @Environment(\.valueStore) private var valueStore
     @State private var showScore: Bool = false
     
     var body: some View {
@@ -19,7 +18,7 @@ struct ReallyGame: View {
             VStack(spacing: 30) {
                 
                 HStack {
-                    ForEach(viewModel.questionHighlights, id: \.id) { question in
+                    ForEach(appViewModel.reallyQuestions, id: \.id) { question in
                         if let userAnswer = question.userAnswer {
                             RoundedRectangle(cornerRadius: 3)
                                 .fill(question.correctAnswer == userAnswer ? .positive: .negative.opacity(0.5))
@@ -35,11 +34,11 @@ struct ReallyGame: View {
                 BrightonQuestion()
                 TrueFalseButtons()
                 
-                if viewModel.currentQuestion?.userAnswer != nil, let question = viewModel.currentQuestion {
+                if let question = appViewModel.reallyQuestionExplane {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(viewModel.answerCorrect ? "Richtig! Die Aussage stimmt \(question.correctAnswer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
+                        Text(appViewModel.reallyCorrect ? "Richtig! Die Aussage stimmt \(question.correctAnswer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
                             .font(.answerTrueFalse)
-                            .foregroundStyle(viewModel.answerCorrect ? .positive: .negative)
+                            .foregroundStyle(appViewModel.reallyCorrect ? .positive: .negative)
                         AnimatedText(question.explanation)
                             .font(.answer)
                     }
@@ -50,7 +49,7 @@ struct ReallyGame: View {
                             .fill(.answerBackground)
                     )
                     
-                    if !viewModel.isLastRound {
+                    if !appViewModel.reallyLastRound {
                         HStack {
                             Text("Nächste Frage")
                             Image(systemName: "chevron.right")
@@ -58,16 +57,14 @@ struct ReallyGame: View {
                         .font(.buttonNormal)
                         .foregroundStyle(.white)
                         .button {
-                            viewModel.nextQuestion()
+                            appViewModel.reallyNextQuestion()
                         }
-                    }
-                    
-                    if viewModel.isLastRound {
+                    } else {
                         
                         VStack {
                             Text("Dein Punktestand")
                                 .font(.question)
-                            Text(viewModel.score.description)
+                            Text("\(appViewModel.reallyScore)")
                                 .font(.buttonBool)
                         }
                         .foregroundStyle(.white)
@@ -78,8 +75,7 @@ struct ReallyGame: View {
                                 .font(.buttonNormal)
                                 .foregroundStyle(.white)
                                 .button {
-                                    viewModel.endRound(more: true)
-                                    valueStore.newHistoryEntriesReally = true
+                                    appViewModel.endReallyRound(again: true)
                                 }
                             
                             Text("Beenden")
@@ -87,8 +83,7 @@ struct ReallyGame: View {
                                 .font(.buttonNormal)
                                 .foregroundStyle(.white)
                                 .button {
-                                    viewModel.endRound()
-                                    valueStore.newHistoryEntriesReally = true
+                                    appViewModel.endReallyRound(again: false)
                                     dismiss()
                                 }
                         }

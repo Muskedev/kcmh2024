@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BrightonQuestion: View {
     
-    @Environment(\.reallyViewModel) private var viewModel
+    @Environment(\.appViewModel) private var appViewModel
     var loadingStrings: [String] = [
         "Ich schalte meinen Hirn-Hamster auf Highspeed. 🐹",
         "Ich werfe mal die Denkmaschine an.",
@@ -25,11 +25,11 @@ struct BrightonQuestion: View {
     @State var loadingQuestion: String = ""
     
     var body: some View {
-        @Bindable var viewModel = viewModel
+        @Bindable var appViewModel = appViewModel
         
         VStack {
             ZStack {
-                if let question = viewModel.currentQuestion {
+                if let question = appViewModel.reallyQuestion {
                     AnimatedText(question.question)
                         .font(.question)
                 } else {
@@ -57,15 +57,15 @@ struct BrightonQuestion: View {
                 .scaledToFit()
                 .frame(width: 130)
                 .animation(.spring) { view in
-                    view.rotation3DEffect(.init(degrees: viewModel.answer ? 0 : 180), axis: (x: 0, y: 1, z: 0))
+                    view.rotation3DEffect(.init(degrees: appViewModel.reallyAnswer ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }
         }
-        .onChange(of: viewModel.currentQuestion) { _,_ in
+        .onChange(of: appViewModel.reallyQuestion) { _,_ in
             loadingQuestion = loadingStrings.randomElement() ?? ""
         }
         .onAppear {
             loadingQuestion = loadingStrings.randomElement() ?? ""
-            viewModel.nextRound()
+            appViewModel.newReallyRound()
         }
     }
 }

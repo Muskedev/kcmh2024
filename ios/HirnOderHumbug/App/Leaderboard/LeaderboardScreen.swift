@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LeaderboardScreen: View {
     
-    @State private var viewModel: LeaderboardViewModel = .init()
+    @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
         ZStack {
@@ -25,7 +25,7 @@ struct LeaderboardScreen: View {
                             .font(.leaderboardHead)
                             .foregroundStyle(.white)
                         
-                        LeaderboardRow(entry: viewModel.userEntry)
+                        LeaderboardRow(entry: appViewModel.userEntryReally)
                     }
                     .padding()
                     
@@ -34,7 +34,7 @@ struct LeaderboardScreen: View {
                         .foregroundStyle(.white)
                     
                     LazyVStack(spacing: 10.0) {
-                        ForEach(viewModel.entryForList, id: \.name) { entry in
+                        ForEach(appViewModel.reallyLeaderList, id: \.name) { entry in
                             LeaderboardRow(entry: entry)
                                 .padding(.horizontal, 20)
                         }
@@ -49,7 +49,7 @@ struct LeaderboardScreen: View {
             }
         }
         .onAppear {
-            viewModel.fetchLeaderboard()
+            appViewModel.fetchLeaders()
         }
     }
 }

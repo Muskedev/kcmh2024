@@ -9,8 +9,7 @@ import SwiftUI
 
 struct HistoryScreen: View {
     
-    @Environment(\.valueStore) private var valueStore
-    @State private var viewModel: HistoryViewModel = .init()
+    @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
         ZStack {
@@ -27,22 +26,24 @@ struct HistoryScreen: View {
                             Text(mode.name)
                                 .font(.historyButtonText)
                         }
-                        .foregroundStyle(viewModel.currentActive == mode ? .white: .backgroundTwo)
+                        .foregroundStyle(appViewModel.historyCurrentMode == mode ? .white: .backgroundTwo)
                         .frame(maxWidth: .infinity, minHeight: 50.0, maxHeight: 50.0)
                         .background(
                             RoundedRectangle(cornerRadius: 15)
-                                .fill(viewModel.currentActive == mode ? .backgroundTwo: .white)
+                                .fill(appViewModel.historyCurrentMode == mode ? .backgroundTwo: .white)
                         )
                         .button {
-                            viewModel.switchHistory(mode, fetch: mode == .really ? valueStore.newHistoryEntriesReally: valueStore.newHistoryEntriesThinkSolve)
+                            appViewModel.switchMode(mode)
                         }
                     }
                 }
                 
                 ScrollView {
                     LazyVStack {
-                        ForEach(viewModel.reallyQuestions, id: \.id) { question in
-                            HistoryReallyRow(question: question)
+                        ForEach(appViewModel.history, id: \.id) { question in
+                            if appViewModel.historyCurrentMode == .really {
+                                HistoryReallyRow(question: question)
+                            }
                         }
                     }
                 }
@@ -57,8 +58,7 @@ struct HistoryScreen: View {
             .padding()
         }
         .onAppear{
-            let mode = viewModel.currentActive
-            viewModel.switchHistory(mode, fetch: mode == .really ? valueStore.newHistoryEntriesReally: valueStore.newHistoryEntriesThinkSolve)
+            appViewModel.switchMode(appViewModel.historyCurrentMode)
         }
     }
 }

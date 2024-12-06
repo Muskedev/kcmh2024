@@ -9,12 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     
-    @Environment(\.valueStore) private var valueStore
+    @Environment(\.appViewModel) private var appViewModel
     @State private var activeTab: CustomTabItem = .really
     
     var body: some View {
         
-        @Bindable var valueStore = valueStore
+        @Bindable var appViewModel = appViewModel
         
         ZStack(alignment: .bottom) {
             TabView(selection: $activeTab) {
@@ -25,7 +25,7 @@ struct MainView: View {
                     }
                 }
             }
-            .alertView(isPresented: $valueStore.noUser) {
+            .alertView(isPresented: $appViewModel.noUser) {
                 CreateUserAlert()
                     .padding()
             }
@@ -33,9 +33,7 @@ struct MainView: View {
             FloatingTab(activeTab: $activeTab)
         }
         .onAppear {
-            let id = KeychainHelper.shared.userId ?? ""
-            valueStore.noUser = id.isEmpty
-            valueStore.showAlert = valueStore.noUser
+            appViewModel.checkUserExists()
         }
         .overlay(alignment: .top) {
             BlurBackgroundView()

@@ -10,10 +10,10 @@ import SwiftUI
 struct GameDismissButton: View {
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.valueStore) private var valueStore
+    @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
-        @Bindable var valueStore = valueStore
+        @Bindable var appViewModel = appViewModel
         
         Image(systemName: "xmark")
             .font(.buttonClose)
@@ -26,9 +26,9 @@ struct GameDismissButton: View {
                 in: .capsule
             )
             .button {
-                valueStore.showAlert = true
+                appViewModel.showAlert = true
             }
-            .alertView(isPresented: $valueStore.showAlert) {
+            .alertView(isPresented: $appViewModel.showAlert) {
                 CustomAlertBoxYesNo("Punktestand im Stich lassen?", message: "Willst du wirklich aufgeben? Dein Punktestand wird nie erfahren, wie großartig es hätte sein können!") { value in
                     if value {
                         dismiss()
@@ -36,8 +36,4 @@ struct GameDismissButton: View {
                 }
             }
     }
-}
-
-#Preview {
-    GameDismissButton()
 }
