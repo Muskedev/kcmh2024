@@ -22,6 +22,7 @@ struct MainView: View {
                     Tab.init(value: tab) {
                         tab.view
                             .toolbarVisibility(.hidden, for: .tabBar)
+                            .ignoresSafeArea()
                     }
                 }
             }
