@@ -18,7 +18,7 @@ struct BrightonHeader: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text(head)
                     .font(.brightonHead)
-                
+                            
                 Text(subhead.translate)
                     .font(.brightonSubhead)
             }
