@@ -25,7 +25,8 @@ struct TrueFalseButtons: View {
                     appViewModel.reallyAnswer(true)
                 }
             }
-            .disabled(appViewModel.reallyQuestion.isNil)
+            .disabled(isButtonDisabled())
+            .opacity(isButtonDisabled() ? 0.75 : 1)
             
             HStack {
                 Image(systemName: "xmark")
@@ -38,7 +39,12 @@ struct TrueFalseButtons: View {
                     appViewModel.reallyAnswer(false)
                 }
             }
-            .disabled(appViewModel.reallyQuestion.isNil)
+            .disabled(isButtonDisabled())
+            .opacity(isButtonDisabled() ? 0.75 : 1)
         }
+    }
+    
+    func isButtonDisabled() -> Bool {
+        appViewModel.reallyQuestion.isNil || appViewModel.reallyQuestion?.userAnswer != nil
     }
 }

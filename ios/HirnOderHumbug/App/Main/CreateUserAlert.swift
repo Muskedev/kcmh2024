@@ -22,7 +22,7 @@ struct CreateUserAlert: View {
                 .padding(.vertical, 15.0)
                 .background(
                     RoundedRectangle(cornerRadius: 15.0)
-                        .fill(.white)
+                        .fill(Color.textField)
                 )
             
             Text("Erstellen")
@@ -45,4 +45,9 @@ struct CreateUserAlert: View {
                 .clipShape(.rect(cornerRadius: 15.0))
         )
     }
+}
+
+#Preview {
+    CreateUserAlert()
+        .environment(AppViewModel())
 }
