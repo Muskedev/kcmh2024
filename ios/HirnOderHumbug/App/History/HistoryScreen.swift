@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HistoryScreen: View {
     
-    @State private var currentActive: GameMode = .thinkSolve
+    @Environment(\.valueStore) private var valueStore
+    @State private var viewModel: HistoryViewModel = .init()
     
     var body: some View {
         ZStack {
@@ -20,40 +21,44 @@ struct HistoryScreen: View {
                 
                 HStack {
                     ForEach(GameMode.allCases, id: \.rawValue) { mode in
-                        Image(systemName: mode.icon)
-                            .font(.historyInfo)
-                            .foregroundStyle(currentActive == mode ? .white: .backgroundTwo)
-                            .frame(maxWidth: .infinity, minHeight: 50.0, maxHeight: 50.0)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(currentActive == mode ? .backgroundTwo: .white)
-                            )
-                            .button {
-                                currentActive = mode
-                            }
+                        HStack {
+                            Image(systemName: mode.icon)
+                                .font(.historyButtonIcon)
+                            Text(mode.name)
+                                .font(.historyButtonText)
+                        }
+                        .foregroundStyle(viewModel.currentActive == mode ? .white: .backgroundTwo)
+                        .frame(maxWidth: .infinity, minHeight: 50.0, maxHeight: 50.0)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(viewModel.currentActive == mode ? .backgroundTwo: .white)
+                        )
+                        .button {
+                            viewModel.switchHistory(mode, fetch: mode == .really ? valueStore.newHistoryEntriesReally: valueStore.newHistoryEntriesThinkSolve)
+                        }
                     }
                 }
                 
                 ScrollView {
                     LazyVStack {
-                        HistoryTSRow()
-                        HistoryTSRow()
-                        HistoryRRow()
-                        HistoryRRow(wasCorrect: false)
-                        HistoryTSRow(wasCorrect: false)
-                        HistoryTSRow()
-                        HistoryTSRow(wasCorrect: false)
+                        ForEach(viewModel.reallyQuestions, id: \.id) { question in
+                            HistoryReallyRow(question: question)
+                        }
                     }
                 }
                 .safeAreaInset(edge: .bottom, content: {
                     Color.clear.frame(height: 80) // Adds a safe area inset of 50 points at the bottom
                 })
                 .scrollIndicators(.hidden)
+                .ignoresSafeArea(.container, edges: .bottom)
                 
                 Spacer()
             }
             .padding()
         }
-        .ignoresSafeArea(.container, edges: .bottom)
+        .onAppear{
+            let mode = viewModel.currentActive
+            viewModel.switchHistory(mode, fetch: mode == .really ? valueStore.newHistoryEntriesReally: valueStore.newHistoryEntriesThinkSolve)
+        }
     }
 }

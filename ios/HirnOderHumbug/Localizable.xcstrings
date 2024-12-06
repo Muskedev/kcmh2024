@@ -4,13 +4,7 @@
     "" : {
 
     },
-    "**Deine Antwort:**\nDie sind für Menschen die eine eingeschränkte fähigkeit des Sehens haben und mit dem Stock dort entlangfahren." : {
-
-    },
-    "**Erklärung:**\nDie kleinen Knöpfe sind keine zufälligen Unebenheiten, sondern sogenannte Taktilmarkierungen. Sie helfen sehbehinderten Menschen, den Zebrastreifen zu erkennen. Durch ihren Stock oder mit den Füßen können sie die Erhebung spüren und wissen, wo der Übergang beginnt oder endet." : {
-
-    },
-    "**Erklärung:**\nSeeotter haben tatsächlich einen „Lieblingsstein“, den sie in einer Hautfalte unter ihrem Arm aufbewahren. Sie nutzen diesen Stein, um Muscheln oder andere harte Schalen aufzubrechen, um an das leckere Innere zu gelangen. Manche Otter behalten denselben Stein über Jahre hinweg – wie ein kleines Werkzeug in der Tasche!" : {
+    "**Erklärung:**\n%@" : {
 
     },
     "%lld" : {
@@ -31,13 +25,13 @@
     "Dein Punktestand" : {
 
     },
-    "Du hast %@ geantwortet" : {
-
-    },
-    "Ein Otter hat immer einen Lieblingsstein, den er bei sich trägt, um Muscheln zu knacken." : {
+    "Deine Platzierung" : {
 
     },
     "Erstellen" : {
+
+    },
+    "Falsch" : {
 
     },
     "Nächste Frage" : {
@@ -61,16 +55,13 @@
     "Runde starten" : {
 
     },
+    "Top 5" : {
+
+    },
     "Tschüss, Punktestand!" : {
 
     },
-    "unwahr" : {
-
-    },
-    "wahr" : {
-
-    },
-    "Warum haben manche Zebrastreifen auf der Straße kleine Knöpfe an ihren Streifen?" : {
+    "Wahr" : {
 
     },
     "Willkommen in" : {

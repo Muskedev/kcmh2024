@@ -26,7 +26,7 @@ struct FloatingTab: View {
                     
                     if activeTab == tab {
                         Text(tab.caption)
-                            .font(.subheadline)
+                            .font(.tabText)
                             .fontWeight(.semibold)
                             .lineLimit(1)
                     }

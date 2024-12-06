@@ -9,6 +9,7 @@ import SwiftUI
 
 extension SwiftUI.Font {
     static let tabIcon: Font = .system(size: 18.0, weight: .semibold)
+    static let tabText: Font = custom("Mabook", size: 14)
     static let question: Font = .system(size: 16, weight: .bold)
     static let answerTrueFalse: Font = .system(size: 14.0, weight: .black)
     static let answer: Font = .system(size: 12.0, weight: .regular)
@@ -26,9 +27,12 @@ extension SwiftUI.Font {
     static let historyTitle: Font = .system(size: 14.0, weight: .bold)
     static let historyAnswer: Font = .system(size: 12.0)
     static let historyAnswerTrueFalse: Font = .system(size: 12.0, weight: .semibold)
-    static let historyInfo: Font = .system(size: 22.0)
-    static let histryTrueFalse: Font = .system(size: 16.0, weight: .bold)
+    static let historyButtonIcon: Font = .system(size: 22.0)
+    static let historyButtonText: Font = .custom("Mabook", size: 16)
+    static let historyTrueFalse: Font = .custom("Mabook", size: 20)
     
-    static let aboutUsName: Font = .system(size: 18, weight: .semibold)
+    static let aboutUsName: Font = .custom("Mabook", size: 18)
     static let aboutUsRole: Font = .system(size: 14, weight: .light)
+    
+    static let leaderboardHead: Font = .custom("Mabook", size: 26)
 }

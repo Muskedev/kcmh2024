@@ -11,6 +11,7 @@ struct ReallyGame: View {
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.reallyViewModel) private var viewModel
+    @Environment(\.valueStore) private var valueStore
     @State private var showScore: Bool = false
     
     var body: some View {
@@ -78,6 +79,7 @@ struct ReallyGame: View {
                                 .foregroundStyle(.white)
                                 .button {
                                     viewModel.endRound(more: true)
+                                    valueStore.newHistoryEntriesReally = true
                                 }
                             
                             Text("Beenden")
@@ -86,6 +88,7 @@ struct ReallyGame: View {
                                 .foregroundStyle(.white)
                                 .button {
                                     viewModel.endRound()
+                                    valueStore.newHistoryEntriesReally = true
                                     dismiss()
                                 }
                         }

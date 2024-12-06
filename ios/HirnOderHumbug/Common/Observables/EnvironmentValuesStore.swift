@@ -13,4 +13,6 @@ class EnvironmentValuesStore {
     var showHistoryDetail: Bool = false
     var historyData: String = ""
     var noUser: Bool = false
+    var newHistoryEntriesReally: Bool = false
+    var newHistoryEntriesThinkSolve: Bool = false
 }

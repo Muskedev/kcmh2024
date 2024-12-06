@@ -11,6 +11,7 @@ import SwiftUI
 typealias BHController = BrainOrHumbugController
 
 struct BrainOrHumbugController {
+//    private static let host = "http://89.47.51.117:8000"
     private static let host = "https://kirreth.de"
     
     static func request<T: Decodable>(_ endpoint: BHAPI, expected: T.Type) async -> Result<T, BHAPIError> {
