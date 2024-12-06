@@ -23,7 +23,7 @@ import json
 
 prompt = Prompt(
     messages=[
-        Message('Fun Facts die wahr oder falsch sein können. Der User gibt an, wie viele Facts erzeugt werden sollen', "system"),
+        Message('unique but coherent fun facts, could be true or false, user give int how many, data in german', "system"),
         Message("5", "user") #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
     ],
     json_schema=
