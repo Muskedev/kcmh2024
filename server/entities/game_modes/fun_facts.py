@@ -21,7 +21,7 @@ class FunFactsRound:
     score: int
     questions: list[FunFactQuestion]
 
-    def __init__(self, user_id: str, questions: list[FunFactQuestion], id: str | None = None, score = 0):
+    def __init__(self, user_id: str, questions: list[FunFactQuestion], id: str | None = None, score = -1):
         self.id = str(uuid4()) if id is None else id
         self.user_id = user_id
         self.score = score
