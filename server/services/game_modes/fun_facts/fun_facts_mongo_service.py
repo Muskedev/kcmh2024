@@ -44,7 +44,7 @@ class ThinkSolveMongoService:
     async def get_finished_rounds(self, user_id: str): 
         result: list[FunFactsRound] = []
         
-        async for game_round in self.collection.find({"userId": user_id, "score": {"$gt": 0}}):
+        async for game_round in self.collection.find({"userId": user_id, "score": {"$gt": -1}}):
             result.append(self._bson_to_entity(game_round))
         
         return result
