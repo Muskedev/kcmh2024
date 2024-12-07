@@ -15,13 +15,8 @@ struct TextAnswer: View {
         TextView(text: $text)
             .padding()
             .frame(maxWidth: .infinity, maxHeight: 200)
-            .background(.secondary)
+            .background(.speechBubble)
             .clipShape(.rect(cornerRadius: 20))
             .foregroundStyle(.textField)
     }
-}
-
-#Preview {
-    @Previewable @State var text = "Hallo Welt"
-    TextAnswer(text: $text)
 }

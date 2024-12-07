@@ -48,12 +48,9 @@ struct HistoryScreen: View {
                     }
                 }
                 .safeAreaInset(edge: .bottom, content: {
-                    Color.clear.frame(height: 80) // Adds a safe area inset of 50 points at the bottom
+                    Color.clear.frame(height: 80)
                 })
                 .scrollIndicators(.hidden)
-                .ignoresSafeArea(.container, edges: .bottom)
-                
-                Spacer()
             }
             .padding()
         }

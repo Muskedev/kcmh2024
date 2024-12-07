@@ -20,6 +20,13 @@ extension GameMode {
         }
     }
     
+    var difficulty: String {
+        switch self {
+        case .really: "(Easy-Mode)"
+        case .thinkSolve: "(Hard-Mode)"
+        }
+    }
+    
     var explanation: String {
         switch self {
         case .really: 

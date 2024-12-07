@@ -39,8 +39,6 @@ struct LeaderboardScreen: View {
                                 .padding(.horizontal, 20)
                         }
                     }
-                    
-                    Spacer()
                 }
                 .safeAreaInset(edge: .bottom, content: {
                     Color.clear.frame(height: 80)
