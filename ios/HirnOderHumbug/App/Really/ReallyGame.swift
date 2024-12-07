@@ -39,7 +39,7 @@ struct ReallyGame: View {
                         Text(appViewModel.reallyCorrect ? "Richtig! Die Aussage stimmt \(question.correctAnswer ? "": "nicht")": "Arggh, da hab ich dich wohl täuschen können.")
                             .font(.answerTrueFalse)
                             .foregroundStyle(appViewModel.reallyCorrect ? .positive: .negative)
-                        AnimatedText(question.explanation)
+                        Text(question.explanation)
                             .font(.answer)
                     }
                     .frame(maxWidth: .infinity)
