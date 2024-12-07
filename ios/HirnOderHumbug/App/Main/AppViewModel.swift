@@ -161,6 +161,13 @@ class AppViewModel {
         }
     }
     
+    // MARK: - Think & Solve
+    var thinkSolveUserAnswer: String = ""
+    
+    func thinkSolveCheckAnswer() {
+        
+    }
+    
     //MARK: - History
     var historyReallyQuestions: [FunfactsQuestion] = .init()
     var historyThinkSolveQuestions: [FunfactsQuestion] = .init()
