@@ -19,6 +19,10 @@ extension SwiftUI.Font {
     static let brightonHead: Font = .custom("Mabook", size: 18)
     static let brightonSubhead: Font = .system(size: 12.0)
     
+    static let pointTitle: Font = .custom("Mabook", size: 26)
+    static let buttonQuiz: Font = .custom("Mabook", size: 28)
+    static let points: Font = .custom("Mabook", size: 52)
+    
     static let alertTitle: Font = .system(size: 18.0, weight: .semibold)
     static let alertMessage: Font = .system(size: 14.0, weight: .regular)
     static let alertButton: Font = .system(size: 12, weight: .bold)
@@ -35,4 +39,11 @@ extension SwiftUI.Font {
     static let aboutUsRole: Font = .system(size: 14, weight: .light)
     
     static let leaderboardHead: Font = .custom("Mabook", size: 26)
+    
+    static let statHeader: Font = .custom("Mabook", size: 20)
+    static let statValue: Font = .custom("Mabook", size: 26)
+    
+    static let segmentFont: Font = .custom("Mabook", size: 16)
+    static let segmentHistory: Font = .custom("Mabook", size: 20)
 }
+ 

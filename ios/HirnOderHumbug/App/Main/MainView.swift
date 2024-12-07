@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @Environment(\.appViewModel) private var appViewModel
-    @State private var activeTab: CustomTabItem = .history
+    @State private var activeTab: CustomTabItem = .really
     @State private var isKeyboardVisible: Bool = false
     
     var body: some View {

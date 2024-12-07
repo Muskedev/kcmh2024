@@ -20,10 +20,10 @@ extension GameMode {
         }
     }
     
-    var difficulty: String {
+    var apiPath: String {
         switch self {
-        case .really: "(Easy-Mode)"
-        case .thinkSolve: "(Hard-Mode)"
+        case .really: "funFacts"
+        case .thinkSolve: "thinkSolve"
         }
     }
     

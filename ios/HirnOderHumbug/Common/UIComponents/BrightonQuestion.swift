@@ -55,7 +55,7 @@ struct BrightonQuestion: View {
             Image(.brightonTransparent)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 130)
+                .frame(width: 100)
                 .animation(.spring) { view in
                     view.rotation3DEffect(.init(degrees: appViewModel.reallyAnswer ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 }

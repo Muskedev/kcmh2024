@@ -12,38 +12,76 @@ struct LeaderboardScreen: View {
     @Environment(\.appViewModel) private var appViewModel
     
     var body: some View {
+        
+        @Bindable var appViewModel = appViewModel
+        
         ZStack {
             BHMesh()
          
-            VStack(spacing: 30.0) {
+            VStack(spacing: 20.0) {
                 BrightonHeader(head: "Leaderboard", subhead: "Hier regiert die Crème de la Cringe – oder die Champions, je nach Perspektive.")
-                    .padding()
                 
-                ScrollView {
-                    VStack(spacing: 10) {
-                        Text("Deine Platzierung")
+                SegmentedControl(
+                    tabs: TTSegment.leaders,
+                    activeTab: $appViewModel.leaderMode,
+                    height: 35,
+                    font: .segmentFont,
+                    activeTint: .white,
+                    inActiveTint: .white.opacity(0.3)
+                ) { size in
+                    Rectangle()
+                        .fill(.dontknow.opacity(0.8))
+                        .frame(height: 4)
+                        .padding(.horizontal, 10)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                }
+                
+                
+                if appViewModel.leaderLoad {
+                    Image(systemName: "ellipsis")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                        .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
+                        .padding(.top, 80)
+                    
+                    Spacer()
+                } else if appViewModel.leaderboardItems.isEmpty {
+                    Text("Kein Leaderboard vorhanden")
+                        .font(.buttonQuiz)
+                        .foregroundStyle(.white)
+                        .padding(.top, 80)
+                        .padding(.horizontal, 30.0)
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                } else {
+                    
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            Text("Deine Platzierung")
+                                .font(.leaderboardHead)
+                                .foregroundStyle(.white)
+                            
+                            LeaderboardRow(entry: appViewModel.userLeaderEntry)
+                        }
+                        .padding()
+                        
+                        Text("Top 5")
                             .font(.leaderboardHead)
                             .foregroundStyle(.white)
                         
-                        LeaderboardRow(entry: appViewModel.userEntryReally)
-                    }
-                    .padding()
-                    
-                    Text("Top 5")
-                        .font(.leaderboardHead)
-                        .foregroundStyle(.white)
-                    
-                    LazyVStack(spacing: 10.0) {
-                        ForEach(appViewModel.reallyLeaderList, id: \.name) { entry in
-                            LeaderboardRow(entry: entry)
-                                .padding(.horizontal, 20)
+                        LazyVStack(spacing: 10.0) {
+                            ForEach(appViewModel.leaderboardItems, id: \.name) { entry in
+                                LeaderboardRow(entry: entry)
+                                    .padding(.horizontal, 20)
+                            }
                         }
                     }
+                    .safeAreaInset(edge: .bottom, content: {
+                        Color.clear.frame(height: 120)
+                    })
+                    .scrollIndicators(.hidden)
                 }
-                .safeAreaInset(edge: .bottom, content: {
-                    Color.clear.frame(height: 80)
-                })
-                .scrollIndicators(.hidden)
             }
         }
         .onAppear {

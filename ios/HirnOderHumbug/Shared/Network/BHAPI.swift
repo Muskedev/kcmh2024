@@ -13,10 +13,11 @@ enum BHAPI {
     ///name
     case createUser(String)
     ///userId
-    case getFinishedRounds(String)
+    case getFinishedRounds(String, GameMode)
     ///userId, roundId, score, answered questions
     case finishFunfactsRound(String, String, Int, [AnsweredQuestion])
-    case getLeaderboard
+    
+    case getLeaderboard(GameMode)
 }
 extension BHAPI: URLReqEndpoint {
     var path: String {
@@ -25,12 +26,12 @@ extension BHAPI: URLReqEndpoint {
             "/gamemode/funFacts/create?userId=\(string)"
         case .createUser:
             "/user/create"
-        case .getFinishedRounds(let string):
-            "/gamemode/funFacts/getFinishedRounds?userId=\(string)"
+        case .getFinishedRounds(let string, let mode):
+            "/gamemode/\(mode.apiPath)/getFinishedRounds?userId=\(string)"
         case .finishFunfactsRound(let userId, let roundId, _, _):
             "/gamemode/funFacts/finishRound?userId=\(userId)&roundId=\(roundId)"
-        case .getLeaderboard:
-            "/gamemode/funFacts/getLeaderboard"
+        case .getLeaderboard(let mode):
+            "/gamemode/\(mode.apiPath)/getLeaderboard"
         }
     }
 

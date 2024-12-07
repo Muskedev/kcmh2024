@@ -15,15 +15,15 @@ struct GameDismissButton: View {
     var body: some View {
         @Bindable var appViewModel = appViewModel
         
-        Image(systemName: "xmark")
-            .font(.buttonClose)
-            .foregroundStyle(.backgroundTwo.opacity(0.7))
-            .padding(8)
+        Text("X")
+            .font(.buttonQuiz)
+            .foregroundStyle(.backgroundTwo)
+            .padding(12)
             .background(
                 .background
                     .shadow(.drop(color: .black.opacity(0.2), radius: 5, x: 5, y: 5))
                     .shadow(.drop(color: .black.opacity(0.12), radius: 5, x: -5, y: -5)),
-                in: .capsule
+                in: .circle
             )
             .button {
                 appViewModel.showAlert = true

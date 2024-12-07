@@ -32,7 +32,10 @@ struct ReallyGame: View {
                 }
                 
                 BrightonQuestion()
-                TrueFalseButtons()
+                if !appViewModel.reallyHideButtons {
+                    TrueFalseButtons()
+                        .animation(.easeInOut, value: appViewModel.reallyHideButtons)
+                }
                 
                 if let question = appViewModel.reallyQuestionExplane {
                     VStack(alignment: .leading, spacing: 10) {
@@ -54,8 +57,14 @@ struct ReallyGame: View {
                             Text("Nächste Frage")
                             Image(systemName: "chevron.right")
                         }
-                        .font(.buttonNormal)
+                        .font(.buttonQuiz)
                         .foregroundStyle(.white)
+                        .padding(.vertical, 15)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20.0)
+                                .fill(.white.opacity(0.3))
+                        )
                         .button {
                             appViewModel.reallyNextQuestion()
                         }
@@ -63,25 +72,35 @@ struct ReallyGame: View {
                         
                         VStack {
                             Text("Dein Punktestand")
-                                .font(.question)
+                                .font(.pointTitle)
                             Text("\(appViewModel.reallyScore)")
-                                .font(.buttonBool)
+                                .font(.points)
                         }
                         .foregroundStyle(.white)
                         
                         HStack {
                             Text("Neue Runde")
-                                .frame(maxWidth: .infinity)
-                                .font(.buttonNormal)
+                                .font(.buttonQuiz)
                                 .foregroundStyle(.white)
+                                .padding(.vertical, 15)
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20.0)
+                                        .fill(.white.opacity(0.3))
+                                )
                                 .button {
                                     appViewModel.endReallyRound(again: true)
                                 }
                             
                             Text("Beenden")
+                                .font(.buttonQuiz)
+                                .foregroundStyle(.negative)
+                                .padding(.vertical, 15)
                                 .frame(maxWidth: .infinity)
-                                .font(.buttonNormal)
-                                .foregroundStyle(.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20.0)
+                                        .fill(.white.opacity(0.3))
+                                )
                                 .button {
                                     appViewModel.endReallyRound(again: false)
                                     dismiss()

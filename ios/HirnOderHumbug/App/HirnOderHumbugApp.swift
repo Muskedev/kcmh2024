@@ -16,6 +16,7 @@ struct HirnOderHumbugApp: App {
         WindowGroup {
             MainView()
                 .environment(\.appViewModel, appViewModel)
+//            TestView()
         }
     }
 }

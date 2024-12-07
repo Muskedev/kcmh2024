@@ -75,6 +75,10 @@ class AppViewModel {
         return reallyQuestion
     }
     
+    var reallyHideButtons: Bool {
+        reallyLastRound && reallyQuestion?.userAnswer != nil
+    }
+    
     /// Start new Round
     func newReallyRound() {
         reallyReset()
@@ -160,35 +164,71 @@ class AppViewModel {
     //MARK: - History
     var historyReallyQuestions: [FunfactsQuestion] = .init()
     var historyThinkSolveQuestions: [FunfactsQuestion] = .init()
-    var historyCurrentMode: GameMode = .really
+    var historyCurrentMode: TTSegment = .reallyHistory {
+        didSet {
+            switchMode(historyCurrentMode.gameMode)
+        }
+    }
+    var historyLoading: Bool = false
+    
+    var reallyHistoryStreak: Int {
+        var maxStreak: Int = 0
+        var currentStreak: Int = 0
+        
+        for question in historyReallyQuestions {
+            if question.correctAnswer == question.userAnswer {
+                currentStreak += 1
+                maxStreak = max(maxStreak, currentStreak)
+            } else {
+                currentStreak = 0
+            }
+        }
+        
+        return maxStreak
+    }
+    
+    var reallyHistoryCorrect: Double {
+        guard !historyReallyQuestions.isEmpty else { return 0 }
+        let correct = Double(historyReallyQuestions.filter({ $0.correctAnswer == $0.userAnswer }).count.double)
+        let all = Double(historyReallyQuestions.count)
+        return (correct / all) * 100
+    }
     
     var history: [FunfactsQuestion] {
-        historyCurrentMode == .really ? historyReallyQuestions : historyThinkSolveQuestions
+        historyCurrentMode.gameMode == .really ? historyReallyQuestions : historyThinkSolveQuestions
     }
     
     func switchMode(_ mode: GameMode) {
-        historyCurrentMode = mode
-        fetchHistoryQuestions()
+        historyLoading = true
+        Task {
+            await fetchHistoryQuestions(mode)
+        }
     }
     
-    func fetchHistoryQuestions() {
-        guard let userID = KeychainHelper.shared.userId, historyReallyQuestions.isEmpty || newReallyHistory else { return }
-        Task {
-            let result = await BHController.request(.getFinishedRounds(userID), expected: FinishedFunfactRounds.self)
-            switch result {
-            case .success(let history):
-                for round in history.finishedRounds {
-                    self.historyReallyQuestions.append(contentsOf: round.questions)
-                }
-            case .failure(let error):
-                print("Error on fetching histories: \(error)")
+    func fetchHistoryQuestions(_ mode: GameMode) async {
+        let check = mode == .really ? historyReallyQuestions.isEmpty || newReallyHistory: historyThinkSolveQuestions.isEmpty || newThinkSolveHistory
+        guard let userID = KeychainHelper.shared.userId, check else {
+            self.historyLoading = false
+            return
+        }
+        let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedFunfactRounds.self)
+        switch result {
+        case .success(let history):
+            for round in history.finishedRounds {
+                self.historyReallyQuestions.append(contentsOf: round.questions)
             }
+            self.historyLoading = false
+        case .failure(let error):
+            print("Error on fetching histories: \(error)")
+            self.historyLoading = false
         }
     }
     
     // MARK: - Leaderboard
     private var reallyLeaders: [ScoreboardUser] = .init()
     private var thinkSolveLeaders: [ScoreboardUser] = .init()
+    var leaderMode: TTSegment = .allLeader
+    var leaderLoad: Bool = false
     
     var reallyLeaderList: [ScoreboardUser] {
         if reallyLeaders.count > 5 {
@@ -206,9 +246,21 @@ class AppViewModel {
         }
     }
     
-    var userEntryReally: ScoreboardUser {
+    var leaderboardItems: [ScoreboardUser] {
+        switch leaderMode {
+        case .reallyLeader: reallyLeaderList
+        case .thinkSolveLeader: thinkSolveLeaderList
+        default : []
+        }
+    }
+    
+    var userLeaderEntry: ScoreboardUser {
         let name = KeychainHelper.shared.userName ?? ""
-        return reallyLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: reallyLeaders.count + 1)
+        switch leaderMode {
+        case .reallyLeader: return reallyLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: reallyLeaders.count + 1)
+        case .thinkSolveLeader: return thinkSolveLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: thinkSolveLeaders.count + 1)
+        default: return .init(name: name, score: 0, rank: thinkSolveLeaders.count + 1)
+        }
     }
     
     var userEntryThinkSolve: ScoreboardUser {
@@ -219,15 +271,35 @@ class AppViewModel {
     func fetchLeaders() {
         reallyLeaders.removeAll()
         thinkSolveLeaders.removeAll()
-        
+        leaderLoad = true
         Task {
-            let result = await BHController.request(.getLeaderboard, expected: Scoreboard.self)
-            switch result {
+            if leaderMode != .allLeader {
+                await fetchLeader(leaderMode.gameMode)
+            } else {
+                await fetchLeader(.really)
+                await fetchLeader(.thinkSolve)
+            }
+        }
+    }
+    
+    func fetchLeader(_ mode: GameMode) async {
+        Task {
+            let resultReally = await BHController.request(.getLeaderboard(mode), expected: Scoreboard.self)
+            switch resultReally {
             case .success(let scoreboard):
-                reallyLeaders = scoreboard.entries.sorted(by: { $0.rank < $1.rank })
+                if mode == .really {
+                    reallyLeaders = scoreboard.entries.sorted(by: { $0.rank < $1.rank })
+                    if leaderMode != .allLeader {
+                        self.leaderLoad = false
+                    }
+                } else {
+                    thinkSolveLeaders = scoreboard.entries.sorted(by: { $0.rank < $1.rank })
+                    self.leaderLoad = false
+                }
                 
             case .failure(let error):
                 print("Error fetching Leaderboard: \(error)")
+                self.leaderLoad = false
             }
         }
     }
