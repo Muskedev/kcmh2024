@@ -1,21 +1,21 @@
 from pymongo import AsyncMongoClient
-from entities.game_modes import FunFactsRound, Question, LeaderboardEntry
+from entities.game_modes import FunFactsRound, FunFactQuestion, LeaderboardEntry
 
 
 class DocumentNotFound(Exception):
     pass
 
-class FunFactsMongoService:
+class ThinkSolveMongoService:
 
     def __init__(self, mongo_client: AsyncMongoClient):
-        self.collection = mongo_client["hirnOderHumbug"]["funFactsRounds"]
+        self.collection = mongo_client["hirnOderHumbug"]["thinkSolveRounds"]
     
     def _bson_to_entity(self, bson: dict) -> FunFactsRound:
        return FunFactsRound(
             id=bson["id"],
             score=bson["score"],
             user_id=bson["userId"],
-            questions=[ Question(
+            questions=[ FunFactQuestion(
                 id=question["id"],
                 question=question["question"],
                 correct_answer=question["correctAnswer"],
