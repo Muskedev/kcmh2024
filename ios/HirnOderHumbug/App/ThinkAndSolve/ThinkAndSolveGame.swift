@@ -11,6 +11,7 @@ struct ThinkAndSolveGame: View {
     
     @Environment(\.dismiss) var dismiss
     @State private var answer: String = ""
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack(spacing: 30) {
@@ -18,6 +19,7 @@ struct ThinkAndSolveGame: View {
             BrightonQuestion()
             
             TextAnswer(text: $answer)
+                .focused($isFocused)
             
             Spacer()
         }
@@ -26,6 +28,13 @@ struct ThinkAndSolveGame: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 GameDismissButton()
+            }
+            
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") {
+                    isFocused = false
+                }
             }
         }
     }
