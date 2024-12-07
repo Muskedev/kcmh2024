@@ -1,5 +1,5 @@
 from pymongo import AsyncMongoClient
-from entities.game_modes import FunFactsRound, FunFactQuestion, LeaderboardEntry
+from entities.game_modes import ThinkSolveRound, ThinkSolveQuestion, LeaderboardEntry
 
 
 class DocumentNotFound(Exception):
@@ -8,14 +8,14 @@ class DocumentNotFound(Exception):
 class ThinkSolveMongoService:
 
     def __init__(self, mongo_client: AsyncMongoClient):
-        self.collection = mongo_client["hirnOderHumbug"]["thinkSolveRounds"]
+        self.collection = mongo_client["hirnOderHumbug"]["funFactsRounds"]
     
-    def _bson_to_entity(self, bson: dict) -> FunFactsRound:
-       return FunFactsRound(
+    def _bson_to_entity(self, bson: dict) -> ThinkSolveRound:
+       return ThinkSolveRound(
             id=bson["id"],
             score=bson["score"],
             user_id=bson["userId"],
-            questions=[ FunFactQuestion(
+            questions=[ ThinkSolveQuestion(
                 id=question["id"],
                 question=question["question"],
                 correct_answer=question["correctAnswer"],
@@ -24,7 +24,7 @@ class ThinkSolveMongoService:
             ) for question in bson["questions"]]
         ) 
 
-    async def replace_round(self, round: FunFactsRound, upsert: bool = True):
+    async def replace_round(self, round: ThinkSolveRound, upsert: bool = True):
         bson_payload = {
             "id": round.id,
             "score": round.score,
@@ -42,7 +42,7 @@ class ThinkSolveMongoService:
         return self._bson_to_entity(result) 
 
     async def get_finished_rounds(self, user_id: str): 
-        result: list[FunFactsRound] = []
+        result: list[ThinkSolveRound] = []
         
         async for game_round in self.collection.find({"userId": user_id, "score": {"$gt": -1}}):
             result.append(self._bson_to_entity(game_round))

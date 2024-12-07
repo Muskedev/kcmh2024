@@ -1,4 +1,4 @@
-from entities.game_modes import FunFactsRound, Question
+from entities.game_modes import FunFactsRound, FunFactQuestion
 from entities.game_modes import Leaderboard, GameModeEnum
 from services.ai.openai_ai_service import Message, Prompt
 #from services.ai import InformaniakAiService, Prompt, Message
@@ -101,7 +101,7 @@ class FunFactsGameModeService:
         return FunFactsRound(
             user_id=user_id,
             score=0,
-            questions=[ Question(
+            questions=[ FunFactQuestion(
                 question=question["question"],
                 correct_answer=question["answer"],
                 explanation=question["explanation"],
