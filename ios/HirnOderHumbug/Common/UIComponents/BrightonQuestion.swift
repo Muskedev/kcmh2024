@@ -23,26 +23,45 @@ struct BrightonQuestion: View {
         "Ich mach mal ein Kopf-Kino mit neuen Szenen. 🎬"
     ]
     @State var loadingQuestion: String = ""
+    let mode: GameMode
     
     var body: some View {
         @Bindable var appViewModel = appViewModel
         
         VStack {
             ZStack {
-                if let question = appViewModel.reallyQuestion {
-                    AnimatedText(question.question)
-                        .font(.question)
+                if mode == .really {
+                    if let question = appViewModel.reallyQuestion {
+                        AnimatedText(question.question)
+                            .font(.question)
+                    } else {
+                        VStack(spacing: 10.0) {
+                            Image(systemName: "ellipsis")
+                                .font(.largeTitle)
+                                .foregroundStyle(.gray)
+                                .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
+                            
+                            Text(loadingQuestion)
+                                .font(.answer)
+                        }
+                    }
                 } else {
-                    VStack(spacing: 10.0) {
-                        Image(systemName: "ellipsis")
-                            .font(.largeTitle)
-                            .foregroundStyle(.gray)
-                            .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
-                        
-                        Text(loadingQuestion)
-                            .font(.answer)
+                    if let question = appViewModel.thinkSolveQuestion {
+                        AnimatedText(question.question)
+                            .font(.question)
+                    } else {
+                        VStack(spacing: 10.0) {
+                            Image(systemName: "ellipsis")
+                                .font(.largeTitle)
+                                .foregroundStyle(.gray)
+                                .symbolEffect(.wiggle.up.byLayer, options: .repeat(.continuous))
+                            
+                            Text(loadingQuestion)
+                                .font(.answer)
+                        }
                     }
                 }
+                
             }
             .padding(.top, 15)
             .padding(.bottom, 25)
@@ -63,9 +82,16 @@ struct BrightonQuestion: View {
         .onChange(of: appViewModel.reallyQuestion) { _,_ in
             loadingQuestion = loadingStrings.randomElement() ?? ""
         }
+        .onChange(of: appViewModel.thinkSolveQuestion) { _,_ in
+            loadingQuestion = loadingStrings.randomElement() ?? ""
+        }
         .onAppear {
             loadingQuestion = loadingStrings.randomElement() ?? ""
-            appViewModel.newReallyRound()
+            if mode == .really {
+                appViewModel.newReallyRound()
+            } else {
+                appViewModel.newThinkSolveRound()
+            }
         }
     }
 }

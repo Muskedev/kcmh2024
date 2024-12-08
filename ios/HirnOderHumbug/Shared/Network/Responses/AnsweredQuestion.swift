@@ -9,3 +9,8 @@ struct AnsweredQuestion: Codable {
     let id: String
     let userAnswer: Bool
 }
+
+struct AnsweredQuestionTS: Codable {
+    let explanation: String
+    let isUserCorrect: Bool
+}

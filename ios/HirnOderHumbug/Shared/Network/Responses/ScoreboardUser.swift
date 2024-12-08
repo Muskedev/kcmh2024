@@ -8,5 +8,5 @@
 struct ScoreboardUser: Codable {
     let name: String
     let score: Int
-    let rank: Int
+    var rank: Int
 }

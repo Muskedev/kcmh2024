@@ -12,3 +12,12 @@ struct FunfactsQuestion: Codable, Equatable {
     var userAnswer: Bool?
     let correctAnswer: Bool
 }
+
+struct ThinkSolveQuestion: Codable, Equatable {
+    let id: String
+    let question: String
+    var explanation: String?
+    var userAnswer: String?
+    var correctAnswer: Bool?
+}
+
