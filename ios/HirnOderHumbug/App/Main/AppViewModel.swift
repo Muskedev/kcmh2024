@@ -431,12 +431,12 @@ class AppViewModel {
         }
     }
     
-    var userLeaderEntry: ScoreboardUser {
+    var userLeaderEntry: ScoreboardUser? {
         let name = KeychainHelper.shared.userName ?? ""
         switch leaderMode {
-        case .reallyLeader: return reallyLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: reallyLeaders.count + 1)
-        case .thinkSolveLeader: return thinkSolveLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: thinkSolveLeaders.count + 1)
-        default: return bothLeaderList.first { $0.name == name } ?? .init(name: name, score: 0, rank: bothLeaderList.count + 1)
+        case .reallyLeader: return reallyLeaders.first { $0.name == name }
+        case .thinkSolveLeader: return thinkSolveLeaders.first { $0.name == name }
+        default: return bothLeaderList.first { $0.name == name }
         }
     }
     

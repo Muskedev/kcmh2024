@@ -71,14 +71,16 @@ struct LeaderboardScreen: View {
                 } else {
                     
                     ScrollView {
-                        VStack(spacing: 10) {
-                            Text("Deine Platzierung")
-                                .font(.leaderboardHead)
-                                .foregroundStyle(.white)
-                            
-                            LeaderboardRow(entry: appViewModel.userLeaderEntry)
+                        if let userEntry = appViewModel.userLeaderEntry {
+                            VStack(spacing: 10) {
+                                Text("Deine Platzierung")
+                                    .font(.leaderboardHead)
+                                    .foregroundStyle(.white)
+                                
+                                LeaderboardRow(entry: userEntry)
+                            }
+                            .padding()
                         }
-                        .padding()
                         
                         Text("Top 5")
                             .font(.leaderboardHead)
