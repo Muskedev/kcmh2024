@@ -398,7 +398,7 @@ class AppViewModel {
     
     var thinkSolveLeaderList: [ScoreboardUser] {
         if thinkSolveLeaders.count > 5 {
-            return Array(thinkSolveLeaders.prefix(upTo: reallyLeaders.count + 1))
+            return Array(thinkSolveLeaders.prefix(upTo: 5))
         } else {
             return thinkSolveLeaders
         }
