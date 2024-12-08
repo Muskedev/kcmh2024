@@ -86,6 +86,7 @@ class ThinkSolveRoutes:
                     question=question.question
                 ) for question in round.questions]
             ) 
+        
         @self.app.get("/gamemode/thinkSolve/getFinishedRounds")
         async def get_finished_rounds(userId: str) -> FinishedRoundsDto:
             finished_rounds = await self.think_solve_service.get_rounds(userId)
@@ -120,7 +121,7 @@ class ThinkSolveRoutes:
             ])
         
         @self.app.put("/gamemode/thinkSolve/answerQuestion")
-        async def answer_question(userId: str, roundId: str, questionAnswer: AnswerQuestionDto):
+        async def answer_question(userId: str, roundId: str, questionAnswer: AnswerQuestionDto) -> AnswerDto:
             try:
 
                 answer = await self.think_solve_service.answer_question(services.game_modes.think_solve.AnswerQuestionDto(
