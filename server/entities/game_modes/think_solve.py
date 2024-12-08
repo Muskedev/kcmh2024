@@ -4,7 +4,7 @@ from uuid import uuid4
 class ThinkSolveQuestion:
     id: str
     question: str
-    explanation: str
+    explanation: str | None
     correct_answer: bool | None
     user_answer: str | None
     
