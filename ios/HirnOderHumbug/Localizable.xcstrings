@@ -7,17 +7,16 @@
     "**Erklärung:**\n%@" : {
 
     },
-    "%@ %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
-          }
-        }
-      }
+    "%@ %%" : {
+
     },
     "%lld" : {
+
+    },
+    "Antwort" : {
+
+    },
+    "Antwort prüfen" : {
 
     },
     "Arggh, da hab ich dich wohl täuschen können." : {
@@ -38,13 +37,22 @@
     "Deine Platzierung" : {
 
     },
-    "Done" : {
+    "Deine Statistik" : {
 
     },
     "Erstellen" : {
 
     },
     "Falsch" : {
+
+    },
+    "Fragen" : {
+
+    },
+    "Kein Leaderboard vorhanden" : {
+
+    },
+    "Keine History vorhanden" : {
 
     },
     "Nächste Frage" : {
@@ -65,7 +73,16 @@
     "Richtig! Die Aussage stimmt %@" : {
 
     },
+    "Richtige" : {
+
+    },
     "Runde starten" : {
+
+    },
+    "Segmented Control" : {
+
+    },
+    "Streak" : {
 
     },
     "Top 5" : {
@@ -81,6 +98,9 @@
 
     },
     "Willst du wirklich aufgeben? Dein Punktestand wird nie erfahren, wie großartig es hätte sein können!" : {
+
+    },
+    "X" : {
 
     }
   },
