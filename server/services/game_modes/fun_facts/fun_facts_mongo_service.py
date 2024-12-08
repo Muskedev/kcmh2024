@@ -52,6 +52,9 @@ class FunFactsMongoService:
     async def generate_leaderboard(self):
         pipeline = [
             {
+                "$match": {"score": {"$gte": 0}}
+            },
+            {
                 "$lookup": {
                     "from": "users",
                     "localField": "userId",

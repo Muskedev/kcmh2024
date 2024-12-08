@@ -52,6 +52,9 @@ class ThinkSolveMongoService:
     async def generate_leaderboard(self):
         pipeline = [
             {
+                "$match": {"score": {"$gte": 0}}
+            },
+            {
                 "$lookup": {
                     "from": "users",
                     "localField": "userId",
@@ -79,7 +82,7 @@ class ThinkSolveMongoService:
                 "$sort": {"score": -1}
             }
         ]
-        
+
         leaderboard_cursor = await self.collection.aggregate(pipeline=pipeline)
         leaderboard: list[LeaderboardEntry] = []
         rank = 1
