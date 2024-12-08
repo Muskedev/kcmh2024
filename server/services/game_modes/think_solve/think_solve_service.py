@@ -9,7 +9,7 @@ import json
 
 generate_questions_prompt = Prompt(
     messages=[
-        Message('unique but coherent fun facts from science, history, nature and technology. user give int how many. data in german', "system"),
+        Message('unique but coherent questions from science, history, nature and technology which an user needs to answer. user give int how many. data in german', "system"),
         Message('5', 'user') #damit können wir aktuell die Fragenanzahl bestimmen (Wenn das LLM das nicht verkackt :P)
     ],
     json_schema=
@@ -34,22 +34,23 @@ generate_questions_prompt = Prompt(
   }
 )
 
-class QuestionAnswerDto:
+class AnswerQuestionDto:
     round_id: str
     user_id: str
     question_id: str
-    user_answer: bool
+    user_answer: str
 
-    def __init__(self, round_id: str, question_id: str, user_answer: bool):
+    def __init__(self, user_id: str, round_id: str, question_id: str, user_answer: bool):
+        self.user_id = user_id
         self.round_id = round_id
         self.question_id = question_id
         self.user_answer = user_answer 
 
 class AnswerDto:
     is_user_correct: bool
-    explanation: bool
+    explanation: str
     
-    def __init__(self, is_user_correct: bool, explanation: str):
+    def __init__(self, is_user_correct: str, explanation: str):
         self.is_user_correct = is_user_correct
         self.explanation = explanation
 
@@ -81,19 +82,19 @@ class QuestionCanNotBeFound(Exception):
 class RoundCanNotBeClosed(Exception):
     pass
 
-class FunFactsGameModeService:
+class ThinkSolveGameModeService:
     def __init__(self, think_solve_persistence_service: ThinkSolveMongoService, ai_service: OpenAIAIService):
         self.think_solve_persistence_service = think_solve_persistence_service
         self.ai_service = ai_service
 
-    def _convert_json_response(self, user_id: str, json_response: dict) -> FunFactsRound:
+    def _convert_json_response(self, user_id: str, json_response: dict) -> ThinkSolveRound:
         return ThinkSolveRound(
             user_id=user_id,
-            score=0,
+            score=-1,
             questions=[ ThinkSolveQuestion(
-                question=question["question"],
+                question=question,
                 correct_answer=None,
-                explanation=question["explanation"],
+                explanation=None,
                 user_answer=None
             ) for question in json_response["questions"]]
         )
@@ -113,7 +114,7 @@ class FunFactsGameModeService:
                         "type": "object",
                         "properties": {
                             "isUserCorrect": {
-                                "type": "bool"
+                                "type": "boolean"
                             },
                             "explanation": {
                                 "type": "string"
@@ -126,15 +127,15 @@ class FunFactsGameModeService:
             }
         )
         
-    async def start_round(self, user_id: str):
+    async def start_round(self, user_id: str) -> ThinkSolveRound:
        json_response = json.loads(await self.ai_service.execute_prompt(generate_questions_prompt))
        think_solve_round = self._convert_json_response(user_id, json_response)
        return await self.think_solve_persistence_service.replace_round(think_solve_round)
     
-    async def get_rounds(self, user_id: str):
+    async def get_rounds(self, user_id: str) -> list[ThinkSolveRound]:
        return await self.think_solve_persistence_service.get_finished_rounds(user_id)
     
-    async def finish_round(self, finished_round_dto: FinishRoundDto):
+    async def finish_round(self, finished_round_dto: FinishRoundDto) -> ThinkSolveRound:
         try:
             game_round = await self.think_solve_persistence_service.get_round(round_id=finished_round_dto.round_id, user_id=finished_round_dto.user_id)
             unanswered_question = next((question for question in game_round.questions if question.user_answer is None), None)
@@ -149,7 +150,7 @@ class FunFactsGameModeService:
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound)
     
-    async def question_answer(self, question_answer: QuestionAnswerDto):
+    async def answer_question(self, question_answer: AnswerQuestionDto) -> AnswerDto:
         try:
             game_round = await self.think_solve_persistence_service.get_round(round_id=question_answer.round_id, user_id=question_answer.user_id)
             question = next((question for question in game_round.questions if question.id == question_answer.question_id), None)
@@ -157,19 +158,20 @@ class FunFactsGameModeService:
             if question is None:
                 raise QuestionCanNotBeFound()
             
-            answer_prompt = self._generate_answer_prompt(self, question=question.question, user_answer=question_answer.user_answer)
-            answer_explanation = json.loads(self.ai_service.execute_prompt(answer_prompt))
+            answer_prompt = self._generate_answer_prompt(question=question.question, user_answer=question_answer.user_answer)
+            answer_explanation = json.loads(await self.ai_service.execute_prompt(answer_prompt))
             
             result = AnswerDto(is_user_correct=answer_explanation["isUserCorrect"], explanation=answer_explanation["explanation"])  
 
             question.correct_answer = result.is_user_correct
             question.explanation = result.explanation
+            question.user_answer = question_answer.user_answer
             
             await self.think_solve_persistence_service.replace_round(round=game_round, upsert=False)
-            return question
+            return result
                 
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound)
     
-    async def get_leaderboard(self):
-        return Leaderboard(entries=await self.think_solve_persistence_service.generate_leaderboard(), game_mode=GameModeEnum.FUNFACTS)
+    async def get_leaderboard(self) -> Leaderboard:
+        return Leaderboard(entries=await self.think_solve_persistence_service.generate_leaderboard(), game_mode=GameModeEnum.THINKSOLVE)
