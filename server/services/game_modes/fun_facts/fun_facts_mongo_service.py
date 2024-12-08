@@ -8,7 +8,7 @@ class DocumentNotFound(Exception):
 class FunFactsMongoService:
 
     def __init__(self, mongo_client: AsyncMongoClient):
-        self.collection = mongo_client["hirnOderHumbug"]["thinkSolveRounds"]
+        self.collection = mongo_client["hirnOderHumbug"]["funFactsRounds"]
     
     def _bson_to_entity(self, bson: dict) -> FunFactsRound:
        return FunFactsRound(
@@ -79,7 +79,7 @@ class FunFactsMongoService:
                 "$sort": {"score": -1}
             }
         ]
-        
+
         leaderboard_cursor = await self.collection.aggregate(pipeline=pipeline)
         leaderboard: list[LeaderboardEntry] = []
         rank = 1
