@@ -57,7 +57,7 @@ struct AboutScreen: View {
                         ForEach(AboutMember.allCases.shuffled(), id: \.rawValue) { member in
                             ProfilRow(image: member.rawValue, name: member.name, role: member.function)
                         }
-                        Text("Account löschen")
+                        Text("Account zurücksetzen")
                         .font(.custom("Mabook", size: 22))
                         .foregroundStyle(.negative)
                         .padding(.vertical, 15)

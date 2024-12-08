@@ -333,48 +333,50 @@ class AppViewModel {
         return (correct / all) * 100
     }
     
-   /* var history: [FunfactsQuestion] {
-        historyCurrentMode.gameMode == .really ? historyReallyQuestions : historyThinkSolveQuestions
-    }*/
-    
     func switchMode(_ mode: GameMode) {
         historyLoading = true
         Task {
-            await fetchHistoryQuestions(mode)
+            await fetchFunfactHistory()
+            await fetchThinkSolveHistory()
         }
     }
     
-    func fetchHistoryQuestions(_ mode: GameMode) async {
-        let check = mode == .really ? historyReallyQuestions.isEmpty || newReallyHistory: historyThinkSolveQuestions.isEmpty || newThinkSolveHistory
-        guard let userID = KeychainHelper.shared.userId, check else {
+    func fetchFunfactHistory() async {
+        guard let userID = KeychainHelper.shared.userId else {
             self.historyLoading = false
             return
         }
-        if mode == .really {
-            let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedFunfactRounds.self)
-            switch result {
-            case .success(let history):
-                for round in history.finishedRounds {
-                    self.historyReallyQuestions.append(contentsOf: round.questions)
-                }
-                self.historyLoading = false
-            case .failure(let error):
-                print("Error on fetching histories: \(error)")
-                self.historyLoading = false
+        let result = await BHController.request(.getFinishedRounds(userID, .really), expected: FinishedFunfactRounds.self)
+        switch result {
+        case .success(let history):
+            self.historyReallyQuestions.removeAll()
+            for round in history.finishedRounds {
+                self.historyReallyQuestions.append(contentsOf: round.questions)
             }
-        } else if mode == .thinkSolve {
-            print(userID)
-            let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedThinkSolveRound.self)
-            switch result {
-            case .success(let history):
-                for round in history.finishedRounds {
-                    self.historyThinkSolveQuestions.append(contentsOf: round.questions)
-                }
-                self.historyLoading = false
-            case .failure(let error):
-                print("Error on fetching histories: \(error)")
-                self.historyLoading = false
+            self.historyLoading = false
+        case .failure(let error):
+            print("Error on fetching histories: \(error)")
+            self.historyLoading = false
+        }
+    }
+    
+    func fetchThinkSolveHistory() async {
+        guard let userID = KeychainHelper.shared.userId else {
+            self.historyLoading = false
+            return
+        }
+        
+        let result = await BHController.request(.getFinishedRounds(userID, .thinkSolve), expected: FinishedThinkSolveRound.self)
+        switch result {
+        case .success(let history):
+            self.historyThinkSolveQuestions.removeAll()
+            for round in history.finishedRounds {
+                self.historyThinkSolveQuestions.append(contentsOf: round.questions)
             }
+            self.historyLoading = false
+        case .failure(let error):
+            print("Error on fetching histories: \(error)")
+            self.historyLoading = false
         }
     }
     

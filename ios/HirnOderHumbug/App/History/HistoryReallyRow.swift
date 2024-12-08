@@ -78,8 +78,8 @@ struct HistoryThinkSolveRow: View {
                     Text(KeychainHelper.shared.userName ?? "")
                         .font(.historyButtonText)
                     Text(question.userAnswer ?? "")
-                        .font(.historyTrueFalse)
-                        .foregroundStyle(wasCorrect ?? false ? .positive: .negative)
+                        .font(.historyTitle)
+                        .foregroundStyle(wasCorrect ? .positive: .negative)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -87,7 +87,7 @@ struct HistoryThinkSolveRow: View {
             Text(
                 """
                 **Erklärung:**
-                \(question.explanation)
+                \(question.explanation ?? "")
                 """
             )
             .font(.historyAnswer)
