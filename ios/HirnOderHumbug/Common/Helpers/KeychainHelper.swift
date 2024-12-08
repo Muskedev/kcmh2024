@@ -12,8 +12,8 @@ struct KeychainHelper {
     static var shared = KeychainHelper()
     
     private enum Identifier: String {
-        case userId = "tt_userid"
-        case userName = "tt_username"
+        case userId = "tt_userid_release"
+        case userName = "tt_username_release"
     }
     
     let keychain = KeychainSwift()

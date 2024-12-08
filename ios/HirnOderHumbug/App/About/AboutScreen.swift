@@ -57,22 +57,22 @@ struct AboutScreen: View {
                         ForEach(AboutMember.allCases.shuffled(), id: \.rawValue) { member in
                             ProfilRow(image: member.rawValue, name: member.name, role: member.function)
                         }
-                        Text("Account zurücksetzen")
-                        .font(.custom("Mabook", size: 22))
-                        .foregroundStyle(.negative)
-                        .padding(.vertical, 15)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20.0)
-                                .fill(.white.opacity(0.3))
-                        )
-                        .button {
-                            KeychainHelper.shared.reset()
-                            appViewModel.thinkSolveReset()
-                            appViewModel.reallyReset()
-                            appViewModel.noUser = true
-                            appViewModel.showAlert = true
-                        }
+//                        Text("Account zurücksetzen")
+//                        .font(.custom("Mabook", size: 22))
+//                        .foregroundStyle(.negative)
+//                        .padding(.vertical, 15)
+//                        .frame(maxWidth: .infinity)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 20.0)
+//                                .fill(.white.opacity(0.3))
+//                        )
+//                        .button {
+//                            KeychainHelper.shared.reset()
+//                            appViewModel.thinkSolveReset()
+//                            appViewModel.reallyReset()
+//                            appViewModel.noUser = true
+//                            appViewModel.showAlert = true
+//                        }
                     }
                 }
                 .safeAreaInset(edge: .bottom, content: {
