@@ -20,6 +20,7 @@ class AppViewModel {
     
     /// Username to create a user
     var userName: String = ""
+    var errorMessage: String?
     
     /// Check if User was already created
     func checkUserExists() {
@@ -41,6 +42,7 @@ class AppViewModel {
                 
             case .failure(let error):
                 print(error)
+                errorMessage = "Name bereits vergeben!"
             }
         }
     }

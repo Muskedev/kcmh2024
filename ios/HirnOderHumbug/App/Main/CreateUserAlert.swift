@@ -25,6 +25,12 @@ struct CreateUserAlert: View {
                         .fill(Color.textField)
                 )
             
+            if let error = appViewModel.errorMessage {
+                Text(error)
+                    .font(.buttonNormal)
+                    .foregroundStyle(.negative)
+            }
+            
             Text("Erstellen")
                 .font(.buttonNormal)
                 .foregroundStyle(.backgroundTwo)
