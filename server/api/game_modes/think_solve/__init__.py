@@ -1,1 +1,1 @@
-from .routes import FunFactsRoutes
+from .routes import ThinkSolveRoutes

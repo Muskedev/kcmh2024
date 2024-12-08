@@ -8,7 +8,7 @@ class DocumentNotFound(Exception):
 class ThinkSolveMongoService:
 
     def __init__(self, mongo_client: AsyncMongoClient):
-        self.collection = mongo_client["hirnOderHumbug"]["funFactsRounds"]
+        self.collection = mongo_client["hirnOderHumbug"]["thinkSolveRounds"]
     
     def _bson_to_entity(self, bson: dict) -> ThinkSolveRound:
        return ThinkSolveRound(

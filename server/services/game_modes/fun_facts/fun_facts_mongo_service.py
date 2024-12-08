@@ -5,7 +5,7 @@ from entities.game_modes import FunFactsRound, FunFactQuestion, LeaderboardEntry
 class DocumentNotFound(Exception):
     pass
 
-class ThinkSolveMongoService:
+class FunFactsMongoService:
 
     def __init__(self, mongo_client: AsyncMongoClient):
         self.collection = mongo_client["hirnOderHumbug"]["thinkSolveRounds"]

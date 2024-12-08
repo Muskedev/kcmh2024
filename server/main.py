@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from services.game_modes.fun_facts import FunFactsGameModeService, FunFactsMongoService
+from services.game_modes.think_solve import ThinkSolveMongoService, ThinkSolveGameModeService
 #from services.ai import InformaniakAiService
 from services.ai import OpenAIAIService
 from services.user import UserService, UserMongoService
 from api.game_modes.fun_facts  import FunFactsRoutes
+from api.game_modes.think_solve import ThinkSolveRoutes
 from api.user import UserRoutes
 from settings import MongoDBSettings, OpenAIAISettings
 from pymongo import AsyncMongoClient
@@ -31,13 +33,19 @@ async def lifespan(app: FastAPI):
 
     fun_facts_mongo_service = FunFactsMongoService(mongo_client)
     fun_facts_service = FunFactsGameModeService(fun_facts_mongo_service, openai_ai_service)
+    
+    think_solve_mongo_service = ThinkSolveMongoService(mongo_client)
+    think_solve_service = ThinkSolveGameModeService(think_solve_persistence_service=think_solve_mongo_service, ai_service=openai_ai_service)
 
     user_mongo_service = UserMongoService(mongo_client)
     user_service = UserService(user_mongo_service)
+    
+    
 
     #routes
     FunFactsRoutes(app, fun_facts_service)
     UserRoutes(app, user_service)
+    ThinkSolveRoutes(app, think_solve_service)
 
     
     yield
