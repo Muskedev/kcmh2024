@@ -31,6 +31,9 @@
     "Brians BrainLab" : {
 
     },
+    "Das ist leider Falsch." : {
+
+    },
     "Dein Punktestand" : {
 
     },
@@ -68,6 +71,9 @@
 
     },
     "Punktestand im Stich lassen?" : {
+
+    },
+    "Richtig!" : {
 
     },
     "Richtig! Die Aussage stimmt %@" : {

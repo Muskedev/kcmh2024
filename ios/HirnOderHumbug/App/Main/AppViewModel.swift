@@ -123,7 +123,7 @@ class AppViewModel {
     func fetchReallyRound() {
         guard let userID = KeychainHelper.shared.userId else { return }
         Task {
-            let result = await BHController.request(.createFunfactsRound(userID), expected: FunfactsRound.self)
+            let result = await BHController.request(.createRound(userID, .really), expected: FunfactsRound.self)
             switch result {
             case .success(let round):
                 self.reallyRound = round
@@ -146,7 +146,7 @@ class AppViewModel {
         }
         
         Task {
-            let result = await BHController.request(.finishFunfactsRound(userID, reallyRound.id, reallyScore, answeredQuestions), expected: FunfactsRound.self)
+            let result = await BHController.request(.finishRound(.really, userID, reallyRound.id, reallyScore, answeredQuestions), expected: FunfactsRound.self)
             switch result {
             case .success:
                 self.newReallyHistory = true
@@ -162,10 +162,119 @@ class AppViewModel {
     }
     
     // MARK: - Think & Solve
+    var thinkSolveRound: ThinkSolveRound?
+    var thinkSolveQuestion: ThinkSolveQuestion?
+    var thinkSolveCheckedAnswer: AnsweredQuestionTS?
     var thinkSolveUserAnswer: String = ""
+    var thinkSolveCurrentRound: Int = 0
+    var thinkSolveScore: Int = 0
+    var thinkSolveBasePoints: Int = 30
+    var thinkSolveMultiplier: Int = 1
+    var thinkSolveLoading: Bool = false
+
+    var thinkSolveRounds: Int {
+        (thinkSolveRound?.questions.count ?? 1) - 1
+    }
+    
+    var thinkSolveQuestions: [ThinkSolveQuestion] {
+        thinkSolveRound?.questions ?? []
+    }
+    
+    var thinkSolveCorrect: Bool {
+        thinkSolveQuestion?.correctAnswer ?? false
+    }
+    
+    var thinkSolveLastRound: Bool {
+        thinkSolveCurrentRound == thinkSolveRounds
+    }
+    
+    func newThinkSolveRound() {
+        thinkSolveReset()
+        fetchThinkSolveRound()
+    }
+    
+    func thinkSolveReset() {
+        thinkSolveRound = nil
+        thinkSolveQuestion = nil
+        thinkSolveCheckedAnswer = nil
+        thinkSolveUserAnswer = ""
+        thinkSolveCurrentRound = 0
+        thinkSolveScore = 0
+        thinkSolveBasePoints = 30
+        thinkSolveMultiplier = 1
+        thinkSolveLoading = false
+    }
+    
+    func thinkSolveNextQuestion() {
+        guard let thinkSolveRound else { return }
+        thinkSolveCurrentRound += 1
+        thinkSolveQuestion = thinkSolveRound.questions[thinkSolveCurrentRound]
+        thinkSolveUserAnswer = ""
+        thinkSolveCheckedAnswer = nil
+    }
+    
+    func fetchThinkSolveRound() {
+        guard let userID = KeychainHelper.shared.userId else { return }
+        Task {
+            let result = await BHController.request(.createRound(userID, .thinkSolve), expected: ThinkSolveRound.self)
+            switch result {
+            case .success(let round):
+                self.thinkSolveRound = round
+                self.thinkSolveQuestion = round.questions[self.thinkSolveCurrentRound]
+            case .failure(let error):
+                print("Error get funfacts \(error)")
+            }
+        }
+    }
     
     func thinkSolveCheckAnswer() {
+        thinkSolveLoading = true
+        guard let userID = KeychainHelper.shared.userId, let roundID = thinkSolveRound?.id, let questionID = thinkSolveQuestion?.id else { return }
+        Task {
+            let result = await BHController.request(.answerQuestion(userID, roundID, questionID, thinkSolveUserAnswer), expected: AnsweredQuestionTS.self)
+            switch result {
+            case .success(let answer):
+                self.thinkSolveCheckedAnswer = answer
+                self.thinkSolveLoading = false
+                
+                if answer.isUserCorrect {
+                    thinkSolveScore += thinkSolveBasePoints * thinkSolveMultiplier
+                    thinkSolveMultiplier += 1
+                } else {
+                    thinkSolveMultiplier = 1
+                }
+                
+                guard var thinkSolveQuestion, var thinkSolveRound else { return }
+                thinkSolveQuestion.userAnswer = thinkSolveUserAnswer
+                thinkSolveQuestion.correctAnswer = answer.isUserCorrect
+                thinkSolveQuestion.explanation = answer.explanation
+                thinkSolveRound.questions[self.thinkSolveCurrentRound] = thinkSolveQuestion
+                self.thinkSolveQuestion = thinkSolveQuestion
+                self.thinkSolveRound = thinkSolveRound
+            case .failure(let error):
+                print("Error on check Answer: \(error)")
+                self.thinkSolveLoading = false
+            }
+        }
+    }
+    
+    func endThinkSolveRound(again: Bool) {
+        guard let thinkSolveRound, let userID = KeychainHelper.shared.userId else { return }
         
+        Task {
+            let result = await BHController.request(.finishRound(.thinkSolve, userID, thinkSolveRound.id, thinkSolveScore, []), expected: ThinkSolveRound.self)
+            switch result {
+            case .success:
+                self.newThinkSolveHistory = true
+                if again {
+                    self.newThinkSolveRound()
+                } else {
+                    self.thinkSolveReset()
+                }
+            case .failure(let error):
+                print("Error on set score \(error)")
+            }
+        }
     }
     
     //MARK: - History
@@ -253,11 +362,34 @@ class AppViewModel {
         }
     }
     
+    var bothLeaderList: [ScoreboardUser] {
+        let check = reallyLeaders + thinkSolveLeaders
+        
+        var scoreDict: [String: Int] = [:]
+        var new: [ScoreboardUser] = []
+        
+        for item in check {
+            scoreDict[item.name, default: 0] += item.score
+        }
+        
+        for dict in scoreDict {
+            new.append(.init(name: dict.key, score: dict.value, rank: 0))
+        }
+        
+        var sorted = new.sorted { $0.score > $1.score }
+        new = []
+        for (index, item) in sorted.enumerated() {
+            new.append(.init(name: item.name, score: item.score, rank: index + 1))
+        }
+        
+        return new
+    }
+    
     var leaderboardItems: [ScoreboardUser] {
         switch leaderMode {
         case .reallyLeader: reallyLeaderList
         case .thinkSolveLeader: thinkSolveLeaderList
-        default : []
+        default: bothLeaderList
         }
     }
     
@@ -266,7 +398,7 @@ class AppViewModel {
         switch leaderMode {
         case .reallyLeader: return reallyLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: reallyLeaders.count + 1)
         case .thinkSolveLeader: return thinkSolveLeaders.first { $0.name == name } ?? .init(name: name, score: 0, rank: thinkSolveLeaders.count + 1)
-        default: return .init(name: name, score: 0, rank: thinkSolveLeaders.count + 1)
+        default: return bothLeaderList.first { $0.name == name } ?? .init(name: name, score: 0, rank: bothLeaderList.count + 1)
         }
     }
     
@@ -295,11 +427,13 @@ class AppViewModel {
             switch resultReally {
             case .success(let scoreboard):
                 if mode == .really {
+                    print("ReallyBoard: \(scoreboard)")
                     reallyLeaders = scoreboard.entries.sorted(by: { $0.rank < $1.rank })
                     if leaderMode != .allLeader {
                         self.leaderLoad = false
                     }
                 } else {
+                    print("ThinkSolve: \(scoreboard)")
                     thinkSolveLeaders = scoreboard.entries.sorted(by: { $0.rank < $1.rank })
                     self.leaderLoad = false
                 }

@@ -31,7 +31,7 @@ struct ReallyGame: View {
                     }
                 }
                 
-                BrightonQuestion()
+                BrightonQuestion(mode: .really)
                 if !appViewModel.reallyHideButtons {
                     TrueFalseButtons()
                         .animation(.easeInOut, value: appViewModel.reallyHideButtons)

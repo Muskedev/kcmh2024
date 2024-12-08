@@ -11,3 +11,10 @@ struct FunfactsRound: Codable {
     let userId: String
     var questions: [FunfactsQuestion]
 }
+
+struct ThinkSolveRound: Codable {
+    let score: Int?
+    let id: String
+    let userId: String
+    var questions: [ThinkSolveQuestion]
+}

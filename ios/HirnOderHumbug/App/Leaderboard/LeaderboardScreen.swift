@@ -20,6 +20,7 @@ struct LeaderboardScreen: View {
          
             VStack(spacing: 20.0) {
                 BrightonHeader(head: "Leaderboard", subhead: "Hier regiert die Crème de la Cringe – oder die Champions, je nach Perspektive.")
+                    .padding(.horizontal)
                 
                 SegmentedControl(
                     tabs: TTSegment.leaders,
