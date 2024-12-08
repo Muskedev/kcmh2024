@@ -20,9 +20,11 @@ Und das Beste: Unser Maskottchen Brian Brain führt dich mit seinem charmanten H
 
 
 ## Autoren
-- Simon
-- Kirreth
-- Sephirot
-- Mia
-- Nico
-- Amelie
+- **Sephirot** [GitHub Profil]()
+- **Nico** [GitHub Profil]()
+- **Mia** [GitHub Profil](https://github.com/MiaKoring)
+- **Simon** [GitHub Profil](https://github.com/simon-zwicker)
+- **Kirreth** [GitHub Profil](https://github.com/Kirreth)
+- **Amelie** [GitHub Profil](https://github.com/amelonelie)
+
+
