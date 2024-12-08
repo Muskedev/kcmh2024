@@ -57,6 +57,11 @@ struct AboutScreen: View {
                         ForEach(AboutMember.allCases.shuffled(), id: \.rawValue) { member in
                             ProfilRow(image: member.rawValue, name: member.name, role: member.function)
                         }
+                        Button("Account löschen") {
+                            KeychainHelper.shared.reset()
+                            appViewModel.noUser = true
+                            appViewModel.showAlert = true
+                        }
                     }
                 }
                 .safeAreaInset(edge: .bottom, content: {
@@ -65,11 +70,6 @@ struct AboutScreen: View {
                 .scrollIndicators(.hidden)
                 
                 Spacer()
-                Button("Account löschen") {
-                    KeychainHelper.shared.reset()
-                    appViewModel.noUser = true
-                    appViewModel.showAlert = true
-                }
                 .buttonStyle(.plain)
                 .foregroundStyle(.red.mix(with: .black, by: 0.3))
             }

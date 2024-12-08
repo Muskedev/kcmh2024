@@ -35,6 +35,19 @@ struct LeaderboardScreen: View {
                         .frame(height: 4)
                         .padding(.horizontal, 10)
                         .frame(maxHeight: .infinity, alignment: .bottom)
+                } tapCallback: {
+                    Task {
+                        switch appViewModel.leaderMode {
+                        case .allLeader:
+                            appViewModel.fetchLeaders()
+                        case .reallyLeader:
+                            await appViewModel.fetchLeader(.really)
+                        case .thinkSolveLeader:
+                            await appViewModel.fetchLeader(.thinkSolve)
+                        default:
+                            break
+                        }
+                    }
                 }
                 
                 

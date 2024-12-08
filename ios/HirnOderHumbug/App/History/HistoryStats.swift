@@ -26,27 +26,45 @@ struct HistoryStats: View {
                 VStack {
                     Text("Fragen")
                         .font(.statHeader)
-                    Text("\(appViewModel.historyReallyQuestions.count)")
-                        .font(.statValue)
-                        .contentTransition(.numericText())
+                    if appViewModel.historyCurrentMode == .reallyHistory {
+                        Text("\(appViewModel.historyReallyQuestions.count)")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    } else {
+                        Text("\(appViewModel.historyThinkSolveQuestions.count)")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 
                 VStack {
                     Text("Richtige")
                         .font(.statHeader)
-                    Text("\(appViewModel.reallyHistoryCorrect.string(0)) %")
-                        .font(.statValue)
-                        .contentTransition(.numericText())
+                    if appViewModel.historyCurrentMode == .reallyHistory {
+                        Text("\(appViewModel.reallyHistoryCorrect.string(0)) %")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    } else {
+                        Text("\(appViewModel.thinkSolveHistoryCorrect.string(0)) %")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 
                 VStack {
                     Text("Streak")
                         .font(.statHeader)
-                    Text("\(appViewModel.reallyHistoryStreak)")
-                        .font(.statValue)
-                        .contentTransition(.numericText())
+                    if appViewModel.historyCurrentMode == .reallyHistory {
+                        Text("\(appViewModel.reallyHistoryStreak)")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    } else {
+                        Text("\(appViewModel.thinkSolveHistoryStreak)")
+                            .font(.statValue)
+                            .contentTransition(.numericText())
+                    }
                 }
                 .frame(maxWidth: .infinity)
             }

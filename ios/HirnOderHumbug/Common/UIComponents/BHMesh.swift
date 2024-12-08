@@ -29,3 +29,17 @@ struct BHMesh: View {
         .ignoresSafeArea()
     }
 }
+
+#Preview {
+    Button("tsleaderboard") {
+        Task {
+            let res = await BHController.request(.getLeaderboard(.thinkSolve), expected: Scoreboard.self)
+            switch res {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+}

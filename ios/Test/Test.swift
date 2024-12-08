@@ -7,6 +7,7 @@
 
 import XCTest
 
+
 final class Test: XCTestCase {
     var userId: String = "40d908b8-e0b6-4a4d-8a85-0ecb8a27eee2"
     let roundId = "9cb8ec95-e092-4d84-9083-3e435a33a1ec"
@@ -24,7 +25,7 @@ final class Test: XCTestCase {
     }
     
     func testCreateFunfactsRound() async throws {
-        let res = await BHController.request(.createFunfactsRound(userId), expected: FinishedFunfactsRound.self)
+        let res = await BHController.request(.createRound(userId, GameMode.really), expected: FunfactsRound.self)
         switch res {
         case .success(let success):
             print(success)
@@ -45,7 +46,7 @@ final class Test: XCTestCase {
             AnsweredQuestion(id: "ddb27211-2c61-4b86-8e1c-759ecf580d58", userAnswer: false),
             AnsweredQuestion(id: "2b71a3a4-1a87-48b3-a46c-9e405c52d2f9", userAnswer: false),
             AnsweredQuestion(id: "e0d53b4f-48b6-45c0-9706-20061cefb979", userAnswer: false)
-        ]), expected: FinishedFunfactsRound.self)
+        ]), expected: FunfactsRound.self)
         switch res {
         case .success(let success):
             print("Test")

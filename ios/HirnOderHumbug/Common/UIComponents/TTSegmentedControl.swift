@@ -54,6 +54,8 @@ struct SegmentedControl<Indicator: View>: View {
     @State private var excessTabWidth: CGFloat = .zero
     @State private var minX: CGFloat = .zero
     
+    let tapCallback: () -> Void
+    
     var body: some View {
         GeometryReader { reader in
             let size = reader.size
@@ -72,7 +74,7 @@ struct SegmentedControl<Indicator: View>: View {
                     .onTapGesture {
                         if let index = tabs.firstIndex(of: tab), let activeIndex = tabs.firstIndex(of: activeTab) {
                             activeTab = tab
-
+                            tapCallback()
                             withAnimation(.snappy(duration: 0.25, extraBounce: 0)) {
                                 excessTabWidth = containerWidth * CGFloat(index - activeIndex)
                             } completion: {
@@ -115,7 +117,7 @@ struct TestView: View {
                         .frame(height: 4)
                         .padding(.horizontal, 10)
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                }
+                } tapCallback: {}
                 
                 SegmentedControl(tabs: TTSegment.history, activeTab: $activeHistory, height: 35, activeTint: .backgroundTwo, inActiveTint: .backgroundTwo.opacity(0.5)) { size in
                     Rectangle()
@@ -123,7 +125,7 @@ struct TestView: View {
                         .frame(height: 4)
                         .padding(.horizontal, 10)
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                }
+                } tapCallback: {}
                 
                 Spacer(minLength: 0)
             }

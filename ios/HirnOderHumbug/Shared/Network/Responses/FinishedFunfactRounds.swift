@@ -8,3 +8,7 @@
 struct FinishedFunfactRounds: Codable {
     let finishedRounds: [FunfactsRound]
 }
+
+struct FinishedThinkSolveRound: Codable {
+    let finishedRounds: [ThinkSolveRound]
+}

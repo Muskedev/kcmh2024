@@ -279,7 +279,7 @@ class AppViewModel {
     
     //MARK: - History
     var historyReallyQuestions: [FunfactsQuestion] = .init()
-    var historyThinkSolveQuestions: [FunfactsQuestion] = .init()
+    var historyThinkSolveQuestions: [ThinkSolveQuestion] = .init()
     var historyCurrentMode: TTSegment = .reallyHistory {
         didSet {
             switchMode(historyCurrentMode.gameMode)
@@ -303,6 +303,22 @@ class AppViewModel {
         return maxStreak
     }
     
+    var thinkSolveHistoryStreak: Int {
+        var maxStreak: Int = 0
+        var currentStreak: Int = 0
+        
+        for question in historyThinkSolveQuestions {
+            if question.correctAnswer ?? false {
+                currentStreak += 1
+                maxStreak = max(maxStreak, currentStreak)
+            } else {
+                currentStreak = 0
+            }
+        }
+        
+        return maxStreak
+    }
+    
     var reallyHistoryCorrect: Double {
         guard !historyReallyQuestions.isEmpty else { return 0 }
         let correct = Double(historyReallyQuestions.filter({ $0.correctAnswer == $0.userAnswer }).count.double)
@@ -310,9 +326,16 @@ class AppViewModel {
         return (correct / all) * 100
     }
     
-    var history: [FunfactsQuestion] {
-        historyCurrentMode.gameMode == .really ? historyReallyQuestions : historyThinkSolveQuestions
+    var thinkSolveHistoryCorrect: Double {
+        guard !historyThinkSolveQuestions.isEmpty else { return 0 }
+        let correct = Double(historyThinkSolveQuestions.filter({ $0.correctAnswer ?? false }).count.double)
+        let all = Double(historyThinkSolveQuestions.count)
+        return (correct / all) * 100
     }
+    
+   /* var history: [FunfactsQuestion] {
+        historyCurrentMode.gameMode == .really ? historyReallyQuestions : historyThinkSolveQuestions
+    }*/
     
     func switchMode(_ mode: GameMode) {
         historyLoading = true
@@ -327,16 +350,31 @@ class AppViewModel {
             self.historyLoading = false
             return
         }
-        let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedFunfactRounds.self)
-        switch result {
-        case .success(let history):
-            for round in history.finishedRounds {
-                self.historyReallyQuestions.append(contentsOf: round.questions)
+        if mode == .really {
+            let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedFunfactRounds.self)
+            switch result {
+            case .success(let history):
+                for round in history.finishedRounds {
+                    self.historyReallyQuestions.append(contentsOf: round.questions)
+                }
+                self.historyLoading = false
+            case .failure(let error):
+                print("Error on fetching histories: \(error)")
+                self.historyLoading = false
             }
-            self.historyLoading = false
-        case .failure(let error):
-            print("Error on fetching histories: \(error)")
-            self.historyLoading = false
+        } else if mode == .thinkSolve {
+            print(userID)
+            let result = await BHController.request(.getFinishedRounds(userID, mode), expected: FinishedThinkSolveRound.self)
+            switch result {
+            case .success(let history):
+                for round in history.finishedRounds {
+                    self.historyThinkSolveQuestions.append(contentsOf: round.questions)
+                }
+                self.historyLoading = false
+            case .failure(let error):
+                print("Error on fetching histories: \(error)")
+                self.historyLoading = false
+            }
         }
     }
     

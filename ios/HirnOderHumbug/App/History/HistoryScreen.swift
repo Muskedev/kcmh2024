@@ -34,6 +34,7 @@ struct HistoryScreen: View {
                         .frame(height: 4)
                         .padding(.horizontal, 10)
                         .frame(maxHeight: .infinity, alignment: .bottom)
+                } tapCallback: {
                 }
                 
                 if appViewModel.historyLoading {
@@ -56,9 +57,13 @@ struct HistoryScreen: View {
                     ScrollView {
                         LazyVStack {
                             HistoryStats()
-                            ForEach(appViewModel.history, id: \.id) { question in
-                                if appViewModel.historyCurrentMode.gameMode == .really {
+                            if appViewModel.historyCurrentMode == .reallyHistory {
+                                ForEach(appViewModel.historyReallyQuestions, id: \.id) { question in
                                     HistoryReallyRow(question: question)
+                                }
+                            } else {
+                                ForEach(appViewModel.historyThinkSolveQuestions, id: \.id) { question in
+                                    HistoryThinkSolveRow(question: question)
                                 }
                             }
                         }
