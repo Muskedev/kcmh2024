@@ -1,16 +1,23 @@
+@font-face {
+    font-family: Mabook;
+    src: url('Mabook.ttf') format("truetype");
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #1E2749;
+    color: #e4d9ff;
 }
 
 header {
-    background-color: #1f1f1f;
-    color: #bb86fc;
+    background-color: #273469;
+    color: #e4d9ff;
     padding: 1rem 0;
     text-align: center;
+    font-family: Mabook;
 }
 
 header h1 {
@@ -26,11 +33,11 @@ header p {
 nav {
     display: flex;
     justify-content: center;
-    background: #232323;
+    background: #30343F;
 }
 
 nav a {
-    color: #bb86fc;
+    color: #e4d9ff;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     display: block;
@@ -47,7 +54,7 @@ nav a:hover {
 }
 
 .post {
-    background: #1f1f1f;
+    background: #2a2b2b;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     margin-bottom: 2rem;
@@ -66,7 +73,7 @@ nav a:hover {
 
 .post-content h2 {
     margin: 0 0 1rem;
-    color: #bb86fc;
+    color: #e4d9ff;
 }
 
 .post-content p {
@@ -75,7 +82,7 @@ nav a:hover {
 }
 
 .post-content a {
-    color: #03dac5;
+    color: #e4d9ff;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
