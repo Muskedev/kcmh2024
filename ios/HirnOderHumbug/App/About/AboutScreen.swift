@@ -68,6 +68,8 @@ struct AboutScreen: View {
                         )
                         .button {
                             KeychainHelper.shared.reset()
+                            appViewModel.thinkSolveReset()
+                            appViewModel.reallyReset()
                             appViewModel.noUser = true
                             appViewModel.showAlert = true
                         }
