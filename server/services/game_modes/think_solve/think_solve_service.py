@@ -86,14 +86,14 @@ class FunFactsGameModeService:
         self.think_solve_persistence_service = think_solve_persistence_service
         self.ai_service = ai_service
 
-    def _convert_json_response(self, user_id: str, json_response: dict) -> FunFactsRound:
+    def _convert_json_response(self, user_id: str, json_response: dict) -> ThinkSolveRound:
         return ThinkSolveRound(
             user_id=user_id,
             score=0,
             questions=[ ThinkSolveQuestion(
-                question=question["question"],
+                question=question,
                 correct_answer=None,
-                explanation=question["explanation"],
+                explanation=None,
                 user_answer=None
             ) for question in json_response["questions"]]
         )
@@ -126,15 +126,15 @@ class FunFactsGameModeService:
             }
         )
         
-    async def start_round(self, user_id: str):
+    async def start_round(self, user_id: str) -> ThinkSolveRound:
        json_response = json.loads(await self.ai_service.execute_prompt(generate_questions_prompt))
        think_solve_round = self._convert_json_response(user_id, json_response)
        return await self.think_solve_persistence_service.replace_round(think_solve_round)
     
-    async def get_rounds(self, user_id: str):
+    async def get_rounds(self, user_id: str) -> list[ThinkSolveRound]:
        return await self.think_solve_persistence_service.get_finished_rounds(user_id)
     
-    async def finish_round(self, finished_round_dto: FinishRoundDto):
+    async def finish_round(self, finished_round_dto: FinishRoundDto) -> ThinkSolveRound:
         try:
             game_round = await self.think_solve_persistence_service.get_round(round_id=finished_round_dto.round_id, user_id=finished_round_dto.user_id)
             unanswered_question = next((question for question in game_round.questions if question.user_answer is None), None)
@@ -149,7 +149,7 @@ class FunFactsGameModeService:
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound)
     
-    async def question_answer(self, question_answer: QuestionAnswerDto):
+    async def question_answer(self, question_answer: QuestionAnswerDto) -> AnswerDto:
         try:
             game_round = await self.think_solve_persistence_service.get_round(round_id=question_answer.round_id, user_id=question_answer.user_id)
             question = next((question for question in game_round.questions if question.id == question_answer.question_id), None)
@@ -171,5 +171,5 @@ class FunFactsGameModeService:
         except DocumentNotFound as e:
            raise RoundCanNotBeFound(DocumentNotFound)
     
-    async def get_leaderboard(self):
-        return Leaderboard(entries=await self.think_solve_persistence_service.generate_leaderboard(), game_mode=GameModeEnum.FUNFACTS)
+    async def get_leaderboard(self) -> Leaderboard:
+        return Leaderboard(entries=await self.think_solve_persistence_service.generate_leaderboard(), game_mode=GameModeEnum.THINKSOLVE)
