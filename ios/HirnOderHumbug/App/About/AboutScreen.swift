@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AboutScreen: View {
+    @Environment(\.appViewModel) var appViewModel
     
     var story: String = """
     Brian Brain hat einen einzigartigen Sinn für Humor und eine grenzenlose Neugier. Statt sich nur mit den großen Fragen des Lebens zu beschäftigen, verliebte er sich in das "unnütze Wissen" – die kleinen Details, die die Welt seltsam und wunderbar machen.
@@ -64,6 +65,13 @@ struct AboutScreen: View {
                 .scrollIndicators(.hidden)
                 
                 Spacer()
+                Button("Account löschen") {
+                    KeychainHelper.shared.reset()
+                    appViewModel.noUser = true
+                    appViewModel.showAlert = true
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.red.mix(with: .black, by: 0.3))
             }
             .padding()
         }
