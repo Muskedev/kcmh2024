@@ -82,7 +82,7 @@ struct LeaderboardScreen: View {
                             .padding()
                         }
                         
-                        Text("Top 5")
+                        Text(appViewModel.leaderMode == .allLeader ? "Alle": "Top 5")
                             .font(.leaderboardHead)
                             .foregroundStyle(.white)
                         
