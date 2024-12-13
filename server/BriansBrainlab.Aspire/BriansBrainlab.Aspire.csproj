@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BriansBrianlab.Api\BriansBrianlab.Api.csproj" />
+      <ProjectReference Include="..\BriansBrainlab.Api\BriansBrainlab.Api.csproj" />
     </ItemGroup>
 
 </Project>

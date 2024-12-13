@@ -1,4 +1,4 @@
-using BriansBrianlab.Api;
+using BriansBrainlab.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 

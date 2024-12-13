@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriansBrainlab.Aspire", "Br
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriansBrainlab.Features", "BriansBrainlab.Features\BriansBrainlab.Features.csproj", "{2E03AA4B-9F87-409C-A7D1-C3BD0EFFA4B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BriansBrainlab.Api", "BriansBrainlab.Api\BriansBrainlab.Api.csproj", "{3AA66002-0B77-4664-A9C2-AE5686392A38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{2E03AA4B-9F87-409C-A7D1-C3BD0EFFA4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E03AA4B-9F87-409C-A7D1-C3BD0EFFA4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E03AA4B-9F87-409C-A7D1-C3BD0EFFA4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AA66002-0B77-4664-A9C2-AE5686392A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA66002-0B77-4664-A9C2-AE5686392A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA66002-0B77-4664-A9C2-AE5686392A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA66002-0B77-4664-A9C2-AE5686392A38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

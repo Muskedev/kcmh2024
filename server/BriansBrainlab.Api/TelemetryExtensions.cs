@@ -2,7 +2,7 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace BriansBrianlab.Api;
+namespace BriansBrainlab.Api;
 
 public static class TelemetryExtensions
 {
