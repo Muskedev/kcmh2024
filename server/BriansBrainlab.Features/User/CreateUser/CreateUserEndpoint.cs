@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 
 namespace BriansBrainlab.Features.User.CreateUser;
 
@@ -6,11 +7,14 @@ public record CreateUserRequest(string Name);
 
 public static class CreateUserEndpoint
 {
-    public static void Map(WebApplication app)
+    public static RouteGroupBuilder MapCreateUserEndpoint(this RouteGroupBuilder group)
     {
-        app.MapPost("/createUser", async (CreateUserRequest createUserRequest) =>
+        group.MapPost("/createUser", async (CreateUserRequest createUserRequest, ICreateUserRepository createUserRepository) =>
         {
-            
+            var user = new BriansBrainLab.Domain.User(name: createUserRequest.Name, id: null);
+            await createUserRepository.InsertUser(user);
         });
+        
+        return group;
     }
 }
