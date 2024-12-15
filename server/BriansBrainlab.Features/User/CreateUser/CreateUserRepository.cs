@@ -9,12 +9,14 @@ public class CreateUserRepository(IMongoCollection<PersistenceUser> collection) 
 {
     private IMongoCollection<PersistenceUser> Collection { get; init; } = collection;
 
-    public async Task InsertUser(BriansBrainLab.Domain.User user)
+    public async Task<BriansBrainLab.Domain.User> InsertUser(BriansBrainLab.Domain.User user)
     {
         if (await Collection.CountDocumentsAsync(UserFilters.FindUserByName(user.Id.ToString()),
                 new CountOptions { Limit = 1 }) > 0)
             throw new UserAlreadyExist(user.Name);
         
         await Collection.InsertOneAsync(UserMappers.FromDomain(user));
+
+        return user;
     }
 }
