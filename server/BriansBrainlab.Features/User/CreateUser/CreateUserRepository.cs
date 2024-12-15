@@ -1,4 +1,3 @@
-using BriansBrainlab.Shared.Persistence;
 using BriansBrainlab.Shared.Persistence.User;
 using BriansBrainlab.Shared.Persistence.User.Filters;
 using BriansBrainlab.Shared.Persistence.User.Mappers;
