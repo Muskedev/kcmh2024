@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace BriansBrainlab.Features.User.CreateUser;
@@ -13,13 +14,20 @@ public static class CreateUserEndpoint
         group.MapPost("/createUser", async (CreateUserRequest createUserRequest, ICreateUserRepository createUserRepository) =>
         {
             var user = new BriansBrainLab.Domain.User(name: createUserRequest.Name, id: null);
-            
-            await createUserRepository.InsertUser(user);
 
-            return new CreateUserResponse(
+            try
+            {
+                await createUserRepository.InsertUser(user);
+            }
+            catch (UserAlreadyExist _)
+            {
+                return Results.BadRequest("User already exists");
+            }
+
+            return TypedResults.Ok(new CreateUserResponse(
                 Id: user.Id.ToString(),
                 Name: user.Name
-            );
+            ));
         });
         
         return group;

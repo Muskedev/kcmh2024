@@ -1,7 +1,14 @@
-namespace BriansBrainlab.Shared.Persistence;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace BriansBrainlab.Shared.Persistence.User;
 
 public class PersistenceUser
 {
-    public string? Id { get; set; }
-    public string? Name { get; set; }
+    [BsonElement("_id")]
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? MongoId { get; init; }
+    public string? Id { get; init; }
+    public string? Name { get; init; }
 }

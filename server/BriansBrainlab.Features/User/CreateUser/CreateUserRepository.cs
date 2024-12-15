@@ -1,4 +1,5 @@
 using BriansBrainlab.Shared.Persistence;
+using BriansBrainlab.Shared.Persistence.User;
 using BriansBrainlab.Shared.Persistence.User.Filters;
 using BriansBrainlab.Shared.Persistence.User.Mappers;
 using MongoDB.Driver;
@@ -11,7 +12,7 @@ public class CreateUserRepository(IMongoCollection<PersistenceUser> collection) 
 
     public async Task<BriansBrainLab.Domain.User> InsertUser(BriansBrainLab.Domain.User user)
     {
-        if (await Collection.CountDocumentsAsync(UserFilters.FindUserByName(user.Id.ToString()),
+        if (await Collection.CountDocumentsAsync(UserFilters.FindUserByName(user.Name),
                 new CountOptions { Limit = 1 }) > 0)
             throw new UserAlreadyExist(user.Name);
         
