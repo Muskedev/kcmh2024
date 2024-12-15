@@ -1,6 +1,6 @@
-namespace BriansBrainLab.Domain.GameModes.FunFacts;
+namespace BriansBrainLab.Domain.GameModes.Really;
 
-public record FunFactsQuestion(
+public record ReallyQuestion(
     Guid Id,
     string Question,
     bool? UserAnswer,
