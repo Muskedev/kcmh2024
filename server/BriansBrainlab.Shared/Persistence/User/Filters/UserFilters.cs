@@ -5,7 +5,7 @@ namespace BriansBrainlab.Shared.Persistence.User.Filters;
 
 public static class UserFilters
 {
-    private static FilterDefinitionBuilder<PersistenceUser> _builder = Builders<PersistenceUser>.Filter;
+    private static readonly FilterDefinitionBuilder<PersistenceUser> Builder = Builders<PersistenceUser>.Filter;
     
-    public static FilterDefinition<PersistenceUser> FindUserByName(string name) => _builder.Eq(u => u.Name, name);
+    public static FilterDefinition<PersistenceUser> FindUserByName(string name) => Builder.Eq(u => u.Name, name);
 }

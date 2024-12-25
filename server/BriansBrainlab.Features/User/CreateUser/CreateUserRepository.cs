@@ -7,7 +7,7 @@ namespace BriansBrainlab.Features.User.CreateUser;
 
 public class CreateUserRepository(IMongoCollection<PersistenceUser> collection) : ICreateUserRepository
 {
-    private IMongoCollection<PersistenceUser> Collection { get; init; } = collection;
+    private IMongoCollection<PersistenceUser> Collection { get; } = collection;
 
     public async Task<BriansBrainLab.Domain.User> InsertUser(BriansBrainLab.Domain.User user)
     {
